@@ -20,7 +20,8 @@
 #' Multiple datasets are available within this package. 
 #' \code{\link{gbmDendrix.rda}} is a glioblastoma dataset used by ... in ..., 
 #' \code{\link{breast.rda}} and \code{\link{ovarian.rda}} are datasets 
-#' downloaded from the cBio Portal and preprocessed as explained in.
+#' downloaded from the cBio Portal and preprocessed as explained in "TiMEx: a
+#' ..."
 #'
 #' @docType package
 #' @name TiMEx-package
