@@ -7,10 +7,10 @@
 recoverAllNamesGroups(groupsMeta, clGenes)
 }
 \arguments{
-\item{groupsMeta:}{list containing groups of equivalent genes, as returned
+\item{groupsMeta}{list containing groups of equivalent genes, as returned
 by the field \code{groups} of \code{\link{doMetagene}}}
 
-\item{clGenes:}{matrix of mutually exclusive groups of same size, as gene
+\item{clGenes}{matrix of mutually exclusive groups of same size, as gene
 names. This type of matrix is returned by either \code{\link{TiMEx}} or
 \code{\link{findSignifCliques}}, as one of the
 matrix elements of the \code{genesSignif} field.}

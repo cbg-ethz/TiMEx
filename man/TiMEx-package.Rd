@@ -18,14 +18,15 @@ should access, in this order, the functions \code{\link{analyzePairs}},
 \details{
 Moreover, this package provides functions to pre-process the input data
 (\code{\link{doMetagene}},\code{\link{removeLowFreqs}}), to post-process the
-resulting groups (\code{\link{produceTableSignifGroups}},
+resulting groups (\code{\link{produceTablesSignifGroups}},
 \code{\link{subsampleAnalysis}}, \code{plotGroupByName},
 \code{\link{recoverAllNamesGroups}}), as well as to simulate a dataset
-generated from the TiMEx model (\code{\link{simulatedGenes}}).
+generated from the TiMEx model (\code{\link{simulateGenes}}).
 
 Multiple datasets are available within this package.
-\code{\link{gbmDendrix.rda}} is a glioblastoma dataset used by ... in ...,
-\code{\link{breast.rda}} and \code{\link{ovarian.rda}} are datasets
-downloaded from the cBio Portal and preprocessed as explained in.
+\code{\link{gbmDendrix}} is a glioblastoma dataset used by ... in ...,
+\code{\link{breast}} and \code{\link{ovarian}} are datasets
+downloaded from the cBio Portal and preprocessed as explained in "TiMEx: a
+..."
 }
 

@@ -86,8 +86,8 @@ binary input dataset.
 Dependning on the size of the dataset (both in terms of samples
 and alterations), TiMEx can require a reasonable time to run. For example,
 the approximate running time is 10 minutes for the
-\code{\link{ovarian.rda}} cancer dataset, and 45 minutes for the
-\code{\link{breast.rda}} cancer  dataset included in this package, on a
+\code{\link{ovarian}} cancer dataset, and 45 minutes for the
+\code{\link{breast}} cancer  dataset included in this package, on a
 personal computer.
 
 \code{TiMEx} displays progress messages. In a fist step, it indicates
@@ -113,8 +113,8 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
 \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure, and
 \code{\link{findSignifCliques}} for step 3 of the TiMEx procedure. The data
-structures \code{\link{ovarianOutput.rda}}, \code{\link{breastOutput.rda}},
-\code{\link{gbmDendrixOutput.rda}}, and \code{\link{gbmMuexOutput.rda}}
+structures \code{\link{ovarianOutput}}, \code{\link{breastOutput}},
+\code{\link{gbmDendrixOutput}}, and \code{\link{gbmMuexOutput}}
 are examples of structures resulting after running TiMEx on large cancer
 datasets.
 }

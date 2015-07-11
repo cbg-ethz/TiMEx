@@ -39,8 +39,8 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 (Bioinformatics, 2015).
 }
 \seealso{
-\code{\link{ovarian.rda}}, \code{\link{breast.rda}},
-and \code{\link{gbmDendrix.rda}}  for examples of biological large cancer
+\code{\link{ovarian}}, \code{\link{breast}},
+and \code{\link{gbmDendrix}}  for examples of biological large cancer
 datasets.
 }
 

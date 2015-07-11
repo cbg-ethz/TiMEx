@@ -58,10 +58,10 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 \seealso{
 the wrapper function \code{\link{TiMEx}} for identifying mutually
 exclusive groups in a  binary dataset with the TiMEx model,
-\code{\link{ovarianSubsampling.RData}},
-\code{\link{breastSubsampling.RData}},
-\code{\link{gbmDendrixSubsampling.RData}}, and
-\code{\link{gbmMuexSubsampling.RData}} for examples of outputs after
+\code{\link{ovarianSubsampling}},
+\code{\link{breastSubsampling}},
+\code{\link{gbmDendrixSubsampling}}, and
+\code{\link{gbmMuexSubsampling}} for examples of outputs after
 performing the subsampling analysis.
 }
 

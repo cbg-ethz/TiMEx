@@ -57,8 +57,8 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 \seealso{
 the wrapper function \code{\link{TiMEx}} for identifying
 mutually exclusive groups in a  binary dataset with the TiMEx model,
-\code{\link{ovarian.rda}}, \code{\link{breast.rda}}, and
-\code{\link{gbmDendrix.rda}}  for examples of biological large cancer
+\code{\link{ovarian}}, \code{\link{breast}}, and
+\code{\link{gbmDendrix}}  for examples of biological large cancer
 datasets.
 }
 

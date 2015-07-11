@@ -10,7 +10,7 @@
 #'
 #' @format \code{breast} is a binary matrix with 958 rows and 537 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
-#' @name breast.rda
+#' @name breast
 NULL
 
 
@@ -19,7 +19,7 @@ NULL
 #' Metagroups of genes in breast cancer
 #'
 #' Dataset containing the genes with identical alteration patterns in the 
-#' breast cancer dataset \code{\link{breast.rda}} (before preprocessing). It 
+#' breast cancer dataset \code{\link{breast}} (before preprocessing). It 
 #' is represented as a list of metagenes, with as many elements as input 
 #' genes which had an identical alteration pattern with at least one other 
 #' input gene.
@@ -29,7 +29,7 @@ NULL
 #' current gene. The numbers indicate the positions of the genes in the input
 #' matrix.
 #' @source Produced with the function \code{\link{doMetagene}}.
-#' @name breastGroups.rda
+#' @name breastGroups
 NULL
 
 
@@ -100,8 +100,8 @@ NULL
 #' }
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
-#' in the input dataset \code{\link{breast.rda}}.
-#' @name breastOutput.rda
+#' in the input dataset \code{\link{breast}}.
+#' @name breastOutput
 NULL
 
 
@@ -110,27 +110,26 @@ NULL
 #' Stability of mutually exclusive groups in breast cancer
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified
-#' by TiMEx in the breast cancer dataset \code{\link{breast.rda}}, after 
+#' by TiMEx in the breast cancer dataset \code{\link{breast}}, after 
 #' subsampling the set of patients at frequencies of \code{30\%}, 
 #' \code{50\%}, and \code{80\%}, for 100 times.
 #'
-#' @format \code{noRepsBreast} is the number of repetitions  and 
-#' \code{countsAllBreast} is  a list with as many elements as subsampling 
-#' frequencies provided (3 in this case). Each element is further a list with 
-#' as many elemenets as number of sizes of the significantly mutually 
-#' exclusive groups identified. Aditionally, \code{bonf} and \code{fdr} are 
-#' two lists corresponding to each of these elements, representing different 
-#' multiple correction methods. Finally, each element is a vector of relative 
-#' counts of the significantly mutually exclusive groups identified. For 
-#' example, \code{countsAllBreast[[1]][[3]]} represents the relative counts of 
-#' the identified mutually exclusive groups of size 3 for a subsampling 
-#' frequency of 30\%, for both  \code{fdr} and \code{bonf} (bonferroni) 
-#' multiple correction methods.
+#' @format  \code{breastSubsampling} is a list with as many elements as 
+#' subsampling frequencies provided (3 in this case). Each element is further 
+#' a list with as many elemenets as number of sizes of the significantly 
+#' mutually exclusive groups identified. Aditionally, \code{bonf} and 
+#' \code{fdr} are two lists corresponding to each of these elements, 
+#' representing different multiple correction methods. Finally, each element 
+#' is a vector of relative counts of the significantly mutually exclusive 
+#' groups identified. For example, \code{breastSubsampling[[1]][[3]]} 
+#' represents the relative counts of the identified mutually exclusive groups 
+#' of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and 
+#' \code{bonf} (bonferroni) multiple correction methods.
 #' 
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{breastOutput.rda}}.
-#' @name breastSubsampling.RData
+#' mutually exclusive groups from \code{\link{breastOutput}}.
+#' @name breastSubsampling
 NULL
 
 
@@ -152,7 +151,7 @@ NULL
 #' \code{breastSubtypes$luminalB} consists of 125 rows,
 #' \code{Her2} consists of 55 rows, and \code{Basal} consists of 76 rows. 
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
-#' @name breastSubtypes.rda
+#' @name breastSubtypes
 NULL
 
 
@@ -227,8 +226,8 @@ NULL
 #' }
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the four binary
-#' matrices in the input dataset \code{\link{breastSubtypes.rda}}.
-#' @name breastSubtypesOutput.rda
+#' matrices in the input dataset \code{\link{breastSubtypes}}.
+#' @name breastSubtypesOutput
 NULL
 
 
@@ -247,7 +246,7 @@ NULL
 #'
 #' @source \url{http://journals.plos.org/ploscompbiol/article?id=10.1371/
 #' journal.pcbi.1003054}
-#' @name gbmDendrix.rda
+#' @name gbmDendrix
 NULL
 
 
@@ -323,8 +322,8 @@ NULL
 #' }
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
-#' in the input dataset \code{\link{gbmDendrix.rda}}.
-#' @name gbmDendrixOutput.rda
+#' in the input dataset \code{\link{gbmDendrix}}.
+#' @name gbmDendrixOutput
 NULL
 
 
@@ -335,32 +334,29 @@ NULL
 #'
 #' 
 #' Dataset containing the stability of the mutually exclusive groups identified
-#' by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix.rda}}, used by
+#' by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used by
 #' Leiserson \emph{et. al} in "Simultaneous identification of multiple driver 
-#' pathways
-#' in cancer" (Plos Computational Biology, 2013), after subsampling the set
-#' of patients at frequencies of \code{30\%}, \code{50\%}, and \code{80\%}, for
-#' 100 times. 
+#' pathways in cancer" (Plos Computational Biology, 2013), after subsampling 
+#' the set of patients at frequencies of \code{30\%}, \code{50\%}, and 
+#' \code{80\%}, for 100 times. 
 #'
-#' @format \code{noRepsGbmDendrix} is the number of repetitions  and 
-#' \code{countsAllGbmDendrix} is  
-#' a list with as many elements as subsampling frequencies provided (3 in this
-#' case). Each element is further a list with as many elemenets as number of 
-#' sizes of the significantly mutually exclusive groups identified. 
-#' Aditionally, \code{bonf} and \code{fdr} are two lists corresponding to each 
-#' of these elements, representing different multiple correction methods. 
-#' Finally, each element is a vector of relative counts of the significantly 
-#' mutually exclusive groups identified. For example, 
-#' \code{countsAllGbmDendrix[[1]][[3]]} represents the relative counts of the 
-#' identified mutually exclusive groups of size 3 for a subsampling frequency 
-#' of 30\%, for both  \code{fdr} and \code{bonf} (bonferroni) multiple 
-#' correction methods.
+#' @format \code{gbmDendrixSubsampling} is a list with as many elements as 
+#' subsampling frequencies provided (3 in this case). Each element is further 
+#' a list with as many elemenets as number of sizes of the significantly 
+#' mutually exclusive groups identified. Aditionally, \code{bonf} and 
+#' \code{fdr} are two lists corresponding to each of these elements, 
+#' representing different multiple correction methods. Finally, each element 
+#' is a vector of relative counts of the significantly mutually exclusive 
+#' groups identified. For example, \code{gbmDendrixSubsampling[[1]][[3]]} 
+#' represents the relative counts of the identified mutually exclusive groups 
+#' of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and 
+#' \code{bonf} (bonferroni) multiple correction methods.
 #'  
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{gbmDendrixOutput.rda}}.
+#' mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
 #' 
-#' @name gbmDendrixSubsampling.RData
+#' @name gbmDendrixSubsampling
 NULL
 
 
@@ -438,7 +434,7 @@ NULL
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
 #' which can be accessed via \code{data(gbm)} in the R package \code{muex}.
-#' @name gbmMuexOutput.rda
+#' @name gbmMuexOutput
 NULL
 
 
@@ -454,23 +450,22 @@ NULL
 #' of patients at frequencies of \code{30\%}, \code{50\%}, and \code{80\%}, for
 #' 100 times. 
 #'
-#' @format The number of repetitions (\code{noRepsGbmMuex}) and 
-#' \code{countsAllGbmMuex}, a list with as many elements as subsampling 
-#' frequencies provided. Each element is further a list with as many elemenets 
-#' as number of sizes of the significantly mutually exclusive groups 
-#' identified. Aditionally, \code{bonf} and \code{fdr} are two lists 
+#' @format \code{gbmMuexSubsampling} is a list with as many elements as 
+#' subsampling frequencies provided. Each element is further a list with as 
+#' many elemenets as number of sizes of the significantly mutually exclusive 
+#' groups identified. Aditionally, \code{bonf} and \code{fdr} are two lists 
 #' corresponding to each of these elements, representing different multiple 
 #' correction methods. Finally, each element is a vector of subsampling 
 #' frequencies of the significant mutually exclusive groups identified. For 
-#' example, \code{countsAllGbmMuex[[1]][[3]]} represents the relative counts 
+#' example, \code{gbmMuexSubsampling[[1]][[3]]} represents the relative counts 
 #' of the identified mutually exclusive groups of size 3 for a subsampling 
 #' frequency of 30\%, for both  \code{fdr} and \code{bonf} (bonferroni) 
 #' multiple correction methods.
 #' 
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{gbmMuexOutput.rda}}.
-#' @name gbmMuexSubsampling.RData
+#' mutually exclusive groups from \code{\link{gbmMuexOutput}}.
+#' @name gbmMuexSubsampling
 NULL
 
 
@@ -487,7 +482,7 @@ NULL
 #'
 #' @format A binary matrix with 316 rows and 312 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=ov_tcga_pub}
-#' @name ovarian.rda
+#' @name ovarian
 NULL
 
 
@@ -496,7 +491,7 @@ NULL
 #' Metagroups of genes in ovarian cancer
 #'
 #' Dataset containing the genes with identical alteration patterns in the 
-#' ovarian cancer dataset \code{\link{ovarian.rda}} (before preprocessing). It 
+#' ovarian cancer dataset \code{\link{ovarian}} (before preprocessing). It 
 #' is represented as a list of metagenes, with as many elements as input 
 #' genes which had an identical alteration pattern with at least one other 
 #' input gene.
@@ -507,7 +502,7 @@ NULL
 #' matrix.
 #' 
 #' @source Produced with the function \code{\link{doMetagene}}.
-#' @name ovarianGroups.rda
+#' @name ovarianGroups
 NULL
 
 
@@ -578,9 +573,9 @@ NULL
 #' }
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
-#' in the input dataset \code{\link{ovarian.rda}}.
+#' in the input dataset \code{\link{ovarian}}.
 #' 
-#' @name ovarianOutput.rda
+#' @name ovarianOutput
 NULL
 
 
@@ -589,27 +584,25 @@ NULL
 #' Stability of mutually exclusive groups in ovarian cancer
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified
-#' by TiMEx in the ovarian cancer dataset \code{\link{ovarian.rda}}, after 
+#' by TiMEx in the ovarian cancer dataset \code{\link{ovarian}}, after 
 #' subsampling the set of patients at frequencies of \code{30\%}, 
 #' \code{50\%}, and \code{80\%}, for 100 times.
 #'
-#' @format \code{noRepsOvarian} is the number of repetitions  and 
-#' \code{countsAllOvarian} is  
-#' a list with as many elements as subsampling frequencies provided (3 in this
-#' case). Each element is further a list with as many elemenets as number of 
-#' sizes of the significantly mutually exclusive groups identified. 
-#' Aditionally, \code{bonf} and \code{fdr} are two lists corresponding to 
-#' each of these elements, representing different multiple correction 
-#' methods. Finally, each element is a vector of relative counts of the 
-#' significantly mutually exclusive groups identified. For example, 
-#' \code{countsAllOvarian[[1]][[3]]} represents the relative counts of the 
-#' identified mutually exclusive groups of size 3 for a subsampling frequency 
-#' of 30\%, for both  \code{fdr} and \code{bonf} (bonferroni) multiple 
-#' correction methods.
+#' @format \code{ovarianSubsampling} is  a list with as many elements as 
+#' subsampling frequencies provided (3 in this case). Each element is further 
+#' a list with as many elemenets as number of sizes of the significantly 
+#' mutually exclusive groups identified. Aditionally, \code{bonf} and 
+#' \code{fdr} are two lists corresponding to each of these elements, 
+#' representing different multiple correction methods. Finally, each element 
+#' is a vector of relative counts of the significantly mutually exclusive 
+#' groups identified. For example, \code{ovarianSubsampling[[1]][[3]]} 
+#' represents the relative counts of the identified mutually exclusive groups 
+#' of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and 
+#' \code{bonf} (bonferroni) multiple correction methods.
 #' 
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{ovarianOutput.rda}}.
+#' mutually exclusive groups from \code{\link{ovarianOutput}}.
 #' 
-#' @name ovarianSubsampling.RData
+#' @name ovarianSubsampling
 NULL

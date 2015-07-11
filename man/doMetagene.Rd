@@ -54,7 +54,7 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 (Bioinformatics, 2015).
 }
 \seealso{
-\code{\link{ovarianGroups.rda}}, \code{\link{breastGroups.rda}}
+\code{\link{ovarianGroups}}, \code{\link{breastGroups}}
 for examples of metagroups in large cancer datasets.
 }
 

@@ -116,9 +116,9 @@ Exclusive Cancer Alterations", by Constantinescu \emph{et al.}
 \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;
 the wrapper function \code{\link{TiMEx}} for combining these three steps,
 and identifying mutually exclusive groups in a  binary dataset with the
-TiMEx model. The data structures \code{\link{ovarianOutput.rda}},
-\code{\link{breastOutput.rda}}, \code{\link{gbmDendrixOutput.rda}}, and
-\code{\link{gbmMuexOutput.rda}} are examples of structures resulting after
+TiMEx model. The data structures \code{\link{ovarianOutput}},
+\code{\link{breastOutput}}, \code{\link{gbmDendrixOutput}}, and
+\code{\link{gbmMuexOutput}} are examples of structures resulting after
 running TiMEx on large cancer datasets.
 }
 

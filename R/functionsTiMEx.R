@@ -631,9 +631,9 @@ testCliqueAsGroup<-function(geneIdx,mat,lo)
 #' \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;
 #' the wrapper function \code{\link{TiMEx}} for combining these three steps, 
 #' and identifying mutually exclusive groups in a  binary dataset with the 
-#' TiMEx model. The data structures \code{\link{ovarianOutput.rda}},
-#' \code{\link{breastOutput.rda}}, \code{\link{gbmDendrixOutput.rda}}, and
-#' \code{\link{gbmMuexOutput.rda}} are examples of structures resulting after 
+#' TiMEx model. The data structures \code{\link{ovarianOutput}},
+#' \code{\link{breastOutput}}, \code{\link{gbmDendrixOutput}}, and
+#' \code{\link{gbmMuexOutput}} are examples of structures resulting after 
 #' running TiMEx on large cancer datasets.
 #' 
 #' @examples
@@ -789,8 +789,8 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
 #' @details Dependning on the size of the dataset (both in terms of samples 
 #' and alterations), TiMEx can require a reasonable time to run. For example, 
 #' the approximate running time is 10 minutes for the 
-#' \code{\link{ovarian.rda}} cancer dataset, and 45 minutes for the 
-#' \code{\link{breast.rda}} cancer  dataset included in this package, on a 
+#' \code{\link{ovarian}} cancer dataset, and 45 minutes for the 
+#' \code{\link{breast}} cancer  dataset included in this package, on a 
 #' personal computer.
 #' 
 #' \code{TiMEx} displays progress messages. In a fist step, it indicates
@@ -864,8 +864,8 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
 #' \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure, and 
 #' \code{\link{findSignifCliques}} for step 3 of the TiMEx procedure. The data
-#' structures \code{\link{ovarianOutput.rda}}, \code{\link{breastOutput.rda}},
-#' \code{\link{gbmDendrixOutput.rda}}, and \code{\link{gbmMuexOutput.rda}} 
+#' structures \code{\link{ovarianOutput}}, \code{\link{breastOutput}},
+#' \code{\link{gbmDendrixOutput}}, and \code{\link{gbmMuexOutput}} 
 #' are examples of structures resulting after running TiMEx on large cancer 
 #' datasets.
 #' 
@@ -959,7 +959,7 @@ TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2015).
 #' 
-#' @seealso \code{\link{ovarianGroups.rda}}, \code{\link{breastGroups.rda}} 
+#' @seealso \code{\link{ovarianGroups}}, \code{\link{breastGroups}} 
 #' for examples of metagroups in large cancer datasets.
 #' 
 #' @examples
@@ -1033,8 +1033,8 @@ doMetagene<-function(mat)
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2015).
 #' 
-#' @seealso \code{\link{ovarian.rda}}, \code{\link{breast.rda}}, 
-#' and \code{\link{gbmDendrix.rda}}  for examples of biological large cancer
+#' @seealso \code{\link{ovarian}}, \code{\link{breast}}, 
+#' and \code{\link{gbmDendrix}}  for examples of biological large cancer
 #' datasets.
 #' 
 #' @examples
@@ -1352,10 +1352,10 @@ produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying mutually 
 #' exclusive groups in a  binary dataset with the TiMEx model,
-#' \code{\link{ovarianSubsampling.RData}}, 
-#' \code{\link{breastSubsampling.RData}}, 
-#' \code{\link{gbmDendrixSubsampling.RData}}, and 
-#' \code{\link{gbmMuexSubsampling.RData}} for examples of outputs after
+#' \code{\link{ovarianSubsampling}}, 
+#' \code{\link{breastSubsampling}}, 
+#' \code{\link{gbmDendrixSubsampling}}, and 
+#' \code{\link{gbmMuexSubsampling}} for examples of outputs after
 #' performing the subsampling analysis.
 #' 
 #' @examples
@@ -1734,9 +1734,9 @@ plotGroupByName<-function(group,mat)
 #' @description \code{recoverAllNameGroups}  recovers, from a metagroup, the 
 #' names of the genes part of an identified mutually exclusive group.
 #' 
-#' @param groupsMeta: list containing groups of equivalent genes, as returned 
+#' @param groupsMeta list containing groups of equivalent genes, as returned 
 #' by the field \code{groups} of \code{\link{doMetagene}}
-#' @param clGenes: matrix of mutually exclusive groups of same size, as gene 
+#' @param clGenes matrix of mutually exclusive groups of same size, as gene 
 #' names. This type of matrix is returned by either \code{\link{TiMEx}} or
 #' \code{\link{findSignifCliques}}, as one of the 
 #' matrix elements of the \code{genesSignif} field. 
@@ -1869,8 +1869,8 @@ recoverAllNamesGroups<-function(groupsMeta,clGenes)
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
 #' mutually exclusive groups in a  binary dataset with the TiMEx model,
-#' \code{\link{ovarian.rda}}, \code{\link{breast.rda}}, and
-#' \code{\link{gbmDendrix.rda}}  for examples of biological large cancer 
+#' \code{\link{ovarian}}, \code{\link{breast}}, and
+#' \code{\link{gbmDendrix}}  for examples of biological large cancer 
 #' datasets.
 #' 
 #' @examples
