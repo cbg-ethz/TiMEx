@@ -1,0 +1,12 @@
+citHeader("To cite TiMEx in publications use:")
+
+bibentry(bibtype = "article",
+         title = "TiMEx: a Waiting Time Model for Mutually Exclusive Cancer Alterations",
+         author = c(person("Simona", "Constantinescu"),
+                    person("Ewa", "Szczurek"),
+                    person("J\"{o}rg Rahnenf\"{u}hrer"),
+					person("Pejman Mohammadi"),                    
+                    person("Niko", "Beerenwinkel")),
+         journal = "Bioinformatics",
+         year = 2015,
+         url = "https://www1.ethz.ch/bsse/cbg/software/TiMEx")

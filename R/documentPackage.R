@@ -1,0 +1,27 @@
+#' TiMEx: A package for finding mutually exclusive groups of alterations in 
+#' large cancer datasets
+#'
+#'The main function of this package is \code{\link{TiMEx}}, which receives as
+#'an input a binary matrix representing the dataset. Optionally, 
+#'significance levels for edge-based thresholds (\code{pairMu} and 
+#'\code{pairPvalue}) and a q-value cutoff (\code{groupPvalue}) can also 
+#'be provided, overriding the default values. Alternatively, the users 
+#'interested in running separately the three steps of the TiMEx procedure 
+#'should access, in this order, the functions \code{\link{analyzePairs}},
+#'\code{\link{doMaxCliques}}, and \code{\link{findSignifCliques}}.
+#'
+#'Moreover, this package provides functions to pre-process the input data 
+#'(\code{\link{doMetagene}},\code{\link{removeLowFreqs}}), to post-process the
+#'resulting groups (\code{\link{produceTableSignifGroups}}, 
+#'\code{\link{subsampleAnalysis}}, \code{plotGroupByName}, 
+#'\code{\link{recoverAllNamesGroups}}), as well as to simulate a dataset 
+#'generated from the TiMEx model (\code{\link{simulatedGenes}}).
+#'
+#' Multiple datasets are available within this package. 
+#' \code{\link{gbmDendrix.rda}} is a glioblastoma dataset used by ... in ..., 
+#' \code{\link{breast.rda}} and \code{\link{ovarian.rda}} are datasets 
+#' downloaded from the cBio Portal and preprocessed as explained in.
+#'
+#' @docType package
+#' @name TiMEx-package
+NULL
