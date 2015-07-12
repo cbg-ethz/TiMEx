@@ -14,3 +14,5 @@ notifications:
     on_failure: change
 
 bioc_required: true
+
+bioc_packages: BiocInstaller
