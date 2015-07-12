@@ -15,4 +15,3 @@ notifications:
 
 bioc_required: true
 
-bioc_packages: "BiocInstaller"
