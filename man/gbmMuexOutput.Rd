@@ -73,6 +73,7 @@ mutually exclusive by TiMEx in the glioblastoma dataset used by Szczurek
 (Research in Computational Molecular Biology, 2014), together with their
 intensities of mutual exclusivity, corrected p-values, and other
 information. The dataset which was used as input for producing these
-groups can be accessed via \code{data(gbm)} in the R package \code{muex}.
+groups can be accessed via \code{data(gbm)} in the R package \code{muex},
+available at \url{https://www1.ethz.ch/bsse/cbg/software/muex}.
 }
 

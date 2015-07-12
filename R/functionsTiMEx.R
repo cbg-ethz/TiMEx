@@ -79,6 +79,10 @@
 #' data(ovarian)
 #' \donttest{ovarianPairs<-analyzePairs(ovarian)}
 #'
+#' @import stats
+#'
+#' @aliases analyzePairs
+#'
 #' @export
 
 analyzePairs<-function(mat)
@@ -321,6 +325,8 @@ analyzePairs<-function(mat)
 #' @importFrom igraph igraph.to.graphNEL
 #' @import RBGL
 #' 
+#' @aliases doMaxCliques
+#' 
 #' @export
 doMaxCliques<-function(pairs,pairMu,pairPvalue)
 {
@@ -468,6 +474,10 @@ doMaxCliques<-function(pairs,pairMu,pairPvalue)
 #' # 310 in the ovarian cancer dataset
 #' data(ovarian)
 #' testGroup<-testCliqueAsGroup(c(13,204,310),ovarian)
+#' 
+#' @import stats
+#' 
+#' @aliases testCliquesAsGroup
 #' 
 #' @export
 testCliqueAsGroup<-function(geneIdx,mat,lo)
@@ -648,6 +658,8 @@ testCliqueAsGroup<-function(geneIdx,mat,lo)
 #' # Then, test all maximal cliques for mutual exclusivity and report the 
 #' # significant ones, based on a corrected p-value threshold of 0.1 (default).
 #' \donttest{ovarianMEgroups<-findSignifCliques(ovarian,ovarianMaxCliques)}
+#' 
+#' @aliases findSignifCliques
 #' 
 #' @export
 findSignifCliques<-function(mat,mcStruct,groupPvalue)
@@ -875,6 +887,8 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
 #' data(ovarian)
 #' \donttest{ovarianMEGroups<-TiMEx(ovarian)}
 #' 
+#' @aliases TiMEx
+#' 
 #' @export
 TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
 {
@@ -974,8 +988,9 @@ TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
 #' data(ovarian)
 #' \donttest{ovarianNew<-doMetagene(ovarian)}
 #' 
+#' @aliases doMetagene
+#' 
 #' @export
-#'
 doMetagene<-function(mat)
 {
     if (missing(mat))
@@ -1043,8 +1058,9 @@ doMetagene<-function(mat)
 #' data(ovarian)
 #' ovarianNew<-removeLowFreqs(ovarian)
 #' 
+#' @aliases removeLowFreqs
+#' 
 #' @export
-#'
 removeLowFreqs<-function(mat,level)
 {
     # check inputs
@@ -1116,6 +1132,8 @@ removeLowFreqs<-function(mat,level)
 #' data(ovarian)
 #' data(ovarianOutput)
 #' ovarianTables<-produceTablesSignifGroups(ovarianOutput,ovarian)
+#' 
+#' @aliases produceTablesSignifGroups
 #' 
 #' @export
 produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
@@ -1362,6 +1380,8 @@ produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
 #' # running this function is time-intensive
 #' data(ovarianOutput)
 #' \dontrun{subsampleOvarian<-subsampleAnalysis(c(0.3,0.5,0.8),ovarianOutput)}
+#' 
+#' @aliases subsampleAnalysis
 #' 
 #' @export
 subsampleAnalysis<-function(subsampl,noReps,signifGroups)
@@ -1672,6 +1692,8 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' @details The plotting is done based on the function 
 #' \code{\link[graphics]{image}}.
 #' 
+#' @return None
+#' 
 #' @author Simona Constantinescu, \email{simona.constantinescu@@bsse.ethz.ch}
 #' 
 #' @references "TiMEx: A Waiting Time Model For Mutually
@@ -1688,6 +1710,10 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' data(breast)
 #' group<-c("MIEN1-CNA","CDH1-Mut","GATA3-Mut","MAP3K1-Mut","CDKN1B-CNA")
 #' plotGroupByName(group,breast)
+#' 
+#' @import graphics
+#' 
+#' @aliases plotGroupByName
 #' 
 #' @export
 plotGroupByName<-function(group,mat)
@@ -1791,6 +1817,8 @@ plotGroupByName<-function(group,mat)
 #' data(ovarianOutput)
 #' r<-recoverAllNamesGroups(ovarianGroups,ovarianOutput$genesSignif[[3]]$bonf)
 #' 
+#' @aliases recoverAllNamesGroups
+#' 
 #' @export
 recoverAllNamesGroups<-function(groupsMeta,clGenes)
 {
@@ -1878,8 +1906,9 @@ recoverAllNamesGroups<-function(groupsMeta,clGenes)
 #' 
 #' @importFrom gtools permutations
 #' 
-#' @export
+#' @aliases simulateGenes
 #' 
+#' @export
 simulateGenes<-function(lambdas,mu,N)
 {
     # check inputs

@@ -2,6 +2,7 @@
 % Please edit documentation in R/functionsTiMEx.R
 \name{testCliqueAsGroup}
 \alias{testCliqueAsGroup}
+\alias{testCliquesAsGroup}
 \title{Tests whether a given group is mutually exclusive}
 \usage{
 testCliqueAsGroup(geneIdx, mat, lo)

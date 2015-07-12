@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Identifying mutual exclusivity with `TiMEx`"
+author: "Simona Constantinescu"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,6 +8,36 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+# Introduction
+
+## The Biological Problem
+Here, say something about why identifying mutually exclusive groups is 
+important (maybe copy from the introduction of the paper).
+
+## Datasets
+Explain which datasets are available within this package and how they have been
+preprocessed (briefly).
+
+# The waiting time model
+
+## The null model
+
+## The mutual exclusivity model
+
+## The TiMEx procedure
+
+# Working examples
+
+## Preprocessing of data
+
+## Running TiMEx
+
+## Posprocessing of results
+
+## Simulated data
+
+# Session Info 
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
 
@@ -35,6 +65,10 @@ The figure sizes have been customised so that you can easily put two images side
 plot(1:10)
 plot(10:1)
 ```
+
+```{r chunkName, eval=FALSE}
+        myFun(3)
+    ```
 
 You can enable figure captions by `fig_caption: yes` in YAML:
 

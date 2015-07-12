@@ -12,6 +12,9 @@ plotGroupByName(group, mat)
 \item{mat}{binary alteration matrix, with rows representing patients and
 columns representing genes}
 }
+\value{
+None
+}
 \description{
 \code{plotGroupByName} plots a mutually exclusive group
 (including the frequencies of the genes), given the names of the genes in

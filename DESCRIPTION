@@ -10,11 +10,11 @@ Depends: R (>= 3.2)
 Imports: 
 	gtools (>= 3.5.0),
 	igraph (>= 0.7.1), 
-	RBGL (>= 1.44)
-Suggests:
-	muex,
-	knitr
+	RBGL (>= 1.44),
+	stats (>= 3.2.0),
+	graphics (>= 3.2.0)
+Suggests: knitr
 VignetteBuilder: knitr
-biocViews: Software,StatisticalMethod,SystemsBiology,GraphAndNetwork,Clustering
+biocViews: Software, StatisticalMethod, SystemsBiology, GraphAndNetwork, Clustering
 License: GPL (>=2)
 URL: https://www1.ethz.ch/bsse/cbg/software/TiMEx

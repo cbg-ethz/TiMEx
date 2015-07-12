@@ -11,6 +11,7 @@
 #' @format \code{breast} is a binary matrix with 958 rows and 537 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
 #' @name breast
+#' @aliases breast
 NULL
 
 
@@ -30,6 +31,7 @@ NULL
 #' matrix.
 #' @source Produced with the function \code{\link{doMetagene}}.
 #' @name breastGroups
+#' @aliases breastGroups
 NULL
 
 
@@ -102,6 +104,7 @@ NULL
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
 #' in the input dataset \code{\link{breast}}.
 #' @name breastOutput
+#' @aliases breastOutput
 NULL
 
 
@@ -130,6 +133,7 @@ NULL
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
 #' mutually exclusive groups from \code{\link{breastOutput}}.
 #' @name breastSubsampling
+#' @aliases breastSubsampling
 NULL
 
 
@@ -152,6 +156,7 @@ NULL
 #' \code{Her2} consists of 55 rows, and \code{Basal} consists of 76 rows. 
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
 #' @name breastSubtypes
+#' @aliases breastSubtypes
 NULL
 
 
@@ -228,6 +233,7 @@ NULL
 #' @source Produced with the function \code{\link{TiMEx}}, on the four binary
 #' matrices in the input dataset \code{\link{breastSubtypes}}.
 #' @name breastSubtypesOutput
+#' @aliases breastSubtypesOutput
 NULL
 
 
@@ -247,6 +253,7 @@ NULL
 #' @source \url{http://journals.plos.org/ploscompbiol/article?id=10.1371/
 #' journal.pcbi.1003054}
 #' @name gbmDendrix
+#' @aliases gbmDendrix
 NULL
 
 
@@ -324,6 +331,7 @@ NULL
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
 #' in the input dataset \code{\link{gbmDendrix}}.
 #' @name gbmDendrixOutput
+#' @aliases gbmDendrixOutput
 NULL
 
 
@@ -357,6 +365,7 @@ NULL
 #' mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
 #' 
 #' @name gbmDendrixSubsampling
+#' @aliases gbmDendrixSubsampling
 NULL
 
 
@@ -370,7 +379,8 @@ NULL
 #' (Research in Computational Molecular Biology, 2014), together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
 #' information. The dataset which was used as input for producing these 
-#' groups can be accessed via \code{data(gbm)} in the R package \code{muex}.
+#' groups can be accessed via \code{data(gbm)} in the R package \code{muex},
+#' available at \url{https://www1.ethz.ch/bsse/cbg/software/muex}.
 #'
 #' @format \code{gbmMuexOutput} is a list consisting of:
 #' \itemize{
@@ -435,6 +445,7 @@ NULL
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
 #' which can be accessed via \code{data(gbm)} in the R package \code{muex}.
 #' @name gbmMuexOutput
+#' @aliases gbmMuexOutput
 NULL
 
 
@@ -466,6 +477,7 @@ NULL
 #' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
 #' mutually exclusive groups from \code{\link{gbmMuexOutput}}.
 #' @name gbmMuexSubsampling
+#' @aliases gbmMuexSubsampling
 NULL
 
 
@@ -483,6 +495,7 @@ NULL
 #' @format A binary matrix with 316 rows and 312 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=ov_tcga_pub}
 #' @name ovarian
+#' @aliases ovarian
 NULL
 
 
@@ -503,6 +516,7 @@ NULL
 #' 
 #' @source Produced with the function \code{\link{doMetagene}}.
 #' @name ovarianGroups
+#' @aliases ovarianGroups
 NULL
 
 
@@ -576,6 +590,7 @@ NULL
 #' in the input dataset \code{\link{ovarian}}.
 #' 
 #' @name ovarianOutput
+#' @aliases ovarianOutput
 NULL
 
 
@@ -605,4 +620,5 @@ NULL
 #' mutually exclusive groups from \code{\link{ovarianOutput}}.
 #' 
 #' @name ovarianSubsampling
+#' @aliases ovarianSubsampling
 NULL
