@@ -1,6 +1,6 @@
 ---
-title: "Identifying mutual exclusivity with `TiMEx`"
-author: "Simona Constantinescu"
+title: "Identifying mutual exclusivity with `TiMEx (vignette in progress)`"
+author: "Simona Cristea"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

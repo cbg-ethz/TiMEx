@@ -63,8 +63,8 @@ For details, see "TiMEx: A Waiting Time Model For Mutually Exclusive Cancer
 Alterations", by Constantinescu \emph{et al.} (2015). The default values are
 0.5 for \code{pairMu} and 0.01 for \code{pairPvalue}.
 
-This function needs functions from the packages \emph{RBGL} and
-\emph{igraph} to run.
+This function needs functions from the packages \emph{RBGL}
+and \emph{igraph} to run.
 }
 \examples{
 # First, test all pairs from the ovarian cancer dataset for mutual

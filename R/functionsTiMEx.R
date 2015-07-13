@@ -274,8 +274,8 @@ analyzePairs<-function(mat)
 #' Alterations", by Constantinescu \emph{et al.} (2015). The default values are
 #' 0.5 for \code{pairMu} and 0.01 for \code{pairPvalue}.
 #' 
-#' This function needs functions from the packages \emph{RBGL} and 
-#' \emph{igraph} to run.
+#' This function needs functions from the packages \emph{RBGL} 
+#' and \emph{igraph} to run.
 #' 
 #' @return list consisting of:
 #' \itemize{
@@ -1711,7 +1711,8 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' group<-c("MIEN1-CNA","CDH1-Mut","GATA3-Mut","MAP3K1-Mut","CDKN1B-CNA")
 #' plotGroupByName(group,breast)
 #' 
-#' @import graphics
+#' @importFrom graphics image
+#' @importFrom graphics axis
 #' 
 #' @aliases plotGroupByName
 #' 

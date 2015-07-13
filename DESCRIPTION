@@ -6,13 +6,13 @@ Version: 0.99.0
 Date: 2015-07-15
 Author: Simona Constantinescu <simona.constantinescu@bsse.ethz.ch>
 Maintainer: Simona Constantinescu <simona.constantinescu@bsse.ethz.ch>
-Depends: R (>= 3.2)
+Depends: R (>= 3.1)
 Imports: 
-	gtools (>= 3.5.0),
+	gtools (>= 3.4.0),
+	graphics (>= 3.1.0),
 	igraph (>= 0.7.1), 
-	RBGL (>= 1.44),
-	stats (>= 3.2.0),
-	graphics (>= 3.2.0)
+	RBGL (>= 1.42),
+	stats (>= 3.1.0)
 Suggests: knitr
 VignetteBuilder: knitr
 biocViews: Software, StatisticalMethod, SystemsBiology, GraphAndNetwork, Clustering

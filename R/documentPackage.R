@@ -1,48 +1,90 @@
-#' TiMEx: A package for finding mutually exclusive groups of alterations in 
-#' large cancer datasets
+#' @title The main usages of TiMEx
+#' 
+#' 
+#' @description The main usages of TiMEx, a package for finding mutually 
+#' exclusive groups of alterations in large cancer datasets.
+#'
 #'
 #' @section Overview:
-#'The most important function in this package is 
-#'\code{\link{TiMEx}}, which identifies all mutually
-#'exclusive groups in a binary dataset. \code{\link{TiMEx}} is a procedure 
-#'implementing three steps: first, all pairs in the input dataset are tested 
-#'for mutual exclusivity. Second, maximal cliques are identified on the basis of a 
-#'selected number of pairs. Third, the resulting cliques are tested for mutual
-#'exclusivity. The options of \code{\link{TiMEx}} 
-#'are thresholds on the significance and intensity of mutual exclusivity 
-#'of mutually exclusive pairs (\code{pairMu} and 
-#'\code{pairPvalue}) and q-value cutoff on the identification of groups 
-#'(\code{groupPvalue}). Unless
-#'otherwise specified, \code{\link{TiMEx}} will use the default values of 
-#'these options. Alternatively, the users 
-#'interested in running separately the three steps of the TiMEx procedure 
-#'should run, in this order, the functions \code{\link{analyzePairs}},
-#'\code{\link{doMaxCliques}}, and \code{\link{findSignifCliques}}.
+#'The most important function in this package is \code{\link{TiMEx}}, which 
+#'identifies all mutually exclusive groups in a binary dataset. TiMEx is a 
+#'procedure implementing three steps: first, all pairs in the input dataset 
+#'are tested for mutual exclusivity. Second, maximal cliques are identified 
+#'on the basis of a selected number of pairs. Third, the resulting cliques 
+#'are tested for mutual exclusivity. Additional inputs to \code{\link{TiMEx}} 
+#'include thresholds on the significance and intensity of the mutually
+#'exclusive pairs (\code{pairMu} and \code{pairPvalue}) and q-value cutoff 
+#'on the mutually exclusive groups (\code{groupPvalue}). Unless otherwise 
+#'specified, \code{\link{TiMEx}} will use the default values of these inputs. 
+#'
+#'Alternatively, users interested in running separately the three steps of 
+#'the TiMEx procedure should run the functions \code{\link{analyzePairs}},
+#'\code{\link{doMaxCliques}}, and \code{\link{findSignifCliques}} 
+#'(sequentially and in this order).
+#'
 #'
 #'@section Preprocessing and postprocessing:
-#'Moreover, this package provides functions to pre-process the input data 
-#'(\code{\link{doMetagene}},\code{\link{removeLowFreqs}}), to post-process the
-#'resulting groups (\code{\link{produceTablesSignifGroups}}, 
-#'\code{\link{subsampleAnalysis}}, \code{plotGroupByName}, 
-#'\code{\link{recoverAllNamesGroups}}), as well as to simulate a dataset 
-#'generated from the TiMEx model (\code{\link{simulateGenes}}).
+#'This package also provides functions to preprocess the input data
+#'(\code{\link{doMetagene}}, \code{\link{removeLowFreqs}}), as well as to 
+#'postprocess the identified mutually exclusive groups 
+#'(\code{\link{produceTablesSignifGroups}}, 
+#'\code{\link{subsampleAnalysis}}, \code{\link{plotGroupByName}}, 
+#'\code{\link{recoverAllNamesGroups}}). 
+#'
 #'
 #' @section Datasets:
 #' Multiple datasets are available within this package. 
-#' \code{\link{gbmDendrix}} is a glioblastoma dataset used by ... in ..., 
 #' \code{\link{breast}} and \code{\link{ovarian}} are datasets 
-#' downloaded from the cBio Portal and preprocessed as explained in "TiMEx: a
-#' ..."
+#' downloaded from cBioPortal (TCGA) in July 2014, and preprocessed as 
+#' explained in "TiMEx: A Waiting Time Model For Mutually Exclusive Cancer 
+#' Alterations", by Constantinescu et al. (Bioinformatics, 2015). 
+#' \code{\link{gbmDendrix}} is a glioblastoma dataset used by
+#' Leiserson \emph{et. al} in "Simultaneous identification of multiple driver 
+#' pathways in cancer" (Plos Computational Biology, 2013). Additionally, the
+#' dataset \code{gbm}, preprocessed by Szczurek \emph{et. al} as explained in 
+#' "Modeling mutual exclusivity of cancer mutations" (Research in Computational 
+#' Molecular Biology, 2014), and available in the package \code{muex}
+#' (\url{ https://www1.ethz.ch/bsse/cbg/software/muex}), was also used in
+#' examples in this package.
+#' 
+#' For each of these four datasets, the identified significantly mutually
+#' exclusive groups are available as a separate dataset 
+#' (\code{\link{breastOutput}}, \code{\link{ovarianOutput}}, 
+#' \code{\link{gbmDendrixOutput}}, and \code{\link{gbmMuexOutput}}). Similarly,
+#' results of a subsampling analysis ran with 100 repetitions on the 
+#' identified groups are available as separate datasets 
+#' (\code{\link{breastSubsampling}}, \code{\link{ovarianSubsampling}},
+#' \code{\link{gbmDendrixSubsampling}}, and \code{\link{gbmMuexSubsampling}}). 
+#' 
+#' In the case of breast and ovarian cancer, the metagroups of genes in the 
+#' original datasets (produced with the function \code{\link{doMetagene}}) are
+#' available as separate datasets (\code{\link{breastGroups}} and 
+#' \code{\link{ovarianGroups}}). 
+#' 
+#' Finally, the binary input matrices 
+#' corresponding to the four breast cancer subtypes "LuminalA", "LuminalB",
+#' "Her2", and "Basal" are available in the dataset 
+#' \code{\link{breastSubtypes}}, and the significantly mutually exclusive 
+#' groups identified in each of these four subtypes are available in the
+#' dataset \code{\link{breastSubtypesOutput}}.
+#' 
+#' 
+#'@section Simulations:
+#'Datasets can be generated from the TiMEx model using the function 
+#'\code{\link{simulateGenes}}.
+#'
 #'
 #'@section More:
-#'For more in-depth explanations of the TiMEx package, including working 
-#'examples, please see the corresponding vignette
+#'For more in-depth explanations of the TiMEx package and model, including 
+#'examples, please see the corresponding vignette.
+#'
 #'
 #' @references "TiMEx: A Waiting Time Model For Mutually
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2015)
-
 #' @docType package
+#' 
 #' @name TiMEx-package
+#' 
 #' @aliases TiMEx-package
 NULL
