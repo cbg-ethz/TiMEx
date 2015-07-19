@@ -73,7 +73,7 @@ combineNameWithFreq<-function(genesSignifMat,ffMat,muMat,pvalMat)
                 # group, and the corrected p-value of the group
     
     d<-dim(genesSignifMat)[1]
-    if (!is.null(d))
+    if (!is.null(d) && !d==0)
     {
         newMat<-array(NA,dim=c(d,(dim(genesSignifMat)[2])+2)) 
         for (j in 1:d)
