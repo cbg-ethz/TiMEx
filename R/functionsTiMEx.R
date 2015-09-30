@@ -672,6 +672,8 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
         stop("need to specify a binary matrix as input")
     if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
         stop("input needs to be a binary matrix")
+    if (is.null(colnames(mat)))
+        colnames(mat)<-paste("gene",c(1:dim(mat)[2]),sep="")
     
     if (missing(mcStruct))
         stop("need to specify a list of identified maximal cliques as input")
