@@ -693,16 +693,16 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
         stop("the elements of the field 'detectedLengths' of the input list 
             need to be positive integers")
     
-    if (!(length(mcStruct$idxInCliques)==length(mcStruct$detectedLengths)))
-        stop("the fields of the input list detectedLengths and idxInCliques 
-            do not match up in size")
+    #if (!(length(mcStruct$idxInCliques)==length(mcStruct$detectedLengths)))
+        #stop("the fields of the input list detectedLengths and idxInCliques 
+            #do not match up in size")
     if (sum(is.na(match(unlist(mcStruct$idxInCliques),c(1:dim(mat)[2])))))
         stop("at least one index provided in the element 'idxInCliques' of 
             the input list is not part of the indices of the input genes")
     
-    if (!(length(mcStruct$genesInCliques)==length(mcStruct$detectedLengths)))
-        stop("the fields of the input list detectedLengths and genesInCliques 
-            do not match up in size")
+    #if (!(length(mcStruct$genesInCliques)==length(mcStruct$detectedLengths)))
+        #stop("the fields of the input list detectedLengths and genesInCliques 
+            #do not match up in size")
     if (sum(is.na(match(unlist(mcStruct$genesInCliques),colnames(mat))))>0)
         stop("at least one gene name provided in the element 'genesInCliques' 
             of the input list is not part of the input genes")
