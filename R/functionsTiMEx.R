@@ -717,19 +717,19 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
         stop("at least one index provided in the element 'idxInCliques' 
             of the element 'Mus' of the input list is not part of the indices 
             of the input genes")
-    if (!(length(mcStruct$Mus$OrderedIdxInCliques)==
-            length(mcStruct$detectedLengths)))
-        stop("the fields of the input list detectedLengths and 
-            Mus$OrderedIdxInCliques do not match up in size")
+    #if (!(length(mcStruct$Mus$OrderedIdxInCliques)==
+            #length(mcStruct$detectedLengths)))
+        #stop("the fields of the input list detectedLengths and 
+            #Mus$OrderedIdxInCliques do not match up in size")
     if (sum(is.na(match(unlist(mcStruct$Mus$OrderedGenesInCliques),
                         colnames(mat))))>0)
         stop("at least one gene name provided in the element 
             'OrderedGenesInCliques' of the element 'Mus' of the input list 
             is not part of the input genes")
-    if (!(length(mcStruct$Mus$OrderedGenesInCliques)==
-            length(mcStruct$detectedLengths)))
-        stop("the fields of the input list detectedLengths and 
-            Mus$OrderedGenesInCliques do not match up in size")
+    #if (!(length(mcStruct$Mus$OrderedGenesInCliques)==
+            #length(mcStruct$detectedLengths)))
+        #stop("the fields of the input list detectedLengths and 
+            #Mus$OrderedGenesInCliques do not match up in size")
     
     if (!(class(mcStruct$noMaxCliques)=="numeric" || 
             class(mcStruct$noMaxCliques)=="integer"))
@@ -1927,8 +1927,8 @@ simulateGenes<-function(lambdas,mu,N)
     
     if (missing(mu))
         mu<-1
-    if (class(mu)!="numeric")
-        stop("mu needs to be a real number between 0 and 1")
+    #if (class(mu)!="numeric")
+        #stop("mu needs to be a real number between 0 and 1")
     if (!(mu>=0 && mu<=1))
         stop("mu needs to be a real number between 0 and 1")
     

@@ -620,7 +620,7 @@ idxSignif[[mcStruct$detectedLengths[i]]]$bonf<-t(matrix(mcStruct$Mus$
     OrderedIdxInCliques[[mcStruct$detectedLengths[i]]]))[posSignif[[mcStruct$
     detectedLengths[i]]]$bonf,]
 
-} else{
+        } else{
 
     genesSignif[[mcStruct$detectedLengths[i]]]$fdr<-mcStruct$Mus$
     OrderedGenesInCliques[[mcStruct$detectedLengths[i]]][posSignif[[mcStruct$
@@ -637,8 +637,9 @@ idxSignif[[mcStruct$detectedLengths[i]]]$bonf<-mcStruct$Mus$
     detectedLengths[i]]]$bonf,]
 
 
-
         # order all the lists by the corrected pvalue
+        if (length(order(pvals[[mcStruct$detectedLengths[i]]]$fdr))>1)
+        {
 posSignif[[mcStruct$detectedLengths[i]]]$fdr<-posSignif[[mcStruct$
     detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
 genesSignif[[mcStruct$detectedLengths[i]]]$fdr<-genesSignif[[mcStruct$
@@ -648,23 +649,50 @@ idxSignif[[mcStruct$detectedLengths[i]]]$fdr<-idxSignif[[mcStruct$
 MusGroup[[mcStruct$detectedLengths[i]]]$fdr<-MusGroup[[mcStruct$
     detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
 pvals[[mcStruct$detectedLengths[i]]]$fdr<-pvals[[mcStruct$
+    detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)] 
+        }
+    else 
+    {
+posSignif[[mcStruct$detectedLengths[i]]]$fdr<-posSignif[[mcStruct$
     detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
+genesSignif[[mcStruct$detectedLengths[i]]]$fdr<-genesSignif[[mcStruct$
+    detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
+idxSignif[[mcStruct$detectedLengths[i]]]$fdr<-idxSignif[[mcStruct$
+    detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
+MusGroup[[mcStruct$detectedLengths[i]]]$fdr<-MusGroup[[mcStruct$
+    detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)]
+pvals[[mcStruct$detectedLengths[i]]]$fdr<-pvals[[mcStruct$
+    detectedLengths[i]]]$fdr[order(pvals[[mcStruct$detectedLengths[i]]]$fdr)] 
+    }
 
+    if (length(order(pvals[[mcStruct$detectedLengths[i]]]$bonf))>1)
+        {
 posSignif[[mcStruct$detectedLengths[i]]]$bonf<-posSignif[[mcStruct$
     detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
 genesSignif[[mcStruct$detectedLengths[i]]]$bonf<-genesSignif[[mcStruct$
-    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$
-                                        detectedLengths[i]]]$bonf),]
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf),]
 idxSignif[[mcStruct$detectedLengths[i]]]$bonf<-idxSignif[[mcStruct$
-    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$
-                                        detectedLengths[i]]]$bonf),]
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf),]
 MusGroup[[mcStruct$detectedLengths[i]]]$bonf<-MusGroup[[mcStruct$
     detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
 pvals[[mcStruct$detectedLengths[i]]]$bonf<-pvals[[mcStruct$
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)] 
+    }
+    else 
+    {
+posSignif[[mcStruct$detectedLengths[i]]]$bonf<-posSignif[[mcStruct$
     detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
+genesSignif[[mcStruct$detectedLengths[i]]]$bonf<-genesSignif[[mcStruct$
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
+idxSignif[[mcStruct$detectedLengths[i]]]$bonf<-idxSignif[[mcStruct$
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
+MusGroup[[mcStruct$detectedLengths[i]]]$bonf<-MusGroup[[mcStruct$
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)]
+pvals[[mcStruct$detectedLengths[i]]]$bonf<-pvals[[mcStruct$
+    detectedLengths[i]]]$bonf[order(pvals[[mcStruct$detectedLengths[i]]]$bonf)] 
+    }
             }
         }
-
     }
     return(signifCliques=list("genesSignif"=genesSignif,"idxSignif"=idxSignif,
                     "pvals"=pvals,"posSignif"=posSignif,"MusGroup"=MusGroup))
