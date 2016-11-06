@@ -5,7 +5,7 @@
 #' dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
 #' as explained in "TiMEx: A Waiting Time Model For Mutually
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2015). Rows represent patients, and columns represent 
+#' (Bioinformatics, 2016). Rows represent patients, and columns represent 
 #' alterations. 
 #'
 #' @format \code{breast} is a binary matrix with 958 rows and 537 columns.
@@ -145,7 +145,7 @@ NULL
 #' "luminalA", "luminalB", "Her2", and "Basal2", downloaded from cBioPortal 
 #' (TCGA) in July 2014, and preprocessed as explained in "TiMEx: A Waiting 
 #' Time Model For Mutually Exclusive Cancer Alterations", by Constantinescu 
-#' \emph{et al.}  (Bioinformatics, 2015). Rows represent patients, and columns 
+#' \emph{et al.}  (Bioinformatics, 2016). Rows represent patients, and columns 
 #' represent alterations.
 #'
 #' @format \code{breastSubtypes} is a list with 4 elements, corresponding to 
@@ -489,7 +489,7 @@ NULL
 #' dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
 #' as explained in "TiMEx: A Waiting Time Model For Mutually
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2015). Rows represent patients, and columns represent 
+#' (Bioinformatics, 2016). Rows represent patients, and columns represent 
 #' alterations.  
 #'
 #' @format A binary matrix with 316 rows and 312 columns.

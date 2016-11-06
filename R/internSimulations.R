@@ -1,4 +1,4 @@
-# Author: Simona Constantinescu; simona.constantinescu@bsse.ethz.ch
+# Author: Simona Cristea; scristea@@jimmy.harvard.edu
 
 ###############################################################################
 compAllProbsSims<-function(obs,lambdas,lo,mu)

@@ -37,7 +37,7 @@
 #' \code{\link{breast}} and \code{\link{ovarian}} are datasets 
 #' downloaded from cBioPortal (TCGA) in July 2014, and preprocessed as 
 #' explained in "TiMEx: A Waiting Time Model For Mutually Exclusive Cancer 
-#' Alterations", by Constantinescu et al. (Bioinformatics, 2015). 
+#' Alterations", by Constantinescu et al. (Bioinformatics, 2016). 
 #' \code{\link{gbmDendrix}} is a glioblastoma dataset used by
 #' Leiserson \emph{et. al} in "Simultaneous identification of multiple driver 
 #' pathways in cancer" (Plos Computational Biology, 2013). Additionally, the
@@ -81,7 +81,7 @@
 #'
 #' @references "TiMEx: A Waiting Time Model For Mutually
 #' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2015)
+#' (Bioinformatics, 2016)
 #' @docType package
 #' 
 #' @name TiMEx-package
