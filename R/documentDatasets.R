@@ -1,12 +1,11 @@
-###############################################################################
+############################################################################### 
 #' Breast cancer dataset
 #'
 #' Dataset containing a binary alteration pattern for the breast cancer 
 #' dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
-#' as explained in "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016). Rows represent patients, and columns represent 
-#' alterations. 
+#' as described in Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time 
+#' Model for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015). 
+#' Rows represent patients, and columns represent alterations. 
 #'
 #' @format \code{breast} is a binary matrix with 958 rows and 537 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
@@ -16,13 +15,13 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Metagroups of genes in breast cancer
 #'
 #' Dataset containing the genes with identical alteration patterns in the 
 #' breast cancer dataset \code{\link{breast}} (before preprocessing). It 
 #' is represented as a list of metagenes, with as many elements as input 
-#' genes which had an identical alteration pattern with at least one other 
+#' genes that had an identical alteration pattern with at least one other 
 #' input gene.
 #'
 #' @format \code{breastGroups} is a list with 273 elements, where each 
@@ -36,10 +35,10 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Mutually exclusive groups in breast cancer
 #'
-#' Dataset containing the members of the groups identified as significantly 
+#' Dataset containing the groups identified as significantly 
 #' mutually exclusive by TiMEx in breast cancer, together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
 #' information.
@@ -109,7 +108,7 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Stability of mutually exclusive groups in breast cancer
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified
@@ -138,13 +137,13 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Breast cancer subtypes
 #'
 #' Dataset containing binary alteration patterns for the breast cancer subtypes
-#' "luminalA", "luminalB", "Her2", and "Basal2", downloaded from cBioPortal 
-#' (TCGA) in July 2014, and preprocessed as explained in "TiMEx: A Waiting 
-#' Time Model For Mutually Exclusive Cancer Alterations", by Constantinescu 
+#' 'luminalA', 'luminalB', 'Her2', and 'Basal2', downloaded from cBioPortal 
+#' (TCGA) in July 2014, and preprocessed as explained in 'TiMEx: A Waiting 
+#' Time Model For Mutually Exclusive Cancer Alterations', by Constantinescu 
 #' \emph{et al.}  (Bioinformatics, 2016). Rows represent patients, and columns 
 #' represent alterations.
 #'
@@ -161,12 +160,12 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Mutually exclusive groups in breast cancer subtypes
 #'
-#' Dataset containing the members of the groups identified as significantly 
+#' Dataset containing the groups identified as significantly 
 #' mutually exclusive by TiMEx in each of the 4 breast cancer subtypes 
-#' "luminalA", "luminalB", "Her2", and "Basal", together with their 
+#' 'luminalA', 'luminalB', 'Her2', and 'Basal', together with their 
 #' corresponding intensities of mutual exclusivity, corrected p-values, and 
 #' other information.
 #'
@@ -238,12 +237,12 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Glioblastoma dataset used by Dendrix
 #'
 #' Dataset containing a binary alteration pattern for the glioblastoma 
-#' dataset used by Leiserson \emph{et. al} in "Simultaneous identification of 
-#' multiple driver pathways in cancer" (Plos Computational Biology, 2013). 
+#' dataset used by Leiserson \emph{et. al} in 'Simultaneous identification of 
+#' multiple driver pathways in cancer' (Plos Computational Biology, 2013). 
 #' Rows represent patients, and columns represent alterations. In the names 
 #' of alterations, \emph{(D)} represents a copy number deletion, and 
 #' \emph{(A)} represents a copy number amplification. 
@@ -258,13 +257,13 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Mutually exclusive groups in the glioblastoma dataset used by Dendrix
 #'
-#' Dataset containing the members of the groups identified as significantly 
+#' Dataset containing the groups identified as significantly 
 #' mutually exclusive by TiMEx in the glioblastoma dataset used by Leiserson 
-#' \emph{et. al} in "Simultaneous identification of multiple driver pathways 
-#' in cancer" (Plos Computational Biology, 2013), together with their 
+#' \emph{et. al} in 'Simultaneous identification of multiple driver pathways 
+#' in cancer' (Plos Computational Biology, 2013), together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
 #' information.
 #' 
@@ -336,15 +335,15 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Stability of mutually exclusive groups in the glioblastoma datased used 
 #' by Dendrix
 #'
 #' 
 #' Dataset containing the stability of the mutually exclusive groups identified
 #' by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used by
-#' Leiserson \emph{et. al} in "Simultaneous identification of multiple driver 
-#' pathways in cancer" (Plos Computational Biology, 2013), after subsampling 
+#' Leiserson \emph{et. al} in 'Simultaneous identification of multiple driver 
+#' pathways in cancer' (Plos Computational Biology, 2013), after subsampling 
 #' the set of patients at frequencies of \code{30\%}, \code{50\%}, and 
 #' \code{80\%}, for 100 times. 
 #'
@@ -370,12 +369,30 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
+#' Glioblastoma dataset used by muex
+#'
+#' Dataset containing a binary alteration pattern for the glioblastoma 
+#' dataset used by Szczurek \emph{et. al} in 'Modeling mutual exclusivity of 
+#' cancer mutations' (Research in Computational Molecular Biology, 2014). 
+#' Rows represent patients, and columns represent alterations. 
+#'
+#' @format \code{gbmMuex} is a binary matrix with 236 rows and 83 columns.
+#'
+#' @source \url{http://journals.plos.org/ploscompbiol/article?id=10.1371/
+#' journal.pcbi.1003503}
+#' @name gbmMuex
+#' @aliases gbmMuex
+NULL
+
+
+
+############################################################################### 
 #' Mutually exclusive groups in the glioblastoma dataset used by muex
 #'
-#' Dataset containing the members of the groups identified as significantly 
+#' Dataset containing the groups identified as significantly 
 #' mutually exclusive by TiMEx in the glioblastoma dataset used by Szczurek
-#' \emph{et. al} in "Modeling mutual exclusivity of cancer mutations" 
+#' \emph{et. al} in 'Modeling mutual exclusivity of cancer mutations' 
 #' (Research in Computational Molecular Biology, 2014), together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
 #' information. The dataset which was used as input for producing these 
@@ -450,13 +467,13 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Stability of mutually exclusive groups in the glioblastoma datased used 
 #' by muex
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified
 #' by TiMEx in the glioblastoma dataset used by Szczurek \emph{et. al} in 
-#' "Modeling mutual exclusivity of cancer mutations" (Research in 
+#' 'Modeling mutual exclusivity of cancer mutations' (Research in 
 #' Computational Molecular Biology, 2014), after subsampling the set
 #' of patients at frequencies of \code{30\%}, \code{50\%}, and \code{80\%}, for
 #' 100 times. 
@@ -482,13 +499,13 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Ovarian cancer dataset
 #'
 #' Dataset containing a binary alteration pattern for the ovarian cancer 
 #' dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
-#' as explained in "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' as explained in 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016). Rows represent patients, and columns represent 
 #' alterations.  
 #'
@@ -500,7 +517,7 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Metagroups of genes in ovarian cancer
 #'
 #' Dataset containing the genes with identical alteration patterns in the 
@@ -521,10 +538,10 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Mutually exclusive groups in ovarian cancer
 #'
-#' Dataset containing the members of the groups identified as significantly 
+#' Dataset containing the groups identified as significantly 
 #' mutually exclusive by TiMEx in ovarian cancer, together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
 #' information.
@@ -595,7 +612,7 @@ NULL
 
 
 
-###############################################################################
+############################################################################### 
 #' Stability of mutually exclusive groups in ovarian cancer
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified

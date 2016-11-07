@@ -1,20 +1,26 @@
 Package: TiMEx
 Type: Package
 Title: Finding Mutually Exclusive Groups of Alterations in Cancer Datasets
-Description: The implementation of a waiting time model for mutually exclusive cancer alterations. The method can be readily applied to any large cancer dataset available as a binary matrix.
+Description: The implementation of a waiting time model for mutually exclusive
+    cancer alterations. The method can be readily applied to any large cancer
+    dataset available as a binary matrix.
 Version: 0.99.0
 Date: 2016-12-1
 Author: Simona Cristea <scristea@jimmy.harvard.edu>
 Maintainer: Simona Cristea <scristea@jimmy.harvard.edu>
-Depends: R (>= 3.1)
-Imports: 
-	gtools (>= 3.4.0),
-	graphics (>= 3.1.0),
-	igraph (>= 0.7.1), 
-	RBGL (>= 1.42),
-	stats (>= 3.1.0)
-Suggests: knitr
-VignetteBuilder: knitr
-biocViews: Software, StatisticalMethod, SystemsBiology, GraphAndNetwork, Clustering
+Depends:
+    R (>= 3.2.2)
+Imports:
+    graphics (>= 3.1.0),
+    gtools (>= 3.5.0),
+    igraph (>= 1.0.1),
+    RBGL (>= 1.50.0),
+    stats (>= 3.1.0)
+Suggests:
+    rmarkdown,knitr
+VignetteBuilder: rmarkdown
+biocViews: Software, StatisticalMethod, SystemsBiology, GraphAndNetwork,
+    Clustering
 License: GPL (>=2)
 URL: https://github.com/cbg-ethz/TiMEx
+RoxygenNote: 5.0.1

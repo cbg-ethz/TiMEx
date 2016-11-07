@@ -1,6 +1,6 @@
 # Author: Simona Cristea; scristea@jimmy.harvard.edu
 
-###############################################################################
+############################################################################### 
 #' @title Finds all mutually exclusive pairs in a dataset
 #' 
 #' @description \code{analyzePairs} performs step 1 of the TiMEx procedure:
@@ -19,8 +19,8 @@
 #' a likelihood ratio test is performed between the corresponding log 
 #' likelihoods, in order to test whether mu (the intensity of mutual 
 #' exclusivity) is different from 0. For more details on the TiMEx procedure, 
-#' as well as on the underlying mathematical model, see "TiMEx: A Waiting Time 
-#' Model For Mutually Exclusive Cancer Alterations", by Constantinescu 
+#' as well as on the underlying mathematical model, see 'TiMEx: A Waiting Time 
+#' Model For Mutually Exclusive Cancer Alterations', by Constantinescu 
 #' \emph{et al.} (Bioinformatics, 2016).
 #' 
 #' The output list contains exhaustive information on the pairwise testing of 
@@ -63,8 +63,8 @@
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016)
 #' 
 #' @seealso \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;
@@ -85,165 +85,139 @@
 #'
 #' @export
 
-analyzePairs<-function(mat)
-{
+analyzePairs <- function(mat) {
     # check inputs
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
-    noGenes<-dim(mat)[2]
+    noGenes <- dim(mat)[2]
     
-    if (is.null(colnames(mat)))
-        colnames(mat)<-paste("gene",c(1:noGenes),sep="")
+    if (is.null(colnames(mat))) 
+        colnames(mat) <- paste("gene", c(1:noGenes), sep = "")
     
-    muEst<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(muEst)<-colnames(mat)
-    rownames(muEst)<-colnames(mat)
+    muEst <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(muEst) <- colnames(mat)
+    rownames(muEst) <- colnames(mat)
     
-    lamiEstME<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(lamiEstME)<-colnames(mat)
-    rownames(lamiEstME)<-colnames(mat)
+    lamiEstME <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(lamiEstME) <- colnames(mat)
+    rownames(lamiEstME) <- colnames(mat)
     
-    lamjEstME<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(lamjEstME)<-colnames(mat)
-    rownames(lamjEstME)<-colnames(mat)
+    lamjEstME <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(lamjEstME) <- colnames(mat)
+    rownames(lamjEstME) <- colnames(mat)
     
-    lamiEstNull<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(lamiEstNull)<-colnames(mat)
-    rownames(lamiEstNull)<-colnames(mat)
+    lamiEstNull <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(lamiEstNull) <- colnames(mat)
+    rownames(lamiEstNull) <- colnames(mat)
     
-    lamjEstNull<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(lamjEstNull)<-colnames(mat)
-    rownames(lamjEstNull)<-colnames(mat)
+    lamjEstNull <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(lamjEstNull) <- colnames(mat)
+    rownames(lamjEstNull) <- colnames(mat)
     
-    likeNull<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(likeNull)<-colnames(mat)
-    rownames(likeNull)<-colnames(mat)
+    likeNull <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(likeNull) <- colnames(mat)
+    rownames(likeNull) <- colnames(mat)
     
-    likeAlt<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(likeAlt)<-colnames(mat)
-    rownames(likeAlt)<-colnames(mat)
+    likeAlt <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(likeAlt) <- colnames(mat)
+    rownames(likeAlt) <- colnames(mat)
     
-    LRT<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(LRT)<-colnames(mat)
-    rownames(LRT)<-colnames(mat)
+    LRT <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(LRT) <- colnames(mat)
+    rownames(LRT) <- colnames(mat)
     
-    pvalueLRT<-matrix(NA,nrow=noGenes,ncol=noGenes)
-    colnames(pvalueLRT)<-colnames(mat)
-    rownames(pvalueLRT)<-colnames(mat)
+    pvalueLRT <- matrix(NA, nrow = noGenes, ncol = noGenes)
+    colnames(pvalueLRT) <- colnames(mat)
+    rownames(pvalueLRT) <- colnames(mat)
     
-    for (gene1 in 1:(noGenes-1))
-    {
+    for (gene1 in 1:(noGenes - 1)) {
         print(paste("gene", gene1))
-        for (gene2 in (gene1+1):noGenes)
-        {
-            genes<-mat[,c(gene1,gene2)] #the two genes to be tested
-            ns<-computeContTable(genes) #their contingency table
-            nsVect<-c(ns$n00,ns$n01,ns$n10,ns$n11)
+        for (gene2 in (gene1 + 1):noGenes) {
+            genes <- mat[, c(gene1, gene2)]  #the two genes to be tested
+            ns <- computeContTable(genes)  #their contingency table
+            nsVect <- c(ns$n00, ns$n01, ns$n10, ns$n11)
             
-        # estimate parameters under ME
-        #try(opMu<-optim(par=c(0.01,0.01,0.01),fn=computeParmsMu,gr=NULL,
-        # n=nsVect,method="L-BFGS-B",lower=c(1e-15,1e-15,0),
-        # upper=c(Inf,Inf,1-(1e-15)),control=list(fnscale=-20,maxit=10000)))
-        #while (!exists("opMu"))
-        #{
-        #  try(opMu<-optim(par=c(0.01+abs(rnorm(1)),0.01+abs(rnorm(1)),
-        #  min(0.0001+abs(rnorm(1)),0.999)),fn=computeParmsMu,gr=NULL,
-        #  n=nsVect,method="L-BFGS-B",lower=c(1e-15,1e-15,0),
-        #  upper=c(Inf,Inf,1-(1e-15)),control=list(fnscale=-20,maxit=10000),
-        #  silent=TRUE))
-        #}
-            opMu<-optim(par=c(0.01,0.01,0.01),fn=computeParmsMu,gr=NULL,
-                        n=nsVect,
-                        method="L-BFGS-B",lower=c(1e-15,1e-15,0),
-                        upper=c(Inf,Inf,1-(1e-15)),
-                        control=list(fnscale=-20,maxit=10000))
+            # estimate parameters under ME try(opMu<-optim(par=c(0.01,0.01,0.01),fn=computeParmsMu,gr=NULL,
+            # n=nsVect,method='L-BFGS-B',lower=c(1e-15,1e-15,0),
+            # upper=c(Inf,Inf,1-(1e-15)),control=list(fnscale=-20,maxit=10000))) while (!exists('opMu')) {
+            # try(opMu<-optim(par=c(0.01+abs(rnorm(1)),0.01+abs(rnorm(1)),
+            # min(0.0001+abs(rnorm(1)),0.999)),fn=computeParmsMu,gr=NULL,
+            # n=nsVect,method='L-BFGS-B',lower=c(1e-15,1e-15,0),
+            # upper=c(Inf,Inf,1-(1e-15)),control=list(fnscale=-20,maxit=10000), silent=TRUE)) }
+            opMu <- optim(par = c(0.01, 0.01, 0.01), fn = computeParmsMu, gr = NULL, n = nsVect, method = "L-BFGS-B", 
+                lower = c(1e-15, 1e-15, 0), upper = c(Inf, Inf, 1 - (1e-15)), control = list(fnscale = -20, maxit = 10000))
             
             
-        # estimate parameters under Null
-        #try(opNull<-optim(par=c(0.01,0.01),fn=computeParmsNull,gr=NULL,
-        #n=nsVect,method="L-BFGS-B",lower=c(1e-15,1e-15),
-        #upper=c(Inf,Inf),control=list(fnscale=-20,maxit=10000)))
-        #while (!exists("opNull"))
-        #{
-        #try(opNull<-optim(par=c(0.01+abs(rnorm(1)),0.01+
-        #abs(rnorm(1))),fn=computeParmsNull,gr=NULL,n=nsVect,
-        #method="L-BFGS-B",lower=c(1e-15,1e-15),
-        #upper=c(Inf,Inf),control=list(fnscale=-20,maxit=10000),
-        #silent=TRUE))
-        #}
-            opNull<-optim(par=c(0.01,0.01),fn=computeParmsNull,gr=NULL,
-                        n=nsVect,method="L-BFGS-B",lower=c(1e-15,1e-15),
-                        upper=c(Inf,Inf),
-                        control=list(fnscale=-20,maxit=10000))
+            # estimate parameters under Null try(opNull<-optim(par=c(0.01,0.01),fn=computeParmsNull,gr=NULL,
+            # n=nsVect,method='L-BFGS-B',lower=c(1e-15,1e-15), upper=c(Inf,Inf),control=list(fnscale=-20,maxit=10000)))
+            # while (!exists('opNull')) { try(opNull<-optim(par=c(0.01+abs(rnorm(1)),0.01+
+            # abs(rnorm(1))),fn=computeParmsNull,gr=NULL,n=nsVect, method='L-BFGS-B',lower=c(1e-15,1e-15),
+            # upper=c(Inf,Inf),control=list(fnscale=-20,maxit=10000), silent=TRUE)) }
+            opNull <- optim(par = c(0.01, 0.01), fn = computeParmsNull, gr = NULL, n = nsVect, method = "L-BFGS-B", 
+                lower = c(1e-15, 1e-15), upper = c(Inf, Inf), control = list(fnscale = -20, maxit = 10000))
             
-            lamiEstME[gene1,gene2]<-opMu$par[1]
-            lamiEstME[gene2,gene1]<-opMu$par[2]
+            lamiEstME[gene1, gene2] <- opMu$par[1]
+            lamiEstME[gene2, gene1] <- opMu$par[2]
             
-            lamjEstME[gene1,gene2]<-opMu$par[2]
-            lamjEstME[gene2,gene1]<-opMu$par[1]
+            lamjEstME[gene1, gene2] <- opMu$par[2]
+            lamjEstME[gene2, gene1] <- opMu$par[1]
             
-            muEst[gene1,gene2]<-opMu$par[3]
+            muEst[gene1, gene2] <- opMu$par[3]
             
-            lamiEstNull[gene1,gene2]<-opNull$par[1]
-            lamiEstNull[gene2,gene1]<-opNull$par[2]
+            lamiEstNull[gene1, gene2] <- opNull$par[1]
+            lamiEstNull[gene2, gene1] <- opNull$par[2]
             
-            lamjEstNull[gene1,gene2]<-opNull$par[2]
-            lamjEstNull[gene2,gene1]<-opNull$par[1]
+            lamjEstNull[gene1, gene2] <- opNull$par[2]
+            lamjEstNull[gene2, gene1] <- opNull$par[1]
             
             # compute likelihoods
-            likeNull[gene1,gene2]<-computeParmsNull(c(lamiEstNull[gene1,gene2],
-                                                    lamjEstNull[gene1,gene2]),
-                                                    nsVect)
-            likeAlt[gene1,gene2]<-computeParmsMu(c(lamiEstME[gene1,gene2],
-                                                    lamjEstME[gene1,gene2], 
-                                                    muEst[gene1,gene2]),nsVect)
+            likeNull[gene1, gene2] <- computeParmsNull(c(lamiEstNull[gene1, gene2], lamjEstNull[gene1, gene2]), 
+                nsVect)
+            likeAlt[gene1, gene2] <- computeParmsMu(c(lamiEstME[gene1, gene2], lamjEstME[gene1, gene2], muEst[gene1, 
+                gene2]), nsVect)
             
             # perform the LRT
-            LRT[gene1,gene2]<-2*likeAlt[gene1,gene2]-2*likeNull[gene1,gene2]
-            pvalueLRT[gene1,gene2]<-pchisq(LRT[gene1,gene2], df = 1, ncp = 0, 
-                                        lower.tail = FALSE)
+            LRT[gene1, gene2] <- 2 * likeAlt[gene1, gene2] - 2 * likeNull[gene1, gene2]
+            pvalueLRT[gene1, gene2] <- pchisq(LRT[gene1, gene2], df = 1, ncp = 0, lower.tail = FALSE)
         }
     }
     
     # correct the pvalues
-    pvalueLRTCorrect<-list()
-    pvalueLRTCorrect$bonferroni<-matrix(p.adjust(as.vector(pvalueLRT),
-                                method="bonferroni"),nrow=noGenes,ncol=noGenes)
-    colnames(pvalueLRTCorrect$bonferroni)<-colnames(pvalueLRT)
-    rownames(pvalueLRTCorrect$bonferroni)<-rownames(pvalueLRT)
-    pvalueLRTCorrect$fdr<-matrix(p.adjust(as.vector(pvalueLRT),method="fdr"),
-                                nrow=noGenes,ncol=noGenes)
-    colnames(pvalueLRTCorrect$fdr)<-colnames(pvalueLRT)
-    rownames(pvalueLRTCorrect$fdr)<-rownames(pvalueLRT)
-    pvalueLRTCorrect$uncorrected<-pvalueLRT
+    pvalueLRTCorrect <- list()
+    pvalueLRTCorrect$bonferroni <- matrix(p.adjust(as.vector(pvalueLRT), method = "bonferroni"), nrow = noGenes, 
+        ncol = noGenes)
+    colnames(pvalueLRTCorrect$bonferroni) <- colnames(pvalueLRT)
+    rownames(pvalueLRTCorrect$bonferroni) <- rownames(pvalueLRT)
+    pvalueLRTCorrect$fdr <- matrix(p.adjust(as.vector(pvalueLRT), method = "fdr"), nrow = noGenes, ncol = noGenes)
+    colnames(pvalueLRTCorrect$fdr) <- colnames(pvalueLRT)
+    rownames(pvalueLRTCorrect$fdr) <- rownames(pvalueLRT)
+    pvalueLRTCorrect$uncorrected <- pvalueLRT
     
     # transform to symmetric matrices
-    muEstSym<-makeSym(muEst)
-    likeNull<-makeSym(likeNull)
-    likeAlt<-makeSym(likeAlt)
-    LRT<-makeSym(LRT)
-    pvalueLRTSym<-makeSym(pvalueLRT)
-    pvalueLRTCorrectSym<-list()
-    pvalueLRTCorrectSym$bonferroni<-makeSym(pvalueLRTCorrect$bonferroni)
-    pvalueLRTCorrectSym$fdr<-makeSym(pvalueLRTCorrect$fdr)
-    pvalueLRTCorrectSym$uncorrected<-makeSym(pvalueLRTCorrect$uncorrected)
+    muEstSym <- makeSym(muEst)
+    likeNull <- makeSym(likeNull)
+    likeAlt <- makeSym(likeAlt)
+    LRT <- makeSym(LRT)
+    pvalueLRTSym <- makeSym(pvalueLRT)
+    pvalueLRTCorrectSym <- list()
+    pvalueLRTCorrectSym$bonferroni <- makeSym(pvalueLRTCorrect$bonferroni)
+    pvalueLRTCorrectSym$fdr <- makeSym(pvalueLRTCorrect$fdr)
+    pvalueLRTCorrectSym$uncorrected <- makeSym(pvalueLRTCorrect$uncorrected)
     
-    results<-list("lamiEstNull"=lamiEstNull,"lamjEstNull"=lamjEstNull,
-                "lamiEstME"=lamiEstME,"lamjEstME"=lamjEstME,
-                "likeNull"=likeNull,"likeAlt"=likeAlt,"LRT"=LRT,
-                "pvalueLRTCorrectSym"=pvalueLRTCorrectSym,"muEstSym"=muEstSym)
+    results <- list(lamiEstNull = lamiEstNull, lamjEstNull = lamjEstNull, lamiEstME = lamiEstME, lamjEstME = lamjEstME, 
+        likeNull = likeNull, likeAlt = likeAlt, LRT = LRT, pvalueLRTCorrectSym = pvalueLRTCorrectSym, muEstSym = muEstSym)
     
-    return(results) 
+    return(results)
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Identifies maximal cliques from pairwise testing information
 #'
 #' @description \code{doMaxCliques} performs step 2 of the TiMEx procedure: 
@@ -270,12 +244,12 @@ analyzePairs<-function(mat)
 #' The two thresholds can be set by the 
 #' user, and are recommended to be chosen based on the sensitivity and 
 #' specificity levels to which they correspond, as assessed in simulated data. 
-#' For details, see "TiMEx: A Waiting Time Model For Mutually Exclusive Cancer 
-#' Alterations", by Constantinescu \emph{et al.} (2015). The default values are
+#' For details, see 'TiMEx: A Waiting Time Model For Mutually Exclusive Cancer 
+#' Alterations', by Constantinescu \emph{et al.} (2015). The default values are
 #' 0.5 for \code{pairMu} and 0.01 for \code{pairPvalue}.
 #' 
-#' This function needs functions from the packages \emph{RBGL} 
-#' and \emph{igraph} to run.
+#' This function needs functions from the packages \emph{RBGL} and 
+#' \emph{igraph} to run.
 #' 
 #' @return list consisting of:
 #' \itemize{
@@ -294,7 +268,7 @@ analyzePairs<-function(mat)
 #' \item{\code{Mus}} {list of two elements: \code{OrderedGenesInCliques} and 
 #' \code{OrderedIdxInCliques}, which have the same structure as the elements
 #' \code{genesInCliques} and \code{idxInCliques}. The only difference is that
-#' the identified maximal cliques are now ordered by their average pairwise
+#' the identified maximal cliques are now ordered by their averge pairwise
 #' mu.}
 #' \item \code{pairMu} input pair-level threshold on mu.
 #' \item \code{pairPvalue} input pair-level threshold on p-value.
@@ -302,8 +276,8 @@ analyzePairs<-function(mat)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
@@ -328,83 +302,78 @@ analyzePairs<-function(mat)
 #' @aliases doMaxCliques
 #' 
 #' @export
-doMaxCliques<-function(pairs,pairMu,pairPvalue)
-{
+doMaxCliques <- function(pairs, pairMu, pairPvalue) {
     
     # check inputs
-    if (missing(pairs))
+    if (missing(pairs)) 
         stop("a list containing pairwise testing information needs to be 
             specified")
-    if (!class(pairs)=="list")
+    if (!class(pairs) == "list") 
         stop("a list containing pairwise testing information needs to be 
             specified")
-    if (!length(setdiff(c("muEstSym","pvalueLRTCorrectSym"),names(pairs)))==0)
+    if (!length(setdiff(c("muEstSym", "pvalueLRTCorrectSym"), names(pairs))) == 0) 
         stop("the input list 'pairs' should have contained a field with 
             pairwise information on mu and a field with pairwise information 
             on p-value")
     
-    if (class(pairs$pvalueLRTCorrectSym)!="list")
+    if (class(pairs$pvalueLRTCorrectSym) != "list") 
         stop("the field 'pvalueLRTCorrectSym' of the input list should have 
             an element named 'uncorrected'")
-    if (length(setdiff(c("uncorrected"),names(pairs$pvalueLRTCorrectSym))==0))
+    if (length(setdiff(c("uncorrected"), names(pairs$pvalueLRTCorrectSym)) == 0)) 
         stop("the field 'pvalueLRTCorrectSym' of the input list should have 
             an element named 'uncorrected'")
-    if(!length(unique(c(dim(pairs$muEstSym),
-                        dim(pairs$pvalueLRTCorrectSym$uncorrected))))==1)
+    if (!length(unique(c(dim(pairs$muEstSym), dim(pairs$pvalueLRTCorrectSym$uncorrected)))) == 1) 
         stop("the matrices with pvalue and mu information should have the 
             same dimension and be squared")
-    if (is.null(colnames(pairs$pvalueLRTCorrectSym$uncorrected)))
-        colnames(pairs$pvalueLRTCorrectSym$uncorrected)<-
-        paste("gene",c(1:dim(pairs$pvalueLRTCorrectSym$uncorrected)[1]),sep="")
-    if (is.null(rownames(pairs$pvalueLRTCorrectSym$uncorrected)))
-        rownames(pairs$pvalueLRTCorrectSym$uncorrected)<-
-        paste("gene",c(1:dim(pairs$pvalueLRTCorrectSym$uncorrected)[1]),sep="")
-    if (is.null(colnames(pairs$muEstSym)))
-        colnames(pairs$muEstSym)<-
-        paste("gene",c(1:dim(pairs$muEstSym)[1]),sep="")
-    if (is.null(rownames(pairs$muEstSym)))
-        rownames(pairs$muEstSym)<-
-        paste("gene",c(1:dim(pairs$muEstSym)[1]),sep="")
+    if (is.null(colnames(pairs$pvalueLRTCorrectSym$uncorrected))) 
+        colnames(pairs$pvalueLRTCorrectSym$uncorrected) <- paste("gene", c(1:dim(pairs$pvalueLRTCorrectSym$uncorrected)[1]), 
+            sep = "")
+    if (is.null(rownames(pairs$pvalueLRTCorrectSym$uncorrected))) 
+        rownames(pairs$pvalueLRTCorrectSym$uncorrected) <- paste("gene", c(1:dim(pairs$pvalueLRTCorrectSym$uncorrected)[1]), 
+            sep = "")
+    if (is.null(colnames(pairs$muEstSym))) 
+        colnames(pairs$muEstSym) <- paste("gene", c(1:dim(pairs$muEstSym)[1]), sep = "")
+    if (is.null(rownames(pairs$muEstSym))) 
+        rownames(pairs$muEstSym) <- paste("gene", c(1:dim(pairs$muEstSym)[1]), sep = "")
     
     
-    if (missing(pairMu))
-        pairMu<-0.5
-    if (!(class(pairMu)=="numeric"))
+    if (missing(pairMu)) 
+        pairMu <- 0.5
+    if (!(class(pairMu) == "numeric")) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
-    if (length(pairMu)>1)
+    if (length(pairMu) > 1) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
-    if (!(0<=pairMu && pairMu<=1))
+    if (!(0 <= pairMu && pairMu <= 1)) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
     
-    if (missing(pairPvalue))
-        pairPvalue<-0.01
-    if (!(class(pairPvalue)=="numeric"))
+    if (missing(pairPvalue)) 
+        pairPvalue <- 0.01
+    if (!(class(pairPvalue) == "numeric")) 
         stop("the threshold on p-value needs to be a real number between 0 
             and 1")
-    if (length(pairPvalue)>1)
+    if (length(pairPvalue) > 1) 
         stop("the threshold on p-value needs to be a real number between 0 
             and 1")
-    if (!(0<=pairPvalue && pairPvalue<=1))
+    if (!(0 <= pairPvalue && pairPvalue <= 1)) 
         stop("the threshold on p-value needs to be a real number between 0 
             and 1")
     
-    cliques<-doClique(pairs$muEstSym,pairs$pvalueLRTCorrectSym$uncorrected,
-                    pairMu,pairPvalue)
-    mcStruct<-analyzeMaxCliquesBySize(cliques)
-    mcStruct$Mus<-getMusAllMaxCliques(mcStruct,pairs$muEstSym)
+    cliques <- doClique(pairs$muEstSym, pairs$pvalueLRTCorrectSym$uncorrected, pairMu, pairPvalue)
+    mcStruct <- analyzeMaxCliquesBySize(cliques)
+    mcStruct$Mus <- getMusAllMaxCliques(mcStruct, pairs$muEstSym)
     # do not return these fields anymore (redundant or unnecessary)
-    mcStruct$Mus$detectedLengths<-NULL
-    mcStruct$Mus$idxInCliques<-NULL
-    mcStruct$Mus$genesInCliques<-NULL
-    mcStruct$Mus$noMaxCliques<-NULL
-    mcStruct$pairMu<-pairMu
-    mcStruct$pairPvalue<-pairPvalue
+    mcStruct$Mus$detectedLengths <- NULL
+    mcStruct$Mus$idxInCliques <- NULL
+    mcStruct$Mus$genesInCliques <- NULL
+    mcStruct$Mus$noMaxCliques <- NULL
+    mcStruct$pairMu <- pairMu
+    mcStruct$pairPvalue <- pairPvalue
     return(mcStruct)
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Tests whether a given group is mutually exclusive
 #'
 #' @description \code{testCliqueAsGroup} tests whether a group, given as gene
@@ -433,8 +402,8 @@ doMaxCliques<-function(pairs,pairMu,pairPvalue)
 #' genes require additional interpretation.
 #' 
 #' For more details on the TiMEx procedure, as well as on the underlying 
-#' mathematical model, see "TiMEx: A Waiting Time Model For Mutually Exclusive 
-#' Cancer Alterations", by Constantinescu \emph{et al.} (Bioinformatics, 2016).
+#' mathematical model, see 'TiMEx: A Waiting Time Model For Mutually Exclusive 
+#' Cancer Alterations', by Constantinescu \emph{et al.} (Bioinformatics, 2016).
 #' 
 #' @return List consisting of:
 #' \itemize{
@@ -462,8 +431,8 @@ doMaxCliques<-function(pairs,pairMu,pairPvalue)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
@@ -480,77 +449,75 @@ doMaxCliques<-function(pairs,pairMu,pairPvalue)
 #' @aliases testCliquesAsGroup
 #' 
 #' @export
-testCliqueAsGroup<-function(geneIdx,mat,lo)
-{
+testCliqueAsGroup <- function(geneIdx, mat, lo) {
     
     # check inputs
-    if (missing(geneIdx))
+    if (missing(geneIdx)) 
         stop("need to specify a vector of gene indices to be tested for 
             mutual exclusivity")
-    if (!(class(geneIdx)%in%c("numeric","integer")))
+    if (!(class(geneIdx) %in% c("numeric", "integer"))) 
         stop("the gene indices need to be a numeric vector")
-    if (!sum(geneIdx%%1)==0)
+    if (!sum(geneIdx%%1) == 0) 
         stop("the gene indices need to be positive integers")
-    if (any(geneIdx<=0))
+    if (any(geneIdx <= 0)) 
         stop("the gene indices need to be positive integers")
-    if (length(unique(geneIdx))!=length(geneIdx))
+    if (length(unique(geneIdx)) != length(geneIdx)) 
         stop("the gene indices need to be different")
     
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("the input 'mat' needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("the input 'mat' needs to be a binary matrix")
     
-    if (any(geneIdx>dim(mat)[2]))
+    if (any(geneIdx > dim(mat)[2])) 
         stop("the gene indices need to be lower than the maximum number of 
             input genes")
     
-    if (missing(lo))
-        lo<-1
-    if (lo!=1)
+    if (missing(lo)) 
+        lo <- 1
+    if (lo != 1) 
         warning("you are changing the default value of lo")
     
     
-    genes<-mat[,geneIdx]
-    n<-length(geneIdx)
-    l<-list()
-    for (i in 1:n)
-    {
-        l[[i]]<-seq(0,1)
+    genes <- mat[, geneIdx]
+    n <- length(geneIdx)
+    l <- list()
+    for (i in 1:n) {
+        l[[i]] <- seq(0, 1)
     }
-    allGenos<-as.matrix(expand.grid(l))
+    allGenos <- as.matrix(expand.grid(l))
     
-    tabNonZero<-table(unlist(sapply(c(1:dim(genes)[1]), 
-        function(y,genes,allGenos) {which(apply(allGenos,1,function(x,y)
-        {w<-genes[y,]; names(w)<-NULL; all.equal(as.vector(x),w)},y=y)==
-        "TRUE")},genes=genes, allGenos=allGenos)))
+    tabNonZero <- table(unlist(sapply(c(1:dim(genes)[1]), function(y, genes, allGenos) {
+        which(apply(allGenos, 1, function(x, y) {
+            w <- genes[y, ]
+            names(w) <- NULL
+            all.equal(as.vector(x), w)
+        }, y = y) == "TRUE")
+    }, genes = genes, allGenos = allGenos)))
     
-    countsVec<-rep(0,dim(allGenos)[1])
-    countsVec[as.numeric(names(tabNonZero))]<-as.vector(tabNonZero)
+    countsVec <- rep(0, dim(allGenos)[1])
+    countsVec[as.numeric(names(tabNonZero))] <- as.vector(tabNonZero)
     
-    opMu<-optim(par=c(rep(0.1,(n+1))),fn=optimizeParamsMuGroup,gr=NULL,
-            countsVec=countsVec,n=n,lo=lo,model="ME",method="L-BFGS-B",
-            lower=c(rep(1e-10,n),0),upper=c(rep(Inf,n),(1-(1e-15))),
-            control=list(fnscale=-20))
+    opMu <- optim(par = c(rep(0.1, (n + 1))), fn = optimizeParamsMuGroup, gr = NULL, countsVec = countsVec, n = n, 
+        lo = lo, model = "ME", method = "L-BFGS-B", lower = c(rep(1e-10, n), 0), upper = c(rep(Inf, n), (1 - (1e-15))), 
+        control = list(fnscale = -20))
     
-    opNull<-optim(par=c(rep(0.1,n)),fn=optimizeParamsMuGroup,gr=NULL,
-            countsVec=countsVec,n=n,lo=lo,model="Null",method="L-BFGS-B",
-            lower=rep(1e-10,n),upper=rep(Inf,n),control=list(fnscale=-20))
+    opNull <- optim(par = c(rep(0.1, n)), fn = optimizeParamsMuGroup, gr = NULL, countsVec = countsVec, n = n, 
+        lo = lo, model = "Null", method = "L-BFGS-B", lower = rep(1e-10, n), upper = rep(Inf, n), control = list(fnscale = -20))
     
-    likeMu<-opMu$value
-    likeNull<-opNull$value
-    LRT<-2*likeMu-2*likeNull
-    pvalueLRT<-pchisq(LRT, df = 1, ncp = 0, lower.tail = FALSE)
+    likeMu <- opMu$value
+    likeNull <- opNull$value
+    LRT <- 2 * likeMu - 2 * likeNull
+    pvalueLRT <- pchisq(LRT, df = 1, ncp = 0, lower.tail = FALSE)
     
-    return(l=list("opMu"=opMu,"opNull"=opNull,"countsVec"=countsVec,
-                "genes"=genes,"LRT"=LRT,"pvalueLRT"=pvalueLRT))
+    return(l = list(opMu = opMu, opNull = opNull, countsVec = countsVec, genes = genes, LRT = LRT, pvalueLRT = pvalueLRT))
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Tests all maximal cliques for mutual exclusivity
 #'
 #' @description \code{findSignifCliques} performs step 3 of the TiMEx 
@@ -633,8 +600,8 @@ testCliqueAsGroup<-function(geneIdx,mat,lo)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
@@ -662,130 +629,117 @@ testCliqueAsGroup<-function(geneIdx,mat,lo)
 #' @aliases findSignifCliques
 #' 
 #' @export
-findSignifCliques<-function(mat,mcStruct,groupPvalue)
-{
+findSignifCliques <- function(mat, mcStruct, groupPvalue) {
     
     # check inputs
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("need to specify a binary matrix as input")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
-    if (is.null(colnames(mat)))
-        colnames(mat)<-paste("gene",c(1:dim(mat)[2]),sep="")
+    if (is.null(colnames(mat))) 
+        colnames(mat) <- paste("gene", c(1:dim(mat)[2]), sep = "")
     
-    if (missing(mcStruct))
+    if (missing(mcStruct)) 
         stop("need to specify a list of identified maximal cliques as input")
-    if (length(setdiff(c("detectedLengths","genesInCliques","idxInCliques",
-                        "Mus","noMaxCliques","pairMu","pairPvalue"),
-                        names(mcStruct)))!=0)
+    if (length(setdiff(c("detectedLengths", "genesInCliques", "idxInCliques", "Mus", "noMaxCliques", "pairMu", 
+        "pairPvalue"), names(mcStruct))) != 0) 
         stop("check the names of the elements of the input list")
     
-    if (!(class(mcStruct$detectedLengths)=="numeric" || 
-            class(mcStruct$detectedLengths)=="integer"))
+    if (!(class(mcStruct$detectedLengths) == "numeric" || class(mcStruct$detectedLengths) == "integer")) 
         stop("the elements of the field 'detectedLengths' of the input list 
             need to be numeric")
-    if (!sum(mcStruct$detectedLengths%%1)==0)
+    if (!sum(mcStruct$detectedLengths%%1) == 0) 
         stop("the elements of the field 'detectedLengths' of the input list 
             need to be positive integers")
-    if (any(mcStruct$detectedLengths<=0))
+    if (any(mcStruct$detectedLengths <= 0)) 
         stop("the elements of the field 'detectedLengths' of the input list 
             need to be positive integers")
     
-    #if (!(length(mcStruct$idxInCliques)==length(mcStruct$detectedLengths)))
-        #stop("the fields of the input list detectedLengths and idxInCliques 
-            #do not match up in size")
-    if (sum(is.na(match(unlist(mcStruct$idxInCliques),c(1:dim(mat)[2])))))
+    # if (!(length(mcStruct$idxInCliques)==length(mcStruct$detectedLengths))) stop('the fields of the input list
+    # detectedLengths and idxInCliques do not match up in size')
+    if (sum(is.na(match(unlist(mcStruct$idxInCliques), c(1:dim(mat)[2]))))) 
         stop("at least one index provided in the element 'idxInCliques' of 
             the input list is not part of the indices of the input genes")
     
-    #if (!(length(mcStruct$genesInCliques)==length(mcStruct$detectedLengths)))
-        #stop("the fields of the input list detectedLengths and genesInCliques 
-            #do not match up in size")
-    if (sum(is.na(match(unlist(mcStruct$genesInCliques),colnames(mat))))>0)
+    # if (!(length(mcStruct$genesInCliques)==length(mcStruct$detectedLengths))) stop('the fields of the input list
+    # detectedLengths and genesInCliques do not match up in size')
+    if (sum(is.na(match(unlist(mcStruct$genesInCliques), colnames(mat)))) > 0) 
         stop("at least one gene name provided in the element 'genesInCliques' 
             of the input list is not part of the input genes")
     
-    if (length(setdiff(c("OrderedIdxInCliques","OrderedGenesInCliques"),
-                    names(mcStruct$Mus)))!=0)
+    if (length(setdiff(c("OrderedIdxInCliques", "OrderedGenesInCliques"), names(mcStruct$Mus))) != 0) 
         stop("at least one of the fields 'OrderedIdxInCliques' 
             and 'OrderedGenesInCliques' of the element 'Mus' of the input 
             list is missing")
-    if (sum(is.na(match(unlist(mcStruct$Mus$OrderedIdxInCliques),
-                        c(1:dim(mat)[2])))))
+    if (sum(is.na(match(unlist(mcStruct$Mus$OrderedIdxInCliques), c(1:dim(mat)[2]))))) 
         stop("at least one index provided in the element 'idxInCliques' 
             of the element 'Mus' of the input list is not part of the indices 
             of the input genes")
-    #if (!(length(mcStruct$Mus$OrderedIdxInCliques)==
-            #length(mcStruct$detectedLengths)))
-        #stop("the fields of the input list detectedLengths and 
-            #Mus$OrderedIdxInCliques do not match up in size")
-    if (sum(is.na(match(unlist(mcStruct$Mus$OrderedGenesInCliques),
-                        colnames(mat))))>0)
+    # if (!(length(mcStruct$Mus$OrderedIdxInCliques)== length(mcStruct$detectedLengths))) stop('the fields of the
+    # input list detectedLengths and Mus$OrderedIdxInCliques do not match up in size')
+    if (sum(is.na(match(unlist(mcStruct$Mus$OrderedGenesInCliques), colnames(mat)))) > 0) 
         stop("at least one gene name provided in the element 
             'OrderedGenesInCliques' of the element 'Mus' of the input list 
             is not part of the input genes")
-    #if (!(length(mcStruct$Mus$OrderedGenesInCliques)==
-            #length(mcStruct$detectedLengths)))
-        #stop("the fields of the input list detectedLengths and 
-            #Mus$OrderedGenesInCliques do not match up in size")
+    # if (!(length(mcStruct$Mus$OrderedGenesInCliques)== length(mcStruct$detectedLengths))) stop('the fields of
+    # the input list detectedLengths and Mus$OrderedGenesInCliques do not match up in size')
     
-    if (!(class(mcStruct$noMaxCliques)=="numeric" || 
-            class(mcStruct$noMaxCliques)=="integer"))
+    if (!(class(mcStruct$noMaxCliques) == "numeric" || class(mcStruct$noMaxCliques) == "integer")) 
         stop("the field 'noMaxCliques' of the input list needs to be numeric")
-    if (!sum(mcStruct$noMaxCliques%%1)==0)
+    if (!sum(mcStruct$noMaxCliques%%1) == 0) 
         stop("the elements of the field 'noMaxCliques' of the input 
             list need to be positive integers")
-    if (any(mcStruct$noMaxCliques<=0))
+    if (any(mcStruct$noMaxCliques <= 0)) 
         stop("the elements of the field 'noMaxCliques' of the input 
             list need to be positive integers")
     
-    if (!(class(mcStruct$pairMu)=="numeric"))
+    if (!(class(mcStruct$pairMu) == "numeric")) 
         stop("the field 'pairMu' of the input list should have been a real 
             number between 0 and 1")
-    if (length(mcStruct$pairMu)>1)
+    if (length(mcStruct$pairMu) > 1) 
         stop("the field 'pairMu' of the input list should have been a real 
             number between 0 and 1")
-    if (!(0<=mcStruct$pairMu && mcStruct$pairMu<=1))
+    if (!(0 <= mcStruct$pairMu && mcStruct$pairMu <= 1)) 
         stop("the field 'pairMu' of the input list should have been a real 
             number between 0 and 1")
     
-    if (!(class(mcStruct$pairPvalue)=="numeric"))
+    if (!(class(mcStruct$pairPvalue) == "numeric")) 
         stop("the field 'pairPvalue' of the input list should have been a real 
             number between 0 and 1")
-    if (length(mcStruct$pairPvalue)>1)
+    if (length(mcStruct$pairPvalue) > 1) 
         stop("the field 'pairPvalue' of the input list should have been a real 
             number between 0 and 1")
-    if (!(0<=mcStruct$pairPvalue && mcStruct$pairPvalue<=1))
+    if (!(0 <= mcStruct$pairPvalue && mcStruct$pairPvalue <= 1)) 
         stop("the field 'pairPvalue' should have been a real 
             number between 0 and 1")
     
-    if (missing(groupPvalue))
-        groupPvalue<-0.1
-    if (!(class(groupPvalue)=="numeric"))
+    if (missing(groupPvalue)) 
+        groupPvalue <- 0.1
+    if (!(class(groupPvalue) == "numeric")) 
         stop("the level of the corrected p value has to be a real number 
             between 0 and 1")
-    if (length(groupPvalue)>1)
+    if (length(groupPvalue) > 1) 
         stop("the level of the corrected p value has to be a real number 
             between 0 and 1")
-    if (!(0<=groupPvalue && groupPvalue<=1))
+    if (!(0 <= groupPvalue && groupPvalue <= 1)) 
         stop("the level of the corrected p value needs to be a real number 
             between 0 and 1")
     
     
-    testedCand<-testAllCandidateGroups(mcStruct,mat)
-    signifCliques<-filterSignifCliques(mcStruct,testedCand,groupPvalue)
-    signifCliques$mcStruct<-mcStruct
-    signifCliques$matrix<-mat
-    signifCliques$groupPvalue<-groupPvalue
-    signifCliques$uncorrectedPvalues<-testedCand$pvalueLRTMu
-    return(signifCliques)  
+    testedCand <- testAllCandidateGroups(mcStruct, mat)
+    signifCliques <- filterSignifCliques(mcStruct, testedCand, groupPvalue)
+    signifCliques$mcStruct <- mcStruct
+    signifCliques$matrix <- mat
+    signifCliques$groupPvalue <- groupPvalue
+    signifCliques$uncorrectedPvalues <- testedCand$pvalueLRTMu
+    return(signifCliques)
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Finds mutually exclusive groups
 #'
 #' @description \code{TiMEx} is the main function of this package. It 
@@ -872,8 +826,8 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
@@ -893,58 +847,57 @@ findSignifCliques<-function(mat,mcStruct,groupPvalue)
 #' @aliases TiMEx
 #' 
 #' @export
-TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
-{
+TiMEx <- function(mat, pairMu, pairPvalue, groupPvalue) {
     # check inputs
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
-    if (missing(pairMu))
-        pairMu<-0.5
-    if (!(class(pairMu)=="numeric"))
+    if (missing(pairMu)) 
+        pairMu <- 0.5
+    if (!(class(pairMu) == "numeric")) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
-    if (length(pairMu)>1)
+    if (length(pairMu) > 1) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
-    if (!(0<=pairMu && pairMu<=1))
+    if (!(0 <= pairMu && pairMu <= 1)) 
         stop("the threshold on mu needs to be a real number between 0 and 1")
     
-    if (missing(pairPvalue))
-        pairPvalue<-0.01
-    if (!(class(pairPvalue)=="numeric"))
+    if (missing(pairPvalue)) 
+        pairPvalue <- 0.01
+    if (!(class(pairPvalue) == "numeric")) 
         stop("the threshold on p-value needs to be a real number between 
             0 and 1")
-    if (length(pairPvalue)>1)
+    if (length(pairPvalue) > 1) 
         stop("the threshold on p-value needs to be a real number between 
             0 and 1")
-    if (!(0<=pairPvalue && pairPvalue<=1))
+    if (!(0 <= pairPvalue && pairPvalue <= 1)) 
         stop("the threshold on p-value needs to be a real number between 
             0 and 1")
     
-    if (missing(groupPvalue))
-        groupPvalue<-0.1
-    if (length(groupPvalue)>1)
+    if (missing(groupPvalue)) 
+        groupPvalue <- 0.1
+    if (length(groupPvalue) > 1) 
         stop("the level of the corrected p v-alue has to be a real 
             number between 0 and 1")
-    if (!(class(groupPvalue)=="numeric"))
+    if (!(class(groupPvalue) == "numeric")) 
         stop("the level of the corrected p v-alue has to be a real 
             number between 0 and 1")
-    if (!(0<=groupPvalue && groupPvalue<=1))
+    if (!(0 <= groupPvalue && groupPvalue <= 1)) 
         stop("the level of the corrected p v-alue needs to be a real 
             number between 0 and 1")
     
-    pairs<-analyzePairs(mat)
-    mcStruct<-doMaxCliques(pairs,pairMu,pairPvalue)
-    signifCliques<-findSignifCliques(mat,mcStruct,groupPvalue)
+    pairs <- analyzePairs(mat)
+    mcStruct <- doMaxCliques(pairs, pairMu, pairPvalue)
+    signifCliques <- findSignifCliques(mat, mcStruct, groupPvalue)
     return(signifCliques)
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Creates metagroups of genes
 #' 
 #' @description \code{doMetagene} collapses genes with identical alteration
@@ -972,8 +925,8 @@ TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{ovarianGroups}}, \code{\link{breastGroups}} 
@@ -994,42 +947,38 @@ TiMEx<-function(mat,pairMu,pairPvalue,groupPvalue)
 #' @aliases doMetagene
 #' 
 #' @export
-doMetagene<-function(mat)
-{
-    if (missing(mat))
+doMetagene <- function(mat) {
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
     table.combos <- mat
-    matcRow<-function(mine,table.combos)
-    {
+    matcRow <- function(mine, table.combos) {
         row.is.a.match <- apply(table.combos, 2, identical, mine)
         match.idx <- which(row.is.a.match)
         return(match.idx)
     }
     
-    ll<-apply(mat,2,matcRow,table.combos=mat)
+    ll <- apply(mat, 2, matcRow, table.combos = mat)
     
-    if (class(ll)=="matrix")
-    {
-        ll<-split(ll, rep(1:ncol(ll), each = nrow(ll)))  
+    if (class(ll) == "matrix") {
+        ll <- split(ll, rep(1:ncol(ll), each = nrow(ll)))
     }
     
-    #list with the groups of metagenes 
-    groups<-ll[which(unlist(lapply(ll,length))!=1)]
-    #the new alteration matrix with the identical genes collapsed into 
-    #metagroups
-    newMat<-mat[,which(duplicated(t(mat))==0)] 
+    # list with the groups of metagenes
+    groups <- ll[which(unlist(lapply(ll, length)) != 1)]
+    # the new alteration matrix with the identical genes collapsed into metagroups
+    newMat <- mat[, which(duplicated(t(mat)) == 0)]
     
-    return(result=list("newMat"=newMat,"groups"=groups))
+    return(result = list(newMat = newMat, groups = groups))
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Removes alterations based on frequency
 #' 
 #' @description \code{removeLowFreqs} returns a binary matrix from which genes 
@@ -1047,8 +996,8 @@ doMetagene<-function(mat)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{ovarian}}, \code{\link{breast}}, 
@@ -1064,38 +1013,36 @@ doMetagene<-function(mat)
 #' @aliases removeLowFreqs
 #' 
 #' @export
-removeLowFreqs<-function(mat,level)
-{
+removeLowFreqs <- function(mat, level) {
     # check inputs
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
-    if (missing(level))
-        level<-0.03
-    if (!(class(level)=="numeric"))
+    if (missing(level)) 
+        level <- 0.03
+    if (!(class(level) == "numeric")) 
         stop("the level parameter needs to be a real number between 0 and 1")
-    if (length(level)>1)
+    if (length(level) > 1) 
         stop("the level parameter needs to be a real number between 0 and 1")
-    if (!(0<=level && level<=1))
+    if (!(0 <= level && level <= 1)) 
         stop("the level parameter needs to be a real number between 0 and 1")
     
-    nrpats<-dim(mat)[1]
-    freqs<-apply(mat,2,sum)/nrpats
-    small<-which(freqs<level)
-    if (length(small)>0)
-    {
-        mat<-mat[,-small]
+    nrpats <- dim(mat)[1]
+    freqs <- apply(mat, 2, sum)/nrpats
+    small <- which(freqs < level)
+    if (length(small) > 0) {
+        mat <- mat[, -small]
     }
     return(mat)
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Produces tables with groups
 #'
 #' @description \code{produceTablesSignifGroups} produces tables with the 
@@ -1123,8 +1070,8 @@ removeLowFreqs<-function(mat,level)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
@@ -1139,200 +1086,175 @@ removeLowFreqs<-function(mat,level)
 #' @aliases produceTablesSignifGroups
 #' 
 #' @export
-produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
-{
+produceTablesSignifGroups <- function(signifGroups, mat, noToShow) {
     # check inputs
-    if (missing(signifGroups))
+    if (missing(signifGroups)) 
         stop("need to specify a result structure as returned by function 
             TiMEx as input")
-    if (length(setdiff(c("idxSignif","mcStruct","genesSignif",
-            "MusGroup","pvals"),names(signifGroups)))!=0)
+    if (length(setdiff(c("idxSignif", "mcStruct", "genesSignif", "MusGroup", "pvals"), names(signifGroups))) != 
+        0) 
         stop("check that the input list contains the following elements: 
             'idxSignif', 'mcStruct', 'genesSignif', 'MusGroup', and 'pvals' ")
     
-    if (class(signifGroups$mcStruct)!="list")
+    if (class(signifGroups$mcStruct) != "list") 
         stop("the element 'mcStruct' of the input list should have been a 
-            list")    
-    if (is.null(signifGroups$mcStruct$detectedLengths))
+            list")
+    if (is.null(signifGroups$mcStruct$detectedLengths)) 
         stop("the element 'mcStruct' of the input list should have contained 
             a field, 'detectedLengths'")
-    if (!(class(signifGroups$mcStruct$detectedLengths)=="numeric" 
-            || class(signifGroups$mcStruct$detectedLengths)=="integer"))
+    if (!(class(signifGroups$mcStruct$detectedLengths) == "numeric" || class(signifGroups$mcStruct$detectedLengths) == 
+        "integer")) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (!sum(signifGroups$mcStruct$detectedLengths%%1)==0)
+    if (!sum(signifGroups$mcStruct$detectedLengths%%1) == 0) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (any(signifGroups$mcStruct$detectedLengths<=0))
+    if (any(signifGroups$mcStruct$detectedLengths <= 0)) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
     
-    if (is.null(signifGroups$mcStruct$noMaxCliques))
+    if (is.null(signifGroups$mcStruct$noMaxCliques)) 
         stop("the element 'mcStruct' of the input list should 
             have contained a field, 'noMaxCliques'")
-    if (!(class(signifGroups$mcStruct$noMaxCliques)=="numeric" 
-            || class(signifGroups$mcStruct$noMaxCliques)=="integer"))
+    if (!(class(signifGroups$mcStruct$noMaxCliques) == "numeric" || class(signifGroups$mcStruct$noMaxCliques) == 
+        "integer")) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (!sum(signifGroups$mcStruct$noMaxCliques%%1)==0)
+    if (!sum(signifGroups$mcStruct$noMaxCliques%%1) == 0) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (any(signifGroups$mcStruct$noMaxCliques<=0))
+    if (any(signifGroups$mcStruct$noMaxCliques <= 0)) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
     
-    if (length(signifGroups$mcStruct$noMaxCliques)!=
-            length(signifGroups$mcStruct$detectedLengths))
+    if (length(signifGroups$mcStruct$noMaxCliques) != length(signifGroups$mcStruct$detectedLengths)) 
         stop("the lengths of the fields 'detectedLengths' and 
             'noMaxCliques' of 'mcStruct' in the input list do not coincide")
     
-    if (class(signifGroups$idxSignif)!="list")
+    if (class(signifGroups$idxSignif) != "list") 
         stop("the field 'idxSignif' of the input list 
             should have been a non-empty list")
-    if (length(signifGroups$idxSignif)==0)
+    if (length(signifGroups$idxSignif) == 0) 
         stop("the field 'idxSignif' of the input list 
             should have been a non-empty list")
-    for (i in 1:length(signifGroups$idxSignif))
-        if (!is.null(signifGroups$idxSignif[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$idxSignif[[i]])))!=0)
-                stop("each element of the 'idxSignif' field of the input list 
+    for (i in 1:length(signifGroups$idxSignif)) if (!is.null(signifGroups$idxSignif[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$idxSignif[[i]]))) != 0) 
+            stop("each element of the 'idxSignif' field of the input list 
                     should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
-            
-    if (class(signifGroups$genesSignif)!="list")
+    }
+    
+    if (class(signifGroups$genesSignif) != "list") 
         stop("the field 'genesSignif' of the input list should have been 
             a non-empty list")
-    if (length(signifGroups$genesSignif)==0)
+    if (length(signifGroups$genesSignif) == 0) 
         stop("the field 'genesSignif' of the input list should have been 
             a non-empty list")
-    for (i in 1:length(signifGroups$genesSignif))
-        if (!is.null(signifGroups$genesSignif[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$genesSignif[[i]])))!=0)
-                stop("each element of the 'genesSignif' field of the 
+    for (i in 1:length(signifGroups$genesSignif)) if (!is.null(signifGroups$genesSignif[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$genesSignif[[i]]))) != 0) 
+            stop("each element of the 'genesSignif' field of the 
                     input list should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
-        
+    }
     
-    if (class(signifGroups$pvals)!="list")
+    
+    if (class(signifGroups$pvals) != "list") 
         stop("the field 'pvals' of the input list should have been 
             a non-empty list")
-    if (length(signifGroups$pvals)==0)
+    if (length(signifGroups$pvals) == 0) 
         stop("the field 'pvals' of the input list should have been 
             a non-empty list")
-    for (i in 1:length(signifGroups$pvals))
-        if (!is.null(signifGroups$pvals[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$pvals[[i]])))!=0)
-                stop("each element of the 'pvals' field of the input list 
+    for (i in 1:length(signifGroups$pvals)) if (!is.null(signifGroups$pvals[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$pvals[[i]]))) != 0) 
+            stop("each element of the 'pvals' field of the input list 
                     should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
-        
+    }
     
-    if (class(signifGroups$MusGroup)!="list")
+    
+    if (class(signifGroups$MusGroup) != "list") 
         stop("the field 'MusGroup' of the input list should have been 
             a non-empty list")
-    if (length(signifGroups$MusGroup)==0)
+    if (length(signifGroups$MusGroup) == 0) 
         stop("the field 'MusGroup' of the input list should have been 
             a non-empty list")
-    for (i in 1:length(signifGroups$MusGroup))
-        if (!is.null(signifGroups$MusGroup[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$MusGroup[[i]])))!=0)
-                stop("each element of the 'MusGroup' field of the input list 
+    for (i in 1:length(signifGroups$MusGroup)) if (!is.null(signifGroups$MusGroup[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$MusGroup[[i]]))) != 0) 
+            stop("each element of the 'MusGroup' field of the input list 
                     should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
-            
-    if (missing(mat))
+    }
+    
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
-    if (missing(noToShow))
-        noToShow<-30
-    if (length(noToShow)>1)
+    if (missing(noToShow)) 
+        noToShow <- 30
+    if (length(noToShow) > 1) 
         stop("the number of groups to show needs to be a positive integer")
-    if (!(class(noToShow)=="numeric"))
+    if (!(class(noToShow) == "numeric")) 
         stop("the number of groups to show needs to be a positive integer")
-    if (!(noToShow%%1==0))
+    if (!(noToShow%%1 == 0)) 
         stop("the number of groups to show needs to be a positive integer")
-    if (noToShow<=0)
+    if (noToShow <= 0) 
         stop("the number of groups to show needs to be a positive integer")
     
     
-    ff<-getFreqsForCliquesAfterTest(signifGroups$idxSignif,mat)
+    ff <- getFreqsForCliquesAfterTest(signifGroups$idxSignif, mat)
     
-    namesFreqs<-list()
+    namesFreqs <- list()
     
-    if (length(signifGroups$mcStruct$noMaxCliques)>=2)
-    {
-        for (i in 2:length(signifGroups$mcStruct$noMaxCliques))
-        {
-            namesFreqs[[i]]<-list()
+    if (length(signifGroups$mcStruct$noMaxCliques) >= 2) {
+        for (i in 2:length(signifGroups$mcStruct$noMaxCliques)) {
+            namesFreqs[[i]] <- list()
             
-            namesFreqs[[i]]$fdr<-combineNameWithFreq(
-                signifGroups$genesSignif[[i]]$fdr,ff[[i]]$fdr,
-                signifGroups$MusGroup[[i]]$fdr,signifGroups$pvals[[i]]$fdr)
-            if (!is.null(dim(namesFreqs[[i]]$fdr)))
-            {
-                if (dim(namesFreqs[[i]]$fdr)[1]>noToShow)
-                    namesFreqs[[i]]$fdr<-namesFreqs[[i]]$fdr[c(1:noToShow),]  
+            namesFreqs[[i]]$fdr <- combineNameWithFreq(signifGroups$genesSignif[[i]]$fdr, ff[[i]]$fdr, signifGroups$MusGroup[[i]]$fdr, 
+                signifGroups$pvals[[i]]$fdr)
+            if (!is.null(dim(namesFreqs[[i]]$fdr))) {
+                if (dim(namesFreqs[[i]]$fdr)[1] > noToShow) 
+                  namesFreqs[[i]]$fdr <- namesFreqs[[i]]$fdr[c(1:noToShow), ]
             }
-            namesFreqs[[i]]$fdr<-as.data.frame(namesFreqs[[i]]$fdr)
+            namesFreqs[[i]]$fdr <- as.data.frame(namesFreqs[[i]]$fdr)
             
-            namesFreqs[[i]]$bonf<-combineNameWithFreq(
-                signifGroups$genesSignif[[i]]$bonf,ff[[i]]$bonf,
-                signifGroups$MusGroup[[i]]$bonf,signifGroups$pvals[[i]]$bonf)
-            if (!is.null(dim(namesFreqs[[i]]$bonf)))
-            {
-                if (dim(namesFreqs[[i]]$bonf)[1]>noToShow)
-                    namesFreqs[[i]]$bonf<-namesFreqs[[i]]$bonf[c(1:noToShow),]
+            namesFreqs[[i]]$bonf <- combineNameWithFreq(signifGroups$genesSignif[[i]]$bonf, ff[[i]]$bonf, signifGroups$MusGroup[[i]]$bonf, 
+                signifGroups$pvals[[i]]$bonf)
+            if (!is.null(dim(namesFreqs[[i]]$bonf))) {
+                if (dim(namesFreqs[[i]]$bonf)[1] > noToShow) 
+                  namesFreqs[[i]]$bonf <- namesFreqs[[i]]$bonf[c(1:noToShow), ]
             }
-            namesFreqs[[i]]$bonf<-as.data.frame(namesFreqs[[i]]$bonf)
+            namesFreqs[[i]]$bonf <- as.data.frame(namesFreqs[[i]]$bonf)
         }
-    } else
-    {
-        i<-signifGroups$mcStruct$detectedLengths
+    } else {
+        i <- signifGroups$mcStruct$detectedLengths
         
-        namesFreqs[[i]]<-list()
+        namesFreqs[[i]] <- list()
         
-        namesFreqs[[i]]$fdr<-combineNameWithFreq(
-            signifGroups$genesSignif[[i]]$fdr,ff[[i]]$fdr,
-            signifGroups$MusGroup[[i]]$fdr,signifGroups$pvals[[i]]$fdr)
-        if (!is.null(dim(namesFreqs[[i]]$fdr)))
-        {
-            if (dim(namesFreqs[[i]]$fdr)[1]>noToShow)
-                namesFreqs[[i]]$fdr<-namesFreqs[[i]]$fdr[c(1:noToShow),]  
+        namesFreqs[[i]]$fdr <- combineNameWithFreq(signifGroups$genesSignif[[i]]$fdr, ff[[i]]$fdr, signifGroups$MusGroup[[i]]$fdr, 
+            signifGroups$pvals[[i]]$fdr)
+        if (!is.null(dim(namesFreqs[[i]]$fdr))) {
+            if (dim(namesFreqs[[i]]$fdr)[1] > noToShow) 
+                namesFreqs[[i]]$fdr <- namesFreqs[[i]]$fdr[c(1:noToShow), ]
         }
-        namesFreqs[[i]]$fdr<-as.data.frame(namesFreqs[[i]]$fdr)
+        namesFreqs[[i]]$fdr <- as.data.frame(namesFreqs[[i]]$fdr)
         
-        namesFreqs[[i]]$bonf<-combineNameWithFreq(
-            signifGroups$genesSignif[[i]]$bonf,ff[[i]]$bonf,
-            signifGroups$MusGroup[[i]]$bonf,signifGroups$pvals[[i]]$bonf)
-        if (!is.null(dim(namesFreqs[[i]]$bonf)))
-        {
-            if (dim(namesFreqs[[i]]$bonf)[1]>noToShow)
-                namesFreqs[[i]]$bonf<-namesFreqs[[i]]$bonf[c(1:noToShow),]  
+        namesFreqs[[i]]$bonf <- combineNameWithFreq(signifGroups$genesSignif[[i]]$bonf, ff[[i]]$bonf, signifGroups$MusGroup[[i]]$bonf, 
+            signifGroups$pvals[[i]]$bonf)
+        if (!is.null(dim(namesFreqs[[i]]$bonf))) {
+            if (dim(namesFreqs[[i]]$bonf)[1] > noToShow) 
+                namesFreqs[[i]]$bonf <- namesFreqs[[i]]$bonf[c(1:noToShow), ]
         }
-        namesFreqs[[i]]$bonf<-as.data.frame(namesFreqs[[i]]$bonf)
+        namesFreqs[[i]]$bonf <- as.data.frame(namesFreqs[[i]]$bonf)
     }
     
     return(namesFreqs)
 }
 
 
-###############################################################################
+############################################################################### 
 #' @title Assesses the stability of groups by subsampling
 #'
 #' @description \code{subsampleAnalysis} subsamples the set of patients and 
@@ -1367,8 +1289,8 @@ produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying mutually 
@@ -1387,293 +1309,241 @@ produceTablesSignifGroups<-function(signifGroups,mat,noToShow)
 #' @aliases subsampleAnalysis
 #' 
 #' @export
-subsampleAnalysis<-function(subsampl,noReps,signifGroups)
-{
-
+subsampleAnalysis <- function(subsampl, noReps, signifGroups) {
+    
     # check inputs
-    if (missing(subsampl))
+    if (missing(subsampl)) 
         stop("a vector of subsampling frequencies is needed as input")
-    if (!(class(subsampl)=="numeric"))
+    if (!(class(subsampl) == "numeric")) 
         stop("the subsampling frequencies need to be real numbers between 
             0 and 1")
-    if (sum(sapply(subsampl,function(x){if (!(x>0 && x<=1)) p<-1 else p<-0; 
-            return(p)}))>0)
+    if (sum(sapply(subsampl, function(x) {
+        if (!(x > 0 && x <= 1)) p <- 1 else p <- 0
+        return(p)
+    })) > 0) 
         stop("the subsampling frequencies need to be real numbers between 
             0 and 1")
     
-    if (missing(noReps))
-        noReps<-100
-    if (!(class(noReps)=="numeric"))
+    if (missing(noReps)) 
+        noReps <- 100
+    if (!(class(noReps) == "numeric")) 
         stop("the number of repetitions needs to be positive integer")
-    if (!(noReps%%1==0))
+    if (!(noReps%%1 == 0)) 
         stop("the number of repetitions needs to be positive integer")
-    if (!noReps>0)
+    if (!noReps > 0) 
         stop("the number of repetitions needs to be positive integer")
     
-    if (missing(signifGroups))
+    if (missing(signifGroups)) 
         stop("need to specify a result structure as returned by 
             function TiMEx as input")
-    if (length(setdiff(c("idxSignif","mcStruct","genesSignif",
-            "MusGroup","pvals"),names(signifGroups)))!=0)
+    if (length(setdiff(c("idxSignif", "mcStruct", "genesSignif", "MusGroup", "pvals"), names(signifGroups))) != 
+        0) 
         stop("check that the input list contains the following elements: 
             'idxSignif', 'mcStruct', 'genesSignif', 'MusGroup', and 'pvals' ")
     
-    if (class(signifGroups$mcStruct)!="list")
+    if (class(signifGroups$mcStruct) != "list") 
         stop("the element 'mcStruct' of the input list should have been a 
-            list")    
-    if (is.null(signifGroups$mcStruct$detectedLengths))
+            list")
+    if (is.null(signifGroups$mcStruct$detectedLengths)) 
         stop("the element 'mcStruct' of the input list should have contained 
             a field, 'detectedLengths'")
-    if (!(class(signifGroups$mcStruct$detectedLengths)=="numeric" 
-        || class(signifGroups$mcStruct$detectedLengths)=="integer"))
+    if (!(class(signifGroups$mcStruct$detectedLengths) == "numeric" || class(signifGroups$mcStruct$detectedLengths) == 
+        "integer")) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (!sum(signifGroups$mcStruct$detectedLengths%%1)==0)
+    if (!sum(signifGroups$mcStruct$detectedLengths%%1) == 0) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (any(signifGroups$mcStruct$detectedLengths<=0))
+    if (any(signifGroups$mcStruct$detectedLengths <= 0)) 
         stop("the elements of the 'detectedLengths' field of 
             'mcStruct' in the input list should have been positive integers")
     
-    if (is.null(signifGroups$mcStruct$noMaxCliques))
+    if (is.null(signifGroups$mcStruct$noMaxCliques)) 
         stop("the element 'mcStruct' of the input list 
             should have contained a field, 'noMaxCliques'")
-    if (!(class(signifGroups$mcStruct$noMaxCliques)=="numeric" 
-        || class(signifGroups$mcStruct$noMaxCliques)=="integer"))
+    if (!(class(signifGroups$mcStruct$noMaxCliques) == "numeric" || class(signifGroups$mcStruct$noMaxCliques) == 
+        "integer")) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (!sum(signifGroups$mcStruct$noMaxCliques%%1)==0)
+    if (!sum(signifGroups$mcStruct$noMaxCliques%%1) == 0) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
-    if (any(signifGroups$mcStruct$noMaxCliques<=0))
+    if (any(signifGroups$mcStruct$noMaxCliques <= 0)) 
         stop("the elements of the 'noMaxCliques' field of 
             'mcStruct' in the input list should have been positive integers")
     
-    if (length(signifGroups$mcStruct$noMaxCliques)!=
-            length(signifGroups$mcStruct$detectedLengths))
+    if (length(signifGroups$mcStruct$noMaxCliques) != length(signifGroups$mcStruct$detectedLengths)) 
         stop("the lengths of the fields 'detectedLengths' and 
             'noMaxCliques' of 'mcStruct' in the input list do not coincide")
     
-    if (class(signifGroups$idxSignif)!="list")
+    if (class(signifGroups$idxSignif) != "list") 
         stop("the field 'idxSignif' of the input list should have been a 
             non-empty list")
-    if (length(signifGroups$idxSignif)==0)
+    if (length(signifGroups$idxSignif) == 0) 
         stop("the field 'idxSignif' of the input list should have been a 
             non-empty list")
-    for (i in 1:length(signifGroups$idxSignif))
-        if (!is.null(signifGroups$idxSignif[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),names(signifGroups$
-                                                idxSignif[[i]])))!=0)
-                stop("each element of the 'idxSignif' 
+    for (i in 1:length(signifGroups$idxSignif)) if (!is.null(signifGroups$idxSignif[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$idxSignif[[i]]))) != 0) 
+            stop("each element of the 'idxSignif' 
             field of the input list should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
+    }
     
-    if (class(signifGroups$genesSignif)!="list")
+    if (class(signifGroups$genesSignif) != "list") 
         stop("the field 'genesSignif' of the input list should have been 
             a non-empty list")
-    if (length(signifGroups$genesSignif)==0)
+    if (length(signifGroups$genesSignif) == 0) 
         stop("the field 'genesSignif' of the input list should have been 
             a non-empty list")
-    for (i in 1:length(signifGroups$genesSignif))
-        if (!is.null(signifGroups$genesSignif[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$genesSignif[[i]])))!=0)
-                stop("each element of the 'genesSignif' field of the input 
+    for (i in 1:length(signifGroups$genesSignif)) if (!is.null(signifGroups$genesSignif[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$genesSignif[[i]]))) != 0) 
+            stop("each element of the 'genesSignif' field of the input 
                     list should have been a list with two elements, 'fdr' and 
                     'bonf'")
-        }
+    }
     
     
-    if (class(signifGroups$pvals)!="list")
+    if (class(signifGroups$pvals) != "list") 
         stop("the field 'pvals' of the input list should have been a non-empty 
             list")
-    if (length(signifGroups$pvals)==0)
+    if (length(signifGroups$pvals) == 0) 
         stop("the field 'pvals' of the input list should have been a non-empty 
             list")
-    for (i in 1:length(signifGroups$pvals))
-        if (!is.null(signifGroups$pvals[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$pvals[[i]])))!=0)
-                stop("each element of the 'pvals' field of the input list 
+    for (i in 1:length(signifGroups$pvals)) if (!is.null(signifGroups$pvals[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$pvals[[i]]))) != 0) 
+            stop("each element of the 'pvals' field of the input list 
                     should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
+    }
     
     
-    if (class(signifGroups$MusGroup)!="list")
+    if (class(signifGroups$MusGroup) != "list") 
         stop("the field 'MusGroup' of the input list should have 
             been a non-empty list")
-    if (length(signifGroups$MusGroup)==0)
+    if (length(signifGroups$MusGroup) == 0) 
         stop("the field 'MusGroup' of the input list should have 
             been a non-empty list")
-    for (i in 1:length(signifGroups$MusGroup))
-        if (!is.null(signifGroups$MusGroup[[i]]))
-        {
-            if (length(setdiff(c("fdr","bonf"),
-                            names(signifGroups$MusGroup[[i]])))!=0)
-                stop("each element of the 'MusGroup' field of the input list 
+    for (i in 1:length(signifGroups$MusGroup)) if (!is.null(signifGroups$MusGroup[[i]])) {
+        if (length(setdiff(c("fdr", "bonf"), names(signifGroups$MusGroup[[i]]))) != 0) 
+            stop("each element of the 'MusGroup' field of the input list 
                     should have been a list with two elements, 
                     'fdr' and 'bonf'")
-        }
+    }
     
-    if (length(setdiff(c("pairMu","pairPvalue"),
-                    names(signifGroups$mcStruct)))>0)
+    if (length(setdiff(c("pairMu", "pairPvalue"), names(signifGroups$mcStruct))) > 0) 
         stop("the 'mcStruct' field of the input list should have included 
             the parameters pairMu and pairPvalue")
-    if (!(class(signifGroups$mcStruct$pairPvalue)=="numeric"))
+    if (!(class(signifGroups$mcStruct$pairPvalue) == "numeric")) 
         stop("the field 'pairPvalue' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
-    if (!(0<=signifGroups$mcStruct$pairPvalue && 
-            signifGroups$mcStruct$pairPvalue<=1))
+    if (!(0 <= signifGroups$mcStruct$pairPvalue && signifGroups$mcStruct$pairPvalue <= 1)) 
         stop("the field 'pairPvalue' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
-    if (length(signifGroups$mcStruct$pairPvalue)!=1)
+    if (length(signifGroups$mcStruct$pairPvalue) != 1) 
         stop("the field 'pairPvalue' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
-    if (!(class(signifGroups$mcStruct$pairMu)=="numeric"))
+    if (!(class(signifGroups$mcStruct$pairMu) == "numeric")) 
         stop("the field 'pairMu' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
-    if (!(0<=signifGroups$mcStruct$pairMu && signifGroups$mcStruct$pairMu<=1))
+    if (!(0 <= signifGroups$mcStruct$pairMu && signifGroups$mcStruct$pairMu <= 1)) 
         stop("the field 'pairMu' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
-    if (length(signifGroups$mcStruct$pairMu)!=1)
+    if (length(signifGroups$mcStruct$pairMu) != 1) 
         stop("the field 'pairMu' of 'mcStruct' of the input list should 
             have been a real number between 0 and 1")
     
-    if (!(class(signifGroups$groupPvalue)=="numeric"))
+    if (!(class(signifGroups$groupPvalue) == "numeric")) 
         stop("the field 'groupPvalue' of the input list should 
             have been a real number between 0 and 1")
-    if (!(0<=signifGroups$groupPvalue && signifGroups$groupPvalue<=1))
+    if (!(0 <= signifGroups$groupPvalue && signifGroups$groupPvalue <= 1)) 
         stop("the field 'groupPvalue' of the input list should have been 
             a real number between 0 and 1")
-    if (length(signifGroups$groupPvalue)!=1)
+    if (length(signifGroups$groupPvalue) != 1) 
         stop("the field 'groupPvalue' of the input list should have been 
             a real number between 0 and 1")
-
-    if (is.null(signifGroups$matrix))
+    
+    if (is.null(signifGroups$matrix)) 
         stop("the input list should have had a binary matrix, 'matrix', 
             as one of the fields")
-    if (is.null(dim(signifGroups$matrix)))
+    if (is.null(dim(signifGroups$matrix))) 
         stop("the input list should have had a binary matrix, 'matrix', 
             as one of the fields")
-    if ((all.equal(c(0,1),sort(unique(as.vector(signifGroups$matrix))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(signifGroups$matrix)))) != 1)) 
         stop("the input list should have had a binary matrix, 'matrix', 
             as one of the fields")
     
-    if (sum(is.na(match(unlist(signifGroups$genesSignif),
-                        colnames(signifGroups$matrix))))>0)
+    if (sum(is.na(match(unlist(signifGroups$genesSignif), colnames(signifGroups$matrix)))) > 0) 
         stop("at least one gene name provided in the element 'genesInCliques' 
             of the input list is not part of the input genes")
     
     
-    pairMu<-signifGroups$mcStruct$pairMu
-    pairPvalue<-signifGroups$mcStruct$pairPvalue
-    groupPvalue<-signifGroups$groupPvalue
+    pairMu <- signifGroups$mcStruct$pairMu
+    pairPvalue <- signifGroups$mcStruct$pairPvalue
+    groupPvalue <- signifGroups$groupPvalue
     
-    countsAll<-list()
+    countsAll <- list()
     
-    if (length(signifGroups$genesSignif)>0)
-    {
-        for (idxSubs in 1:length(subsampl))
-        {
-            countsFreq<-list()
+    if (length(signifGroups$genesSignif) > 0) {
+        for (idxSubs in 1:length(subsampl)) {
+            countsFreq <- list()
             
-            for (io in 1:length(signifGroups$mcStruct$detectedLengths))
-            {
-                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]<-list()
-                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr<-
-                    rep(0,max(1,dim(signifGroups$genesSignif
-                        [[signifGroups$mcStruct$detectedLengths[io]]]$fdr)[1]))
-                countsFreq[[signifGroups$mcStruct$
-                    detectedLengths[io]]]$bonf<-
-                    rep(0,max(1,dim(signifGroups$genesSignif
-                    [[signifGroups$mcStruct$detectedLengths[io]]]$bonf)[1]))
+            for (io in 1:length(signifGroups$mcStruct$detectedLengths)) {
+                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]] <- list()
+                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr <- rep(0, max(1, dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr)[1]))
+                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf <- rep(0, max(1, dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf)[1]))
             }
             
-            for (idxR in 1:noReps)
-            {
-                matrixSubsample<-
-                signifGroups$matrix[sample(c(1:dim(signifGroups$matrix)[1]),
-                    ceiling(subsampl[idxSubs]*dim(signifGroups$matrix)[1])),]
-                signifGroupsSubsample<-TiMEx(matrixSubsample,pairMu,pairPvalue,
-                                            groupPvalue)
+            for (idxR in 1:noReps) {
+                matrixSubsample <- signifGroups$matrix[sample(c(1:dim(signifGroups$matrix)[1]), ceiling(subsampl[idxSubs] * 
+                  dim(signifGroups$matrix)[1])), ]
+                signifGroupsSubsample <- TiMEx(matrixSubsample, pairMu, pairPvalue, groupPvalue)
                 
-                genesSignifCombined<-list()
+                genesSignifCombined <- list()
                 
-                for (io in 1:length(signifGroups$mcStruct$detectedLengths))
-                {
-                    genesSignifCombined[[signifGroups$mcStruct$
-                                            detectedLengths[io]]]<-list()
-                    
-                    if (signifGroups$mcStruct$detectedLengths[io]>1)  
-                    {
-                        # if groups of the tested length were detected at all
-                        if (length(signifGroupsSubsample$genesSignif)>=
-                                signifGroups$mcStruct$detectedLengths[io]) 
-                        {
-genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$bonf<-
-    rbind(signifGroups$genesSignif[[signifGroups$mcStruct$
-        detectedLengths[io]]]$bonf,signifGroupsSubsample$
-            genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf)
-dph<-duplicated(genesSignifCombined[[signifGroups$mcStruct$
-    detectedLengths[io]]]$bonf) | duplicated(genesSignifCombined[[signifGroups$
-        mcStruct$detectedLengths[io]]]$bonf, fromLast = TRUE)
-# if more than one group was detected initially
-if (length(dim(signifGroups$genesSignif[[signifGroups$mcStruct$
-        detectedLengths[io]]]$bonf)[1])>0)
-    countsFreq[[signifGroups$mcStruct$
-        detectedLengths[io]]]$bonf<-countsFreq[[signifGroups$mcStruct$
-            detectedLengths[io]]]$bonf+dph[1:dim(signifGroups$
-                genesSignif[[signifGroups$mcStruct$
-                    detectedLengths[io]]]$bonf)[1]]+0
-else
-    countsFreq[[signifGroups$mcStruct$
-        detectedLengths[io]]]$bonf<-countsFreq[[signifGroups$mcStruct$
-            detectedLengths[io]]]$bonf+1
-                            
-genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$
-    fdr<-rbind(signifGroups$genesSignif[[signifGroups$mcStruct$
-        detectedLengths[io]]]$fdr,signifGroupsSubsample$
-            genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr)      
-dph<-duplicated(genesSignifCombined[[signifGroups$mcStruct$
-    detectedLengths[io]]]$fdr) | duplicated(genesSignifCombined[[signifGroups$
-        mcStruct$detectedLengths[io]]]$fdr, fromLast = TRUE)
-# if more than one group was detected initially
-if (length(dim(signifGroups$genesSignif[[signifGroups$mcStruct$
-        detectedLengths[io]]]$fdr)[1])>0)
-    countsFreq[[signifGroups$mcStruct$
-        detectedLengths[io]]]$fdr<-countsFreq[[signifGroups$mcStruct$
-            detectedLengths[io]]]$fdr+dph[1:dim(signifGroups$
-                genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$
-                    fdr)[1]]+0
-else
-    countsFreq[[signifGroups$mcStruct$
-        detectedLengths[io]]]$fdr<-countsFreq[[signifGroups$mcStruct$
-            detectedLengths[io]]]$fdr+1          
-                        }  
-                    } 
-                } 
+                for (io in 1:length(signifGroups$mcStruct$detectedLengths)) {
+                  genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]] <- list()
+                  
+                  if (signifGroups$mcStruct$detectedLengths[io] > 1) {
+                    # if groups of the tested length were detected at all
+                    if (length(signifGroupsSubsample$genesSignif) >= signifGroups$mcStruct$detectedLengths[io]) {
+                      genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$bonf <- rbind(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf, 
+                        signifGroupsSubsample$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf)
+                      dph <- duplicated(genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$bonf) | 
+                        duplicated(genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$bonf, fromLast = TRUE)
+                      # if more than one group was detected initially
+                      if (length(dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf)[1]) > 
+                        0) 
+                        countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf + 
+                          dph[1:dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$bonf)[1]] + 
+                          0 else countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf + 
+                        1
+                      
+                      genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$fdr <- rbind(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr, 
+                        signifGroupsSubsample$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr)
+                      dph <- duplicated(genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$fdr) | 
+                        duplicated(genesSignifCombined[[signifGroups$mcStruct$detectedLengths[io]]]$fdr, fromLast = TRUE)
+                      # if more than one group was detected initially
+                      if (length(dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr)[1]) > 
+                        0) 
+                        countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr + 
+                          dph[1:dim(signifGroups$genesSignif[[signifGroups$mcStruct$detectedLengths[io]]]$fdr)[1]] + 
+                          0 else countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr + 
+                        1
+                    }
+                  }
+                }
             }
             
-            for (io in 1:length(signifGroups$mcStruct$detectedLengths))
-            {
-countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
-    bonf<-countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf/noReps
-countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
-    fdr<-countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr/noReps
+            for (io in 1:length(signifGroups$mcStruct$detectedLengths)) {
+                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$bonf/noReps
+                countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr <- countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$fdr/noReps
             }
             
-            countsAll[[idxSubs]]<-countsFreq
+            countsAll[[idxSubs]] <- countsFreq
         }
-        names(countsAll)<-paste("SubsamplingFreq:",subsampl,sep="")
-        for (jo in 1:length(countsAll))
-        {
-            names(countsAll[[jo]])<-paste("groupSize=",
-                                    c(1:length(countsAll[[jo]])),sep="")
+        names(countsAll) <- paste("SubsamplingFreq:", subsampl, sep = "")
+        for (jo in 1:length(countsAll)) {
+            names(countsAll[[jo]]) <- paste("groupSize=", c(1:length(countsAll[[jo]])), sep = "")
         }
     }
     return(countsAll)
@@ -1681,7 +1551,7 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Plots a Mutually Exclusive group
 #'
 #' @description \code{plotGroupByName} plots a mutually exclusive group 
@@ -1699,8 +1569,8 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
@@ -1711,7 +1581,7 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' # CDKN1B, and the point mutations of CDH1, GATA3, and MAP3K1, in breast 
 #' # cancer.
 #' data(breast)
-#' group<-c("MIEN1-CNA","CDH1-Mut","GATA3-Mut","MAP3K1-Mut","CDKN1B-CNA")
+#' group<-c('MIEN1-CNA','CDH1-Mut','GATA3-Mut','MAP3K1-Mut','CDKN1B-CNA')
 #' plotGroupByName(group,breast)
 #' 
 #' @importFrom graphics image
@@ -1720,45 +1590,42 @@ countsFreq[[signifGroups$mcStruct$detectedLengths[io]]]$
 #' @aliases plotGroupByName
 #' 
 #' @export
-plotGroupByName<-function(group,mat)
-{
+plotGroupByName <- function(group, mat) {
     # check inputs
-    if (missing(group))
+    if (missing(group)) 
         stop("a group of genes needs to be specified")
     
-    if (missing(mat))
+    if (missing(mat)) 
         stop("need to specify a binary matrix as input")
-    if (is.null(dim(mat)))
+    if (is.null(dim(mat))) 
         stop("input needs to be a binary matrix")
-    if ((all.equal(c(0,1),sort(unique(as.vector(mat))))!=1))
+    if ((all.equal(c(0, 1), sort(unique(as.vector(mat)))) != 1)) 
         stop("input needs to be a binary matrix")
     
-    if ( sum(is.na(match(group,colnames(mat))))>0)
+    if (sum(is.na(match(group, colnames(mat)))) > 0) 
         stop("at least one gene name is not part of the input genes")
     
-    l<-length(group)
-    idx<-c()
-    for (i in 1:l)
-    {
-        idx[i]<-which(colnames(mat)==group[i])
+    l <- length(group)
+    idx <- c()
+    for (i in 1:l) {
+        idx[i] <- which(colnames(mat) == group[i])
     }
-    submatrix<-mat[,idx]
-    freqs<-round(apply(submatrix,2,sum)*100/dim(submatrix)[1],2)
-    ord<-order(freqs,decreasing=TRUE)
-    submatrix<-submatrix[,ord]
+    submatrix <- mat[, idx]
+    freqs <- round(apply(submatrix, 2, sum) * 100/dim(submatrix)[1], 2)
+    ord <- order(freqs, decreasing = TRUE)
+    submatrix <- submatrix[, ord]
     
-    mat2<-submatrix
-    for (i in l:1)
-        mat2<-mat2[order(mat2[,i]),]
+    mat2 <- submatrix
+    for (i in l:1) mat2 <- mat2[order(mat2[, i]), ]
     
-    image(t(mat2),col=c("white","black"),yaxt="n",xaxt="n",ylab="samples")
-    axis(1,at=seq(from=0,to=1,length.out=l),tck=-0.03,cex.axis=0.7,
-        labels=paste(group[ord],"\n ",freqs[ord]," %",sep=""))
+    image(t(mat2), col = c("white", "black"), yaxt = "n", xaxt = "n", ylab = "samples")
+    axis(1, at = seq(from = 0, to = 1, length.out = l), tck = -0.03, cex.axis = 0.7, labels = paste(group[ord], 
+        "\n ", freqs[ord], " %", sep = ""))
 }
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Recovers members of the metagroups
 #'
 #' @description \code{recoverAllNameGroups}  recovers, from a metagroup, the 
@@ -1809,8 +1676,8 @@ plotGroupByName<-function(group,mat)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso \code{\link{doMetagene}} for collapsing the genes of an input 
@@ -1824,34 +1691,29 @@ plotGroupByName<-function(group,mat)
 #' @aliases recoverAllNamesGroups
 #' 
 #' @export
-recoverAllNamesGroups<-function(groupsMeta,clGenes)
-{
+recoverAllNamesGroups <- function(groupsMeta, clGenes) {
     # check inputs
-    if (missing(groupsMeta))
+    if (missing(groupsMeta)) 
         stop("a list of groups needs to be provided as input")
-    if (class(groupsMeta)!="list" && class(groupsMeta)!="character")
+    if (class(groupsMeta) != "list" && class(groupsMeta) != "character") 
         stop("a list of groups needs to be provided as input")
     
-    if (missing(clGenes))
+    if (missing(clGenes)) 
         stop("a matrix of identified groups, as gene names, needs to be 
             provided as input")
-    if (class(clGenes)!="matrix" && class(clGenes)!="character")
+    if (class(clGenes) != "matrix" && class(clGenes) != "character") 
         stop("a matrix of identified groups, as gene names, needs to be 
             provided as input")
     
-    newGroups<-list()
-    for (i in 1:dim(clGenes)[1])
-    {
-        newGroups[[i]]<-list()
-        k<-1
-        for (j in 1:dim(clGenes)[2])
-        {
-            pos<-which(names(groupsMeta)==clGenes[i,j])
-            if (length(pos)>0)
-                newGroups[[i]][[k]]<-groupsMeta[pos]
-            else
-                newGroups[[i]][[k]]<-clGenes[i,j]
-            k<-k+1
+    newGroups <- list()
+    for (i in 1:dim(clGenes)[1]) {
+        newGroups[[i]] <- list()
+        k <- 1
+        for (j in 1:dim(clGenes)[2]) {
+            pos <- which(names(groupsMeta) == clGenes[i, j])
+            if (length(pos) > 0) 
+                newGroups[[i]][[k]] <- groupsMeta[pos] else newGroups[[i]][[k]] <- clGenes[i, j]
+            k <- k + 1
         }
     }
     return(newGroups)
@@ -1859,7 +1721,7 @@ recoverAllNamesGroups<-function(groupsMeta,clGenes)
 
 
 
-###############################################################################
+############################################################################### 
 #' @title Generates data from the TiMEx model
 #' 
 #' @description \code{simulateGenes} returns a list containing a binary matrix 
@@ -1895,8 +1757,8 @@ recoverAllNamesGroups<-function(groupsMeta,clGenes)
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references "TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations", by Constantinescu \emph{et al.} 
+#' @references 'TiMEx: A Waiting Time Model For Mutually
+#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
 #' (Bioinformatics, 2016).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
@@ -1913,68 +1775,64 @@ recoverAllNamesGroups<-function(groupsMeta,clGenes)
 #' @aliases simulateGenes
 #' 
 #' @export
-simulateGenes<-function(lambdas,mu,N)
-{
+simulateGenes <- function(lambdas, mu, N) {
     # check inputs
-    if (missing(lambdas))
+    if (missing(lambdas)) 
         stop("a vector of nonegative exponential rates needs to be 
             provided as input")
-    if (!(class(lambdas)=="numeric"))
+    if (!(class(lambdas) == "numeric")) 
         stop("a vector of nonegative exponential rates needs to be 
             provided as input")
-    if (any(lambdas<=0))
+    if (any(lambdas <= 0)) 
         stop("a vector of nonegative exponential rates needs to be 
             provided as input")
     
-    if (missing(mu))
-        mu<-1
-    #if (class(mu)!="numeric")
-        #stop("mu needs to be a real number between 0 and 1")
-    if (!(mu>=0 && mu<=1))
+    if (missing(mu)) 
+        mu <- 1
+    # if (class(mu)!='numeric') stop('mu needs to be a real number between 0 and 1')
+    if (!(mu >= 0 && mu <= 1)) 
         stop("mu needs to be a real number between 0 and 1")
     
-    if (missing(N))
+    if (missing(N)) 
         stop("the sample size N needs to be a positive integer")
-    if (!(N%%1==0))
+    if (!(N%%1 == 0)) 
         stop("the sample size N needs to be a positive integer")
-    if (N<=0)
+    if (N <= 0) 
         stop("the sample size N needs to be a positive integer")
     
     
     # set the observation lambda lo=1
-    lo<-1
+    lo <- 1
     
-    n<-length(lambdas)
+    n <- length(lambdas)
     
-    genoMat<-array(NA,dim=rep(2,n))
+    genoMat <- array(NA, dim = rep(2, n))
     
-    for (i in 1:n)
-    {
-        dimnames(genoMat)[[i]]<-paste("pos",i,"=",c(0,1),sep="")
+    for (i in 1:n) {
+        dimnames(genoMat)[[i]] <- paste("pos", i, "=", c(0, 1), sep = "")
     }
     
-    l<-list()
-    for (i in 1:n)
-    {
-        l[[i]]<-seq(0,1)
+    l <- list()
+    for (i in 1:n) {
+        l[[i]] <- seq(0, 1)
     }
     
-    allGenos<-as.matrix(expand.grid(l))
-    allGenosAtLeastTwo<-allGenos[which(apply(allGenos,1,sum)>1),]
-    allGenosOne<-allGenos[which(apply(allGenos,1,sum)==1),]
-    allGenosZero<-allGenos[which(apply(allGenos,1,sum)==0),]
-    allGenoPositive<-rbind(allGenosOne,allGenosAtLeastTwo)
+    allGenos <- as.matrix(expand.grid(l))
+    allGenosAtLeastTwo <- allGenos[which(apply(allGenos, 1, sum) > 1), ]
+    allGenosOne <- allGenos[which(apply(allGenos, 1, sum) == 1), ]
+    allGenosZero <- allGenos[which(apply(allGenos, 1, sum) == 0), ]
+    allGenoPositive <- rbind(allGenosOne, allGenosAtLeastTwo)
     
     # for the full0 case
-    p1<-compProbFullZeroSims(allGenosZero,lambdas,lo) 
+    p1 <- compProbFullZeroSims(allGenosZero, lambdas, lo)
     # for all the genotypes which are not full 0
-    p2<-apply(allGenoPositive,1,compAllProbsSims,lambdas=lambdas,lo=lo,mu=mu) 
-        
-    genoMat[1]<-p1
-    genoMat[(allGenoPositive+1)]<-p2
+    p2 <- apply(allGenoPositive, 1, compAllProbsSims, lambdas = lambdas, lo = lo, mu = mu)
     
-    simGenes<-produceGenesGroup(N,genoMat,n)
-    genes<-simGenes$genes
+    genoMat[1] <- p1
+    genoMat[(allGenoPositive + 1)] <- p2
     
-    return(list("genes"=genes,"genoMat"=genoMat))  
+    simGenes <- produceGenesGroup(N, genoMat, n)
+    genes <- simGenes$genes
+    
+    return(list(genes = genes, genoMat = genoMat))
 }
