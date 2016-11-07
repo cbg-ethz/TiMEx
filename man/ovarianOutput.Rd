@@ -24,7 +24,7 @@ testing correction methods. Each element is a matrix, in which rows
 represent indices of significantly mutually exclusive groups.}
 
 \item{\code{pvals}} {list of corrected significant p-values corresponding to
-the tested cliques, ordered ascendingly. The list contains as many elements 
+the tested cliques, ordered ascending. The list contains as many elements 
 as identified lengths of significant groups. For example, \code{pvals[[2]]}
 is a list containing the p-values of the significant maximal cliques of 
 size 2. Each list of this type further has two elements, \code{fdr} and 
@@ -33,7 +33,7 @@ methods. Each element is a vector, of length the number of significant
 maximal cliques of a given size.} 
 
 \item{\code{posSignif}} {list of positions of the significant groups in the 
-input list of maximal cliques, ordered ascendingly by corrected p-value. 
+input list of maximal cliques, ordered ascending by corrected p-value. 
 The list contains as many elements as identified lengths of significant 
 groups.For example, \code{posSignif[[2]]} is a list containing the 
 positions of the significant groups of size 2.  Each list of this type 
@@ -42,7 +42,7 @@ different multiple correction methods.  Each element is a vector, of
 length the number of significant maximal cliques of a given size.}
 
 \item{\code{MusGroup}} {list of inferred mu values corresponding to
-the tested cliques, ordered ascendingly by the corresponding corrected 
+the tested cliques, ordered ascending by the corresponding corrected 
 p-value. The list contains as many elements as identified lengths of 
 significant groups. For example, \code{MusGroup[[2]]} is a list containing 
 the mu values of the significant maximal cliques of size 2. Each list of 
@@ -64,7 +64,7 @@ Produced with the function \code{\link{TiMEx}}, on the binary matrix
 in the input dataset \code{\link{ovarian}}.
 }
 \description{
-Dataset containing the members of the groups identified as significantly 
+Dataset containing the groups identified as significantly 
 mutually exclusive by TiMEx in ovarian cancer, together with their 
 intensities of mutual exclusivity, corrected p-values, and other 
 information.

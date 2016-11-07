@@ -6,8 +6,8 @@
 by muex}
 \format{\code{gbmMuexSubsampling} is a list with as many elements as 
 subsampling frequencies provided. Each element is further a list with as 
-many elemenets as number of sizes of the significantly mutually exclusive 
-groups identified. Aditionally, \code{bonf} and \code{fdr} are two lists 
+many elements as number of sizes of the significantly mutually exclusive 
+groups identified. Additionally, \code{bonf} and \code{fdr} are two lists 
 corresponding to each of these elements, representing different multiple 
 correction methods. Finally, each element is a vector of subsampling 
 frequencies of the significant mutually exclusive groups identified. For 

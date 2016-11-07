@@ -4,20 +4,20 @@
 \alias{breastSubtypes}
 \title{Breast cancer subtypes}
 \format{\code{breastSubtypes} is a list with 4 elements, corresponding to 
-the 4 breast subtypes. Each element is binary matrix with 537 columns, as 
-follows: 
+the 4 breast cancer subtypes. Each element is a binary matrix with 537 
+columns, as follows: 
 \code{breastSubtypes$luminalA} consists of 222 rows,
 \code{breastSubtypes$luminalB} consists of 125 rows,
-\code{Her2} consists of 55 rows, and \code{Basal} consists of 76 rows.}
+\code{breastSubtypes$Her2} consists of 55 rows, and 
+\code{breastSubtypes$Basal} consists of 76 rows.}
 \source{
 \url{http://www.cbioportal.org/study.do?cancer_study_id=brca_tcga}
 }
 \description{
 Dataset containing binary alteration patterns for the breast cancer subtypes
-'luminalA', 'luminalB', 'Her2', and 'Basal2', downloaded from cBioPortal 
-(TCGA) in July 2014, and preprocessed as explained in 'TiMEx: A Waiting 
-Time Model For Mutually Exclusive Cancer Alterations', by Constantinescu 
-\emph{et al.}  (Bioinformatics, 2016). Rows represent patients, and columns 
-represent alterations.
+LuminalA, LuminalB, Her2, and Basal2, downloaded from cBioPortal 
+(TCGA) in July 2014, and preprocessed as described in 
+Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time Model for 
+Mutually Exclusive Cancer Alterations}. Bioinformatics (2015).
 }
 

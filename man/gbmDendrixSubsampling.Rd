@@ -6,8 +6,8 @@
 by Dendrix}
 \format{\code{gbmDendrixSubsampling} is a list with as many elements as 
 subsampling frequencies provided (3 in this case). Each element is further 
-a list with as many elemenets as number of sizes of the significantly 
-mutually exclusive groups identified. Aditionally, \code{bonf} and 
+a list with as many elements as number of sizes of the significantly 
+mutually exclusive groups identified. Additionally, \code{bonf} and 
 \code{fdr} are two lists corresponding to each of these elements, 
 representing different multiple correction methods. Finally, each element 
 is a vector of relative counts of the significantly mutually exclusive 
@@ -26,6 +26,6 @@ by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used by
 Leiserson \emph{et. al} in 'Simultaneous identification of multiple driver 
 pathways in cancer' (Plos Computational Biology, 2013), after subsampling 
 the set of patients at frequencies of \code{30\%}, \code{50\%}, and 
-\code{80\%}, for 100 times.
+\code{80\%}, 100 times.
 }
 

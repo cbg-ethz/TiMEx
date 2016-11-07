@@ -5,8 +5,8 @@
 \title{Stability of mutually exclusive groups in breast cancer}
 \format{\code{breastSubsampling} is a list with as many elements as 
 subsampling frequencies provided (3 in this case). Each element is further 
-a list with as many elemenets as number of sizes of the significantly 
-mutually exclusive groups identified. Aditionally, \code{bonf} and 
+a list with as many elements as number of sizes of the significantly 
+mutually exclusive groups identified. Additionally, \code{bonf} and 
 \code{fdr} are two lists corresponding to each of these elements, 
 representing different multiple correction methods. Finally, each element 
 is a vector of relative counts of the significantly mutually exclusive 
@@ -16,13 +16,18 @@ of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and
 \code{bonf} (bonferroni) multiple correction methods.}
 \source{
 Produced with the function \code{\link{subsampleAnalysis}}, ran with
-the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-mutually exclusive groups from \code{\link{breastOutput}}.
+the inputs 
+
+\code{subsampl<-c(0.3,0.5,0.8)}
+
+\code{noReps<-100}
+
+and the mutually exclusive groups from \code{\link{breastOutput}}.
 }
 \description{
 Dataset containing the stability of the mutually exclusive groups identified
 by TiMEx in the breast cancer dataset \code{\link{breast}}, after 
 subsampling the set of patients at frequencies of \code{30\%}, 
-\code{50\%}, and \code{80\%}, for 100 times.
+\code{50\%}, and \code{80\%}, 100 times.
 }
 
