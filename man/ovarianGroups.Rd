@@ -14,7 +14,7 @@ Produced with the function \code{\link{doMetagene}}.
 Dataset containing the genes with identical alteration patterns in the 
 ovarian cancer dataset \code{\link{ovarian}} (before preprocessing). It 
 is represented as a list of metagenes, with as many elements as input 
-genes which had an identical alteration pattern with at least one other 
+genes that had an identical alteration pattern with at least one other 
 input gene.
 }
 

@@ -64,16 +64,15 @@ than which cliques are significant.}
 }}
 \source{
 Produced with the function \code{\link{TiMEx}}, on the binary matrix
-which can be accessed via \code{data(gbm)} in the R package \code{muex}.
+in the input dataset \code{\link{gbmMuex}}.
 }
 \description{
 Dataset containing the groups identified as significantly 
-mutually exclusive by TiMEx in the glioblastoma dataset used by Szczurek
-\emph{et. al} in 'Modeling mutual exclusivity of cancer mutations' 
-(Research in Computational Molecular Biology, 2014), together with their 
+mutually exclusive by TiMEx in the glioblastoma dataset used 
+in Szczurek \emph{et. al}: \emph{Modeling mutual exclusivity of 
+cancer mutations}. Research in Computational Molecular Biology (2014), 
+together with their 
 intensities of mutual exclusivity, corrected p-values, and other 
-information. The dataset which was used as input for producing these 
-groups can be accessed via \code{data(gbm)} in the R package \code{muex},
-available at \url{https://www1.ethz.ch/bsse/cbg/software/muex}.
+information.
 }
 

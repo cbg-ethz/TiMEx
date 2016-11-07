@@ -16,9 +16,12 @@ of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and
 \code{bonf} (bonferroni) multiple correction methods.}
 \source{
 Produced with the function \code{\link{subsampleAnalysis}}, ran with
-the inputs 
+the inputs
+
 \code{subsampl<-c(0.3,0.5,0.8)}
+
 \code{noReps<-100}
+
 and the mutually exclusive groups from \code{\link{ovarianOutput}}.
 }
 \description{

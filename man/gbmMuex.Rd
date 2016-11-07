@@ -10,8 +10,8 @@ journal.pcbi.1003503}
 }
 \description{
 Dataset containing a binary alteration pattern for the glioblastoma 
-dataset used by Szczurek \emph{et. al} in 'Modeling mutual exclusivity of 
-cancer mutations' (Research in Computational Molecular Biology, 2014). 
+dataset used in Szczurek \emph{et. al}: \emph{Modeling mutual exclusivity of 
+cancer mutations}. Research in Computational Molecular Biology (2014). 
 Rows represent patients, and columns represent alterations.
 }
 

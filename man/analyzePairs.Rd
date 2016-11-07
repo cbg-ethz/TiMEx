@@ -57,9 +57,10 @@ Parameters under the two models are estimated, and, since they are nested,
 a likelihood ratio test is performed between the corresponding log 
 likelihoods, in order to test whether mu (the intensity of mutual 
 exclusivity) is different from 0. For more details on the TiMEx procedure, 
-as well as on the underlying mathematical model, see 'TiMEx: A Waiting Time 
-Model For Mutually Exclusive Cancer Alterations', by Constantinescu 
-\emph{et al.} (Bioinformatics, 2016).
+as well as on the underlying mathematical model, see Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
+
 
 The output list contains exhaustive information on the pairwise testing of 
 genes, including parameter estimates, pairwise p-values and intensities of 
@@ -79,9 +80,9 @@ data(ovarian)
 Simona Cristea, \email{scristea@jimmy.harvard.edu}
 }
 \references{
-'TiMEx: A Waiting Time Model For Mutually
-Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-(Bioinformatics, 2016)
+Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
 }
 \seealso{
 \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;

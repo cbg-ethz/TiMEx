@@ -246,8 +246,8 @@ NULL
 #' Glioblastoma dataset used by Dendrix
 #'
 #' Dataset containing a binary alteration pattern for the glioblastoma 
-#' dataset used by Leiserson \emph{et. al} in 'Simultaneous identification of 
-#' multiple driver pathways in cancer' (Plos Computational Biology, 2013). 
+#' dataset used in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+#' of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013). 
 #' Rows represent patients, and columns represent alterations. In the names 
 #' of alterations, \emph{(D)} represents a copy number deletion, and 
 #' \emph{(A)} represents a copy number amplification. 
@@ -266,11 +266,11 @@ NULL
 #' Mutually exclusive groups in the glioblastoma dataset used by Dendrix
 #'
 #' Dataset containing the groups identified as significantly 
-#' mutually exclusive by TiMEx in the glioblastoma dataset used by Leiserson 
-#' \emph{et. al} in 'Simultaneous identification of multiple driver pathways 
-#' in cancer' (Plos Computational Biology, 2013), together with their 
-#' intensities of mutual exclusivity, corrected p-values, and other 
-#' information.
+#' mutually exclusive by TiMEx in the glioblastoma dataset used 
+#' in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+#' of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013), 
+#' together with their intensities of mutual exclusivity, corrected p-values, 
+#' and other information.
 #' 
 #' @format \code{gbmDendrixOutput} is a list consisting of:
 #' \itemize{
@@ -346,11 +346,11 @@ NULL
 #'
 #' 
 #' Dataset containing the stability of the mutually exclusive groups identified
-#' by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used by
-#' Leiserson \emph{et. al} in 'Simultaneous identification of multiple driver 
-#' pathways in cancer' (Plos Computational Biology, 2013), after subsampling 
-#' the set of patients at frequencies of \code{30\%}, \code{50\%}, and 
-#' \code{80\%}, 100 times. 
+#' by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used 
+#' in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+#' of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013), 
+#' after subsampling the set of patients at frequencies of \code{30\%}, 
+#' \code{50\%}, and \code{80\%}, 100 times. 
 #'
 #' @format \code{gbmDendrixSubsampling} is a list with as many elements as 
 #' subsampling frequencies provided (3 in this case). Each element is further 
@@ -365,8 +365,13 @@ NULL
 #' \code{bonf} (bonferroni) multiple correction methods.
 #'  
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
-#' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
+#' the inputs 
+#' 
+#' \code{subsampl<-c(0.3,0.5,0.8)}
+#' 
+#' \code{noReps<-100}
+#' 
+#' and the mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
 #' 
 #' @name gbmDendrixSubsampling
 #' @aliases gbmDendrixSubsampling
@@ -378,8 +383,8 @@ NULL
 #' Glioblastoma dataset used by muex
 #'
 #' Dataset containing a binary alteration pattern for the glioblastoma 
-#' dataset used by Szczurek \emph{et. al} in 'Modeling mutual exclusivity of 
-#' cancer mutations' (Research in Computational Molecular Biology, 2014). 
+#' dataset used in Szczurek \emph{et. al}: \emph{Modeling mutual exclusivity of 
+#' cancer mutations}. Research in Computational Molecular Biology (2014). 
 #' Rows represent patients, and columns represent alterations. 
 #'
 #' @format \code{gbmMuex} is a binary matrix with 236 rows and 83 columns.
@@ -396,13 +401,12 @@ NULL
 #' Mutually exclusive groups in the glioblastoma dataset used by muex
 #'
 #' Dataset containing the groups identified as significantly 
-#' mutually exclusive by TiMEx in the glioblastoma dataset used by Szczurek
-#' \emph{et. al} in 'Modeling mutual exclusivity of cancer mutations' 
-#' (Research in Computational Molecular Biology, 2014), together with their 
+#' mutually exclusive by TiMEx in the glioblastoma dataset used 
+#' in Szczurek \emph{et. al}: \emph{Modeling mutual exclusivity of 
+#' cancer mutations}. Research in Computational Molecular Biology (2014), 
+#' together with their 
 #' intensities of mutual exclusivity, corrected p-values, and other 
-#' information. The dataset which was used as input for producing these 
-#' groups can be accessed via \code{data(gbm)} in the R package \code{muex},
-#' available at \url{https://www1.ethz.ch/bsse/cbg/software/muex}.
+#' information. 
 #'
 #' @format \code{gbmMuexOutput} is a list consisting of:
 #' \itemize{
@@ -465,7 +469,7 @@ NULL
 #' }
 #' 
 #' @source Produced with the function \code{\link{TiMEx}}, on the binary matrix
-#' which can be accessed via \code{data(gbm)} in the R package \code{muex}.
+#' in the input dataset \code{\link{gbmMuex}}.
 #' @name gbmMuexOutput
 #' @aliases gbmMuexOutput
 NULL
@@ -477,11 +481,11 @@ NULL
 #' by muex
 #'
 #' Dataset containing the stability of the mutually exclusive groups identified
-#' by TiMEx in the glioblastoma dataset used by Szczurek \emph{et. al} in 
-#' 'Modeling mutual exclusivity of cancer mutations' (Research in 
-#' Computational Molecular Biology, 2014), after subsampling the set
-#' of patients at frequencies of \code{30\%}, \code{50\%}, and \code{80\%}, for
-#' 100 times. 
+#' by TiMEx in the glioblastoma dataset used in Szczurek \emph{et. al}: 
+#' \emph{Modeling mutual exclusivity of 
+#' cancer mutations}. Research in Computational Molecular Biology (2014), 
+#' after subsampling the set of patients at frequencies of \code{30\%}, 
+#' \code{50\%}, and \code{80\%}, 100 times. 
 #'
 #' @format \code{gbmMuexSubsampling} is a list with as many elements as 
 #' subsampling frequencies provided. Each element is further a list with as 
@@ -496,8 +500,13 @@ NULL
 #' multiple correction methods.
 #' 
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
-#' the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-#' mutually exclusive groups from \code{\link{gbmMuexOutput}}.
+#' the inputs 
+#' 
+#' \code{subsampl<-c(0.3,0.5,0.8)}
+#' 
+#' \code{noReps<-100}
+#' 
+#' and the mutually exclusive groups from \code{\link{gbmMuexOutput}}.
 #' @name gbmMuexSubsampling
 #' @aliases gbmMuexSubsampling
 NULL
@@ -509,10 +518,9 @@ NULL
 #'
 #' Dataset containing a binary alteration pattern for the ovarian cancer 
 #' dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
-#' as explained in 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' Bioinformatics (2015). Rows represent patients, and columns represent 
-#' alterations.  
+#' as explained in Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time 
+#' Model for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015). 
+#' Rows represent patients, and columns represent alterations.  
 #'
 #' @format A binary matrix with 316 rows and 312 columns.
 #' @source \url{http://www.cbioportal.org/study.do?cancer_study_id=ov_tcga_pub}
@@ -528,7 +536,7 @@ NULL
 #' Dataset containing the genes with identical alteration patterns in the 
 #' ovarian cancer dataset \code{\link{ovarian}} (before preprocessing). It 
 #' is represented as a list of metagenes, with as many elements as input 
-#' genes which had an identical alteration pattern with at least one other 
+#' genes that had an identical alteration pattern with at least one other 
 #' input gene.
 #'
 #' @format \code{ovarianGroups} is a list with 263 elements, where each 
@@ -638,9 +646,12 @@ NULL
 #' \code{bonf} (bonferroni) multiple correction methods.
 #' 
 #' @source Produced with the function \code{\link{subsampleAnalysis}}, ran with
-#' the inputs 
+#' the inputs
+#' 
 #' \code{subsampl<-c(0.3,0.5,0.8)}
+#' 
 #' \code{noReps<-100}
+#' 
 #' and the mutually exclusive groups from \code{\link{ovarianOutput}}.
 #' 
 #' @name ovarianSubsampling

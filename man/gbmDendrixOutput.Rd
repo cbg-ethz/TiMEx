@@ -68,10 +68,10 @@ in the input dataset \code{\link{gbmDendrix}}.
 }
 \description{
 Dataset containing the groups identified as significantly 
-mutually exclusive by TiMEx in the glioblastoma dataset used by Leiserson 
-\emph{et. al} in 'Simultaneous identification of multiple driver pathways 
-in cancer' (Plos Computational Biology, 2013), together with their 
-intensities of mutual exclusivity, corrected p-values, and other 
-information.
+mutually exclusive by TiMEx in the glioblastoma dataset used 
+in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013), 
+together with their intensities of mutual exclusivity, corrected p-values, 
+and other information.
 }
 

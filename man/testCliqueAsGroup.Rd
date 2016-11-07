@@ -63,8 +63,9 @@ parameter unchanged, as otherwise the estimated waiting time rates of the
 genes require additional interpretation.
 
 For more details on the TiMEx procedure, as well as on the underlying 
-mathematical model, see 'TiMEx: A Waiting Time Model For Mutually Exclusive 
-Cancer Alterations', by Constantinescu \emph{et al.} (Bioinformatics, 2016).
+mathematical model, see Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
 }
 \examples{
 # Tests for mutual exclusivity the group of genes with indices 13, 204, and 
@@ -77,9 +78,9 @@ testGroup<-testCliqueAsGroup(c(13,204,310),ovarian)
 Simona Cristea, \email{scristea@jimmy.harvard.edu}
 }
 \references{
-'TiMEx: A Waiting Time Model For Mutually
-Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-(Bioinformatics, 2016).
+Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
 }
 \seealso{
 the wrapper function \code{\link{TiMEx}} for identifying

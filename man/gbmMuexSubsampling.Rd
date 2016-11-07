@@ -17,15 +17,20 @@ frequency of 30\%, for both  \code{fdr} and \code{bonf} (bonferroni)
 multiple correction methods.}
 \source{
 Produced with the function \code{\link{subsampleAnalysis}}, ran with
-the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-mutually exclusive groups from \code{\link{gbmMuexOutput}}.
+the inputs 
+
+\code{subsampl<-c(0.3,0.5,0.8)}
+
+\code{noReps<-100}
+
+and the mutually exclusive groups from \code{\link{gbmMuexOutput}}.
 }
 \description{
 Dataset containing the stability of the mutually exclusive groups identified
-by TiMEx in the glioblastoma dataset used by Szczurek \emph{et. al} in 
-'Modeling mutual exclusivity of cancer mutations' (Research in 
-Computational Molecular Biology, 2014), after subsampling the set
-of patients at frequencies of \code{30\%}, \code{50\%}, and \code{80\%}, for
-100 times.
+by TiMEx in the glioblastoma dataset used in Szczurek \emph{et. al}: 
+\emph{Modeling mutual exclusivity of 
+cancer mutations}. Research in Computational Molecular Biology (2014), 
+after subsampling the set of patients at frequencies of \code{30\%}, 
+\code{50\%}, and \code{80\%}, 100 times.
 }
 

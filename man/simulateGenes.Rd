@@ -51,9 +51,9 @@ simGenes<-simulateGenes(c(0.5,1,0.3),0.8,4000)
 Simona Cristea, \email{scristea@jimmy.harvard.edu}
 }
 \references{
-'TiMEx: A Waiting Time Model For Mutually
-Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-(Bioinformatics, 2016).
+Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
 }
 \seealso{
 the wrapper function \code{\link{TiMEx}} for identifying

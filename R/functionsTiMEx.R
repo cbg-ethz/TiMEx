@@ -19,15 +19,16 @@
 #' a likelihood ratio test is performed between the corresponding log 
 #' likelihoods, in order to test whether mu (the intensity of mutual 
 #' exclusivity) is different from 0. For more details on the TiMEx procedure, 
-#' as well as on the underlying mathematical model, see 'TiMEx: A Waiting Time 
-#' Model For Mutually Exclusive Cancer Alterations', by Constantinescu 
-#' \emph{et al.} (Bioinformatics, 2016).
+#' as well as on the underlying mathematical model, see Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
+#' 
 #' 
 #' The output list contains exhaustive information on the pairwise testing of 
 #' genes, including parameter estimates, pairwise p-values and intensities of 
 #' mutual exclusivity, log likelihoods, and others. 
 #' 
-#' This function displays progress messages indicating the gene which is 
+#' This function displays progress messages indicating the gene that is 
 #' currently being tested against the remaining genes.
 #' 
 #' @return List consisting of a set of matrices, all of dimension \code{n x n} 
@@ -63,9 +64,9 @@
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016)
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;
 #' \code{\link{findSignifCliques}} for step 3 of the TiMEx procedure;
@@ -276,9 +277,9 @@ analyzePairs <- function(mat) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
 #' \code{\link{findSignifCliques}} for step 3 of the TiMEx procedure;
@@ -402,8 +403,9 @@ doMaxCliques <- function(pairs, pairMu, pairPvalue) {
 #' genes require additional interpretation.
 #' 
 #' For more details on the TiMEx procedure, as well as on the underlying 
-#' mathematical model, see 'TiMEx: A Waiting Time Model For Mutually Exclusive 
-#' Cancer Alterations', by Constantinescu \emph{et al.} (Bioinformatics, 2016).
+#' mathematical model, see Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @return List consisting of:
 #' \itemize{
@@ -431,9 +433,9 @@ doMaxCliques <- function(pairs, pairMu, pairPvalue) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
 #' mutually exclusive groups in a  binary dataset with the TiMEx model.
@@ -600,9 +602,9 @@ testCliqueAsGroup <- function(geneIdx, mat, lo) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
 #' \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure;
@@ -826,9 +828,9 @@ findSignifCliques <- function(mat, mcStruct, groupPvalue) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{analyzePairs}} for step 1 of the TiMEx procedure;
 #' \code{\link{doMaxCliques}} for step 2 of the TiMEx procedure, and 
@@ -925,9 +927,9 @@ TiMEx <- function(mat, pairMu, pairPvalue, groupPvalue) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{ovarianGroups}}, \code{\link{breastGroups}} 
 #' for examples of metagroups in large cancer datasets.
@@ -996,9 +998,9 @@ doMetagene <- function(mat) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{ovarian}}, \code{\link{breast}}, 
 #' and \code{\link{gbmDendrix}}  for examples of biological large cancer
@@ -1070,9 +1072,9 @@ removeLowFreqs <- function(mat, level) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
 #' mutually exclusive groups in a  binary dataset with the TiMEx model.
@@ -1289,9 +1291,9 @@ produceTablesSignifGroups <- function(signifGroups, mat, noToShow) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying mutually 
 #' exclusive groups in a  binary dataset with the TiMEx model,
@@ -1569,9 +1571,9 @@ subsampleAnalysis <- function(subsampl, noReps, signifGroups) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references 'Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
 #' mutually exclusive groups in a  binary dataset with the TiMEx model.
@@ -1676,9 +1678,9 @@ plotGroupByName <- function(group, mat) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso \code{\link{doMetagene}} for collapsing the genes of an input 
 #' matrix with identical alteration patterns into metagroups.
@@ -1757,9 +1759,9 @@ recoverAllNamesGroups <- function(groupsMeta, clGenes) {
 #' 
 #' @author Simona Cristea, \email{scristea@@jimmy.harvard.edu}
 #' 
-#' @references 'TiMEx: A Waiting Time Model For Mutually
-#' Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-#' (Bioinformatics, 2016).
+#' @references Constantinescu 
+#' \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+#' Cancer Alterations}. Bioinformatics (2015).
 #' 
 #' @seealso the wrapper function \code{\link{TiMEx}} for identifying
 #' mutually exclusive groups in a  binary dataset with the TiMEx model,

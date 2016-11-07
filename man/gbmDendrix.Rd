@@ -10,8 +10,8 @@ journal.pcbi.1003054}
 }
 \description{
 Dataset containing a binary alteration pattern for the glioblastoma 
-dataset used by Leiserson \emph{et. al} in 'Simultaneous identification of 
-multiple driver pathways in cancer' (Plos Computational Biology, 2013). 
+dataset used in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013). 
 Rows represent patients, and columns represent alterations. In the names 
 of alterations, \emph{(D)} represents a copy number deletion, and 
 \emph{(A)} represents a copy number amplification.

@@ -71,6 +71,13 @@ dataset are tested for mutual exclusivity. Second, maximal cliques are
 identified on the basis of a selected number of pairs. Third, the resulting 
 cliques are tested for mutual exclusivity.
 
+### Step 1
+In the first step, the TiMEx procedure for identifying mutually exclusive groups of alterations tests all pairs for mutual exclusivity. The data corresponding to each pair of genes is therefore fitted to both the Null (Conditional Independence) and the Mutual Exclusivity models. Parameters under the two models are estimated, and, since they are nested, a likelihood ratio test is performed between the corresponding log likelihoods, in order to test whether mu (the intensity of mutual exclusivity) is different from 0.
+
+### Step 2
+
+### Step 3
+
 Running Examples
 ======
 
@@ -79,10 +86,11 @@ The TiMEx algorithm accepts as input binary matrices, where the rows represent
 patients, and the columns represent alterations. Entry `[i,j]` in the matrix is 
 `1` if gene `j` was altered in patient `i`, and `0` otherwise.
 
-Explain which datasets are available within this package and how they have been
-preprocessed (briefly).
+The TiMEx package contains four cancer datasets: one breast cancer, one ovarian 
+cancer, and two glioblastoma datasets.
 
 
+Multiple datasets are available within this package. breast and ovarian are datasets downloaded from cBioPortal (TCGA) in July 2014, and preprocessed as described in Constantinescu et. al: TiMEx: A Waiting Time Model for Mutually Exclusive Cancer Alterations. Bioinformatics (2015). gbmDendrix is a glioblastoma dataset used in Leiserson et. al: Simultaneous identification of multiple driver pathways in cancer. Plos Computational Biology (2013). Additionally, this package also includes the dataset gbmMuex, used and preprocessed as described in Szczurek et. al: Modeling mutual exclusivity of cancer mutations. Research in Computational Molecular Biology (2014).
 
 
 # Working examples
@@ -90,6 +98,17 @@ preprocessed (briefly).
 ## Preprocessing of data
 
 ## Running TiMEx
+
+## Running separately the three steps of the TiMEx procedure
+
+### Step 1
+The function analyzePairs performs step 1 of the TiMEx procedure: tests all gene pairs for mutual exclusivity. It returns a complex list, including parameter estimates, pairwise p-values and intensities of mutual exclusivity, log likelihoods, and others.
+
+The output list contains exhaustive information on the pairwise testing of genes, including parameter estimates, pairwise p-values and intensities of mutual exclusivity, log likelihoods, and others.
+Each element of this list is a matrix of dimension n x n (n being the number of genes), where
+Element (i,j) of each matrix corresponds to the pairwise test between genes i and j. The function contains
+information on the 
+
 
 ## Posprocessing of results
 

@@ -17,15 +17,20 @@ of size 3 for a subsampling frequency of 30\%, for both  \code{fdr} and
 \code{bonf} (bonferroni) multiple correction methods.}
 \source{
 Produced with the function \code{\link{subsampleAnalysis}}, ran with
-the inputs \code{subsampl<-c(0.3,0.5,0.8)}, \code{noReps<-100}, and the
-mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
+the inputs 
+
+\code{subsampl<-c(0.3,0.5,0.8)}
+
+\code{noReps<-100}
+
+and the mutually exclusive groups from \code{\link{gbmDendrixOutput}}.
 }
 \description{
 Dataset containing the stability of the mutually exclusive groups identified
-by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used by
-Leiserson \emph{et. al} in 'Simultaneous identification of multiple driver 
-pathways in cancer' (Plos Computational Biology, 2013), after subsampling 
-the set of patients at frequencies of \code{30\%}, \code{50\%}, and 
-\code{80\%}, 100 times.
+by TiMEx in the glioblastoma dataset \code{\link{gbmDendrix}}, used 
+in Leiserson \emph{et. al}: \emph{Simultaneous Identification 
+of Multiple Driver Pathways in Cancer}. Plos Computational Biology (2013), 
+after subsampling the set of patients at frequencies of \code{30\%}, 
+\code{50\%}, and \code{80\%}, 100 times.
 }
 

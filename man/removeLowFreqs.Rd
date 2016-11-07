@@ -35,9 +35,9 @@ ovarianNew<-removeLowFreqs(ovarian)
 Simona Cristea, \email{scristea@jimmy.harvard.edu}
 }
 \references{
-'TiMEx: A Waiting Time Model For Mutually
-Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-(Bioinformatics, 2016).
+Constantinescu 
+\emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
+Cancer Alterations}. Bioinformatics (2015).
 }
 \seealso{
 \code{\link{ovarian}}, \code{\link{breast}}, 

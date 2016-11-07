@@ -10,9 +10,8 @@
 \description{
 Dataset containing a binary alteration pattern for the ovarian cancer 
 dataset downloaded from cBioPortal (TCGA) in July 2014, and preprocessed
-as explained in 'TiMEx: A Waiting Time Model For Mutually
-Exclusive Cancer Alterations', by Constantinescu \emph{et al.} 
-Bioinformatics (2015). Rows represent patients, and columns represent 
-alterations.
+as explained in Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time 
+Model for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015). 
+Rows represent patients, and columns represent alterations.
 }
 
