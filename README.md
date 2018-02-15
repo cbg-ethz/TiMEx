@@ -26,4 +26,4 @@ TiMEx has been tested on Mac and Linux. Installing TiMEx requires the R package 
 
 It can be easily installed in R as ```devtools::install_github('csimona/TiMEx')``` 
 
-TiMEx depends on the R packages *RBGL*, *graph* and *gtools*, which will be installed automatically, so no extra input should be required from the user. 
+TiMEx depends on the R packages ```RBGL```, ```graph``` and ```gtools```, which will be installed automatically, so no extra input should be required from the user. 
