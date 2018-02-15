@@ -1,6 +1,8 @@
 # TiMEx
 
-The TiMEx R package is the implementation of a generative probabilistic graphical model for the *de novo* identification of patterns of various degrees of mutual exclusivity across genetic alterations, which can indicate pathways involved in cancer progression. 
+The TiMEx R package is the implementation of a generative probabilistic graphical model for the *de novo* identification of patterns of various degrees of mutual exclusivity across genetic alterations, which can indicate pathways involved in cancer progression. For more information on the underlying model or on biological applications, see the publication introducing TiMEx: 
+
+*Constantinescu, Simona, et al. "TiMEx: a waiting time model for mutually exclusive cancer alterations." Bioinformatics 32.7 (2015): 968-975*.
 
 ## Main idea of the model
 We regard tumorigenesis as a dynamic process, and base our model on the temporal interplay between the waiting times to alterations, characteristic for every gene and alteration type (mutation or copy number alteration), and the observation time. Under the assumption of rarity of events over short time intervals, TiMEx models the alteration process for each gene as a Poisson process. The waiting times are therefore modeled as exponentially distributed variables with specific rates, which correspond to the rates of evolution for each alteration. In our modeling framework, the temporal dynamics of each alteration process progresses from the onset of cancer, corresponding to the first alteration related to the growth of a malignant tumor, until the observation time, corresponding to the time of tumor biopsy. The observation time is regarded as a system failure time, and is exponentially distributed with an unknown rate. 
@@ -18,3 +20,6 @@ TiMEx is the first method that describes mutual exclusivity as a consequence of 
 Importantly, TiMEx infers the mutual exclusivity intensity of a group as a continuous measure, which can be interpreted as a probability. This feature is biologically justified, since the small, but observable, increase in tumor fitness due to multiple alterations in a group of functionally related genes supports the hypothesis that mutual exclusivity occurs at various degrees, as opposed to a binary classification. 
 
 Unlike most other approaches, TiMEx does not explicitly impose frequency constraints, and detects both high frequent and very low frequent alterations, solely based on the temporal relations between them. It identifies all mutually exclusive gene groups of various, not pre-defined sizes, and performs highly efficiently on large datasets.
+
+## Intallation
+```devtools::install_github(https://github.com/csimona/TiMEx)```
