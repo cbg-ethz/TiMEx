@@ -13,7 +13,7 @@ The computational procedure implemented in the TiMEx R package is aimed to effic
 3. Testing all candidate groups identified in step 2, and ranking them by their significance or intensity of mutual exclusivity.
 
 ## What is unique about TiMEx
-TiMEx is the first method that describes the mutual exclusivity property as a consequence of a dynamic process in time. Unlike previous *de novo* approaches, TiMEx infers functional relations between genes based on an underlying temporal representation of the process of gene alteration in tumorigenesis. 
+TiMEx is the first method that describes mutual exclusivity as a consequence of a dynamic process in time. Unlike previous *de novo* approaches, TiMEx infers functional relations among genes based on an underlying temporal representation of the process of gene alteration in tumorigenesis. 
 
 Importantly, TiMEx infers the mutual exclusivity intensity of a group as a continuous measure, which can be interpreted as a probability. This feature is biologically justified, since the small, but observable, increase in tumor fitness due to multiple alterations in a group of functionally related genes supports the hypothesis that mutual exclusivity occurs at various degrees, as opposed to a binary classification. 
 
