@@ -10,7 +10,7 @@ The computational procedure implemented in the TiMEx R package is aimed to effic
 
 1. Testing all pairs of alterations and identifying mutually exclusive pairs
 2. Finding cliques in the graph defined by the previously identified pairwise interactions
-3. Testing all candidate groups identified in step 2, and ranking them by their significance or intensity of mutual exclusivity (the parameter $$\mu$$).
+3. Testing all candidate groups identified in step 2, and ranking them by their significance or intensity of mutual exclusivity.
 
 ## What is unique about TiMEx
 TiMEx is the first method that describes the mutual exclusivity property as a consequence of a dynamic process in time. Unlike previous *de novo* approaches, TiMEx infers functional relations between genes based on an underlying temporal representation of the process of gene alteration in tumorigenesis. 
