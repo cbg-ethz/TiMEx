@@ -24,6 +24,6 @@ Unlike most other approaches, TiMEx does not explicitly impose frequency constra
 ## Intallation
 TiMEx has been tested on Mac and Linux. Installing TiMEx requires the R package ```devtools```.
 
-It can be easily installed in R as ```devtools::install_github('csimona/TiMEx')``` 
+TiMEx can be easily installed in R as ```devtools::install_github('csimona/TiMEx')``` 
 
-TiMEx depends on the R packages ```RBGL```, ```graph``` and ```gtools```, which will be installed automatically, so no extra input should be required from the user. 
+It depends on the R packages ```RBGL```, ```graph``` and ```gtools```, which, if missing, will be installed together with TiMEx, so no extra input should be required from the user. 
