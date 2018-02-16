@@ -22,8 +22,8 @@ Importantly, TiMEx infers the mutual exclusivity intensity of a group as a conti
 Unlike most other approaches, TiMEx does not explicitly impose frequency constraints, and detects both high frequent and very low frequent alterations, solely based on the temporal relations between them. It identifies all mutually exclusive gene groups of various, not pre-defined sizes, and performs highly efficiently on large datasets.
 
 ## Intallation
-TiMEx has been tested on Mac and Linux. Installing TiMEx requires the R package ```devtools```.
+TiMEx has been tested on Mac and Linux. 
 
-TiMEx can be easily installed in R as ```devtools::install_github('csimona/TiMEx')``` 
+Installing TiMEx requires the R package ```devtools```, and can be easily installed in R as ```devtools::install_github('csimona/TiMEx')``` 
 
 It depends on the R packages ```RBGL```, ```graph``` and ```gtools```, which, if missing, will be installed together with TiMEx, so no extra input should be required from the user. 
