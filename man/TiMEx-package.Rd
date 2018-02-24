@@ -5,8 +5,8 @@
 \alias{TiMEx-package}
 \title{The main usages of TiMEx}
 \description{
-The main usages of TiMEx, a package for finding mutually 
-exclusive groups of alterations in large cancer datasets.
+The main usages of TiMEx, a package for finding groups of mutually 
+exclusive alterations in large cancer datasets.
 }
 \section{Overview}{
 
@@ -83,10 +83,10 @@ Datasets can be generated from the TiMEx model using the function
 \section{More}{
 
 For more in-depth explanations of the TiMEx package and model, including 
-examples, please see the corresponding vignette.
+examples, please see the corresponding paper below.
 }
+
 \references{
 Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time Model 
 for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015)
 }
-

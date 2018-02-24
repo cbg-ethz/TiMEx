@@ -47,9 +47,6 @@ frequencies, see \emph{References} below.
 simGenes<-simulateGenes(c(0.5,1,0.3),0.8,4000)
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -62,4 +59,6 @@ mutually exclusive groups in a  binary dataset with the TiMEx model,
 \code{\link{gbmDendrix}}  for examples of biological large cancer 
 datasets.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

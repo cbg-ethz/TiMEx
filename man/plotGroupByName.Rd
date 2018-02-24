@@ -33,9 +33,6 @@ group<-c('MIEN1-CNA','CDH1-Mut','GATA3-Mut','MAP3K1-Mut','CDKN1B-CNA')
 plotGroupByName(group,breast)
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 'Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -45,4 +42,6 @@ Cancer Alterations}. Bioinformatics (2015).
 the wrapper function \code{\link{TiMEx}} for identifying
 mutually exclusive groups in a  binary dataset with the TiMEx model.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}
