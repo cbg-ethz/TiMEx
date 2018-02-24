@@ -30,4 +30,3 @@ by TiMEx in the ovarian cancer dataset \code{\link{ovarian}}, after
 subsampling the set of patients at frequencies of \code{30\%}, 
 \code{50\%}, and \code{80\%}, 100 times.
 }
-

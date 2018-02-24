@@ -104,9 +104,6 @@ data(ovarian)
 \donttest{ovarianMEgroups<-findSignifCliques(ovarian,ovarianMaxCliques)}
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -122,4 +119,6 @@ TiMEx model. The data structures \code{\link{ovarianOutput}},
 \code{\link{gbmMuexOutput}} are examples of structures resulting after 
 running TiMEx on large cancer datasets.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

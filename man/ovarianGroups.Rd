@@ -17,4 +17,3 @@ is represented as a list of metagenes, with as many elements as input
 genes that had an identical alteration pattern with at least one other 
 input gene.
 }
-

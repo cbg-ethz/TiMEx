@@ -14,4 +14,3 @@ dataset used in Szczurek \emph{et. al}: \emph{Modeling mutual exclusivity of
 cancer mutations}. Research in Computational Molecular Biology (2014). 
 Rows represent patients, and columns represent alterations.
 }
-

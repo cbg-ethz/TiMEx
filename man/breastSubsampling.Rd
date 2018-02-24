@@ -30,4 +30,3 @@ by TiMEx in the breast cancer dataset \code{\link{breast}}, after
 subsampling the set of patients at frequencies of \code{30\%}, 
 \code{50\%}, and \code{80\%}, 100 times.
 }
-
