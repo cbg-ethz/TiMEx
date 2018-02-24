@@ -1,8 +1,8 @@
 #' @title The main usages of TiMEx
 #' 
 #' 
-#' @description The main usages of TiMEx, a package for finding mutually 
-#' exclusive groups of alterations in large cancer datasets.
+#' @description The main usages of TiMEx, a package for finding groups of mutually 
+#' exclusive alterations in large cancer datasets.
 #'
 #'
 #' @section Overview:
@@ -75,7 +75,7 @@
 #'
 #'@section More:
 #'For more in-depth explanations of the TiMEx package and model, including 
-#'examples, please see the corresponding paper.
+#'examples, please see the corresponding paper below.
 #'
 #'
 #' @references Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time Model 
