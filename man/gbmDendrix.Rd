@@ -16,4 +16,3 @@ Rows represent patients, and columns represent alterations. In the names
 of alterations, \emph{(D)} represents a copy number deletion, and 
 \emph{(A)} represents a copy number amplification.
 }
-

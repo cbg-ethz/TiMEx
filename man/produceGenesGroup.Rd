@@ -13,4 +13,3 @@ produceGenesGroup(NCur, genoMat, n)
 probability distribution in given as input genoMat (n=number of genes; 
 NCur=sample size)
 }
-

@@ -76,9 +76,6 @@ data(ovarian)
 \donttest{ovarianMaxCliques<-doMaxCliques(ovarianPairs)}
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -91,4 +88,6 @@ the wrapper function \code{\link{TiMEx}} for combining these three steps,
 and identifying mutually exclusive groups in a  binary dataset with the 
 TiMEx model.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

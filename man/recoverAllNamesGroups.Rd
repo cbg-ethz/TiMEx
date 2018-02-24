@@ -63,9 +63,6 @@ data(ovarianOutput)
 r<-recoverAllNamesGroups(ovarianGroups,ovarianOutput$genesSignif[[3]]$bonf)
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -75,4 +72,6 @@ Cancer Alterations}. Bioinformatics (2015).
 \code{\link{doMetagene}} for collapsing the genes of an input 
 matrix with identical alteration patterns into metagroups.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

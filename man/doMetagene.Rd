@@ -46,9 +46,6 @@ data(ovarian)
 \donttest{ovarianNew<-doMetagene(ovarian)}
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -58,4 +55,6 @@ Cancer Alterations}. Bioinformatics (2015).
 \code{\link{ovarianGroups}}, \code{\link{breastGroups}} 
 for examples of metagroups in large cancer datasets.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

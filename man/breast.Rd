@@ -14,4 +14,3 @@ as described in Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time
 Model for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015). 
 Rows represent patients, and columns represent alterations.
 }
-

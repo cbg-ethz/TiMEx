@@ -31,9 +31,6 @@ data(ovarian)
 ovarianNew<-removeLowFreqs(ovarian)
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -44,4 +41,6 @@ Cancer Alterations}. Bioinformatics (2015).
 and \code{\link{gbmDendrix}}  for examples of biological large cancer
 datasets.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

@@ -66,7 +66,7 @@ The output list contains exhaustive information on the pairwise testing of
 genes, including parameter estimates, pairwise p-values and intensities of 
 mutual exclusivity, log likelihoods, and others. 
 
-This function displays progress messages indicating the gene which is 
+This function displays progress messages indicating the gene that is 
 currently being tested against the remaining genes.
 }
 \examples{
@@ -75,9 +75,6 @@ currently being tested against the remaining genes.
 data(ovarian)
 \donttest{ovarianPairs<-analyzePairs(ovarian)}
 
-}
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
 }
 \references{
 Constantinescu 
@@ -91,4 +88,6 @@ the wrapper function \code{\link{TiMEx}} for combining these three steps,
 and identifying mutually exclusive groups in a  binary dataset with the 
 TiMEx model.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}
