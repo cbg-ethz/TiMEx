@@ -102,9 +102,6 @@ data(ovarian)
 \donttest{ovarianMEGroups<-TiMEx(ovarian)}
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -119,4 +116,6 @@ structures \code{\link{ovarianOutput}}, \code{\link{breastOutput}},
 are examples of structures resulting after running TiMEx on large cancer 
 datasets.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

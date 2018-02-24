@@ -42,9 +42,6 @@ data(ovarianOutput)
 ovarianTables<-produceTablesSignifGroups(ovarianOutput,ovarian)
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -54,4 +51,6 @@ Cancer Alterations}. Bioinformatics (2015).
 the wrapper function \code{\link{TiMEx}} for identifying
 mutually exclusive groups in a  binary dataset with the TiMEx model.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}

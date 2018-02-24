@@ -83,10 +83,10 @@ Datasets can be generated from the TiMEx model using the function
 \section{More}{
 
 For more in-depth explanations of the TiMEx package and model, including 
-examples, please see the corresponding vignette.
+examples, please see the corresponding paper below.
 }
+
 \references{
 Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time Model 
 for Mutually Exclusive Cancer Alterations}. Bioinformatics (2015)
 }
-

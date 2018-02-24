@@ -20,4 +20,3 @@ LuminalA, LuminalB, Her2, and Basal2, downloaded from cBioPortal
 Constantinescu \emph{et al.}: \emph{TiMEx: A Waiting Time Model for 
 Mutually Exclusive Cancer Alterations}. Bioinformatics (2015).
 }
-

@@ -48,9 +48,6 @@ data(ovarianOutput)
 \dontrun{subsampleOvarian<-subsampleAnalysis(c(0.3,0.5,0.8),ovarianOutput)}
 
 }
-\author{
-Simona Cristea, \email{scristea@jimmy.harvard.edu}
-}
 \references{
 Constantinescu 
 \emph{et al.}: \emph{TiMEx: A Waiting Time Model for Mutually Exclusive 
@@ -65,4 +62,6 @@ exclusive groups in a  binary dataset with the TiMEx model,
 \code{\link{gbmMuexSubsampling}} for examples of outputs after
 performing the subsampling analysis.
 }
-
+\author{
+Simona Cristea, \email{scristea@jimmy.harvard.edu}
+}
