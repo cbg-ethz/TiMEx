@@ -69,5 +69,12 @@ TiMEx will run with default parameters. For additional details on the parameters
 
 at the R console.
 
+Before running TiMEx, it's a good idea to run the function ```doMetagroup```  on your binary matrix, and run TiMEx on the ```$mat``` part of the result. ```doMetagroup``` condenses all genes with identical alteration patterns into one metagene. These genes are equivalent from the point of view of the algorithm, so not condesing them into a single metagene would produce ambigous results.
+
+
 ## Tips
+Please remove genes that are all-0 across patients from your data, they are not informative in identifying mutually exclusive patterns.
+
+In cases when the input consists of a very low sample size, errors might occur (estimation fails) when the data contains pairs of genes that have no [00] entries, meaning they are not co-occurring wild type in any patient. If TiMEx fails on your data, please check this first. 
+
 Each function has a detailed and lengthy explanation, together with working examples, which provide an easy-to-follow hans-on guide on how to use TiMEx. Please report any issues you find here; sharing your feedback is greatly appreciated. 
