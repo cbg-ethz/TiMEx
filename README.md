@@ -69,7 +69,7 @@ TiMEx will run with default parameters. For additional details on the parameters
 
 at the R console.
 
-Before running TiMEx, it's a good idea to run the function ```doMetagroup```  on your binary matrix, and run TiMEx on the ```$mat``` part of the result. ```doMetagroup``` condenses all genes with identical alteration patterns into one metagene. These genes are equivalent from the point of view of the algorithm, so not condesing them into a single metagene would produce ambigous results.
+Before running TiMEx, it's a good idea to run the function ```doMetagene```  on your binary matrix, and run TiMEx on the ```$newMat``` part of the result. ```doMetagene``` condenses all genes with identical alteration patterns into one metagene. These genes are equivalent from the point of view of the algorithm, so not condesing them into a single metagene would produce ambigous results.
 
 
 ## Tips
